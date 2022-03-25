@@ -1,0 +1,301 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-co">
+<head runat="server">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/jscript"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link href="~/estilo/estilo.css" rel="stylesheet" type="text/css"/>
+    <link href="~/estilo/icheck-bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/estilo/pnotify.css" rel="stylesheet" type="text/css" />
+    <link href="~/estilo/pnotify.buttons.css" rel="stylesheet" type="text/css" />
+    
+
+    <style type="text/css">
+        .nav-pills > li > a {
+            border-radius: 0;
+        }
+
+    #wrapper {
+       padding-left: 0;
+       -webkit-transition: all 0.5s ease;
+       -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+       transition: all 0.5s ease;
+       overflow: hidden;
+    }
+
+    #wrapper.toggled {
+       padding-left: 250px;
+       overflow: hidden;
+    }
+
+    #sidebar-wrapper {
+       z-index: 1000;
+       position: absolute;
+       left: 250px;
+       width: 0;
+       height: 100%;
+       margin-left: -250px;
+       overflow-y: auto;
+       background: #208ACB;
+       -webkit-transition: all 0.5s ease;
+       -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+       transition: all 0.5s ease;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+       width: 250px;
+    }
+
+    #page-content-wrapper {
+       position: absolute;
+       padding: 15px;
+       width: 100%;
+       overflow-x: hidden;
+    }
+
+    .xyz {
+       min-width: 360px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+       position: relative;
+       margin-right: 0px;
+    }
+
+    .fixed-brand {
+       width: auto;
+    }
+    /* Sidebar Styles */
+
+    .sidebar-nav {
+       position: absolute;
+       top: 0;
+       width: 250px;
+       margin: 0;
+       padding: 0;
+       list-style: none;
+       margin-top: 2px;
+    }
+
+    .sidebar-nav li {
+       text-indent: 15px;
+       line-height: 40px;
+    }
+
+    .sidebar-nav li a {
+       display: block;
+       text-decoration: none;
+       color: #FFFFFF;
+    }
+
+    .sidebar-nav li a:hover {
+       text-decoration: none;
+       color: #fff;
+       background: rgba(255, 255, 255, 0.2);
+       border-left: red 2px solid;
+    }
+
+    .sidebar-nav li a:active,
+    .sidebar-nav li a:focus {
+       text-decoration: none;
+    }
+
+    .sidebar-nav > .sidebar-brand {
+       height: 65px;
+       font-size: 18px;
+       line-height: 60px;
+    }
+
+    .sidebar-nav > .sidebar-brand a {
+       color: #999999;
+    }
+
+    .sidebar-nav > .sidebar-brand a:hover {
+       color: #fff;
+       background: none;
+    }
+
+    .no-margin {
+       margin: 0;
+    }
+
+    @media (min-width: 768px) {
+       #wrapper {
+          padding-left: 250px;
+       }
+       .fixed-brand {
+          width: 250px;
+       }
+       #wrapper.toggled {
+          padding-left: 0;
+       }
+       #sidebar-wrapper {
+          width: 250px;
+       }
+       #wrapper.toggled #sidebar-wrapper {
+          width: 250px;
+       }
+       #wrapper.toggled-2 #sidebar-wrapper {
+          width: 50px;
+       }
+       #wrapper.toggled-2 #sidebar-wrapper:hover {
+          width: 250px;
+       }
+       #page-content-wrapper {
+          padding: 20px;
+          position: relative;
+          -webkit-transition: all 0.5s ease;
+          -moz-transition: all 0.5s ease;
+          -o-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+       }
+       #wrapper.toggled #page-content-wrapper {
+          position: relative;
+          margin-right: 0;
+          padding-left: 250px;
+       }
+       #wrapper.toggled-2 #page-content-wrapper {
+          position: relative;
+          margin-right: 0;
+          margin-left: -200px;
+          -webkit-transition: all 0.5s ease;
+          -moz-transition: all 0.5s ease;
+          -o-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+          width: auto;
+       }
+    }
+</style>
+    <script type="text/javascript">
+        function showCustomAlert() {
+            var alert = $(".alert-container");
+
+            alert.hide();
+            alert.slideDown();
+            window.setTimeout(function () {
+                alert.slideUp();
+            }, 2000);
+        };
+
+        function TnotifyError(titulo, texto) {
+            if (titulo == '') { titulo = false; }
+            if (texto == '') { texto = false; }
+            new PNotify({
+                title: titulo,
+                text: texto,
+                styling: "bootstrap3",
+                hide: true,
+                animateSpeed: 'fast',
+                shadow: true,
+                delay: 1200,
+                closer: true,
+                closerHover: false,
+                type: 'error',
+                icon: 'fa fa-frown-o'
+            });
+        };
+    </script>  
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="body">
+    <script src='<%= ResolveClientUrl("~/js/pnotify.js") %>'></script>
+    <script src='<%= ResolveClientUrl("~/js/pnotify.buttons.js") %>'></script>
+    <form id="form1" runat="server">
+    <asp:ToolkitScriptManager runat="server">
+    </asp:ToolkitScriptManager>
+    
+   <asp:Label ID="lblUsuario" runat="server" CssClass="lblTitulo01"></asp:Label>
+   <div id="wrapper" class="toggled-2">
+        
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            <asp:Repeater ID="rptMenuLateral" runat="server">
+                <ItemTemplate>
+                    <li <%# CargarSubmenuLateral((Int32)Eval("Id_MenuItem") ) %>>
+                       <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa <%# Eval("Imagen")%> fa-stack-1x "></i></span>
+                           <%# Eval("Nombre_Item")%>
+                       </a>
+                       <!-- el submenú LATERAL que se despliega -->
+                       <%# ConsultaItems() %>
+                    </li>
+                </ItemTemplate>
+            </asp:Repeater>
+         </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-12">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+   </div>
+    </form>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        $("#menu-toggle-2").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled-2");
+            $('#menu ul').hide();
+        });
+
+        function initMenu() {
+            $('#menu ul').hide();
+            $('#menu ul').children('.current').parent().show();
+            //$('#menu ul:first').show();
+            $('#menu li a').click(
+                function () {
+                    var checkElement = $(this).next();
+                    if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                        return false;
+                    }
+                    if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                        $('#menu ul:visible').slideUp('normal');
+                        checkElement.slideDown('normal');
+                        return false;
+                    }
+                }
+            );
+        }
+        $(document).ready(function () {
+            initMenu();
+        });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        /*para los mensajes*/
+        $(function () {
+            var alert = $(".alert-container");
+
+            alert.hide();
+
+            $("#aFaber").click(function (e) {
+                e.preventDefault();
+                alert.slideDown();
+                window.setTimeout(function () {
+                    alert.slideUp();
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

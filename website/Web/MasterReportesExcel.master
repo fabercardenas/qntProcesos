@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterReportesExcel.master.cs" Inherits="Web_MasterReportesExcel" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="http://www.multiserviciosas.com/images/estiloExcel.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table>
+            <tr>
+                <th colspan="3" style="text-align:center;">
+                    <asp:Image ID="imgLogoEmpresa" runat="server" ImageAlign="Top" />
+                </th>
+                <th colspan="3" style="text-align:left;">
+                    <asp:Label ID="lblTitulo" runat="server"></asp:Label>
+                </th>
+                <th></th>
+                <th style="text-align:left; font-size:13px;">
+                    <asp:Literal ID="ltrFechaGenerado" runat="server"></asp:Literal>
+                </th>
+            </tr>
+           <tr>
+                <th colspan="3" style="text-align:left;">&nbsp;</th>
+                <th colspan="3" style="text-align:left; font-size:13px;">
+                    <asp:Literal ID="ltrGeneradoPor" runat="server"></asp:Literal>
+                </th>
+                <th></th>
+                <th style="text-align:left; font-size:13px;">
+                    <asp:Literal ID="ltrHoraGenerado" runat="server"></asp:Literal>
+                </th>
+            </tr>
+        </table>
+        
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+                
+    </form>
+</body>
+</html>

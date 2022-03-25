@@ -1,0 +1,120 @@
+ul.menu { /* es la lista principal */
+  float: left;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 20px;
+  color: #000000;
+}
+
+ul.menu li { /* cada item de la lista principal */
+  border-right: 0px solid #A9A9A9;
+  display: block;
+  float: left;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+ul.menu li:hover { /* efecto hover sobre los items de la lista principal */
+  -moz-border-radius: 4px;
+  color: #000000;
+  border:0px;
+}
+    ul.menu li a { /* cada item de la lista principal es un enlace */
+        color: #607486; /*#211554;*/
+        font-family: "Century Gothic";
+        font-size: 13px;
+        display: block;
+        float: left;
+        font-weight: bold;
+        line-height: 30px;
+        padding: 6px 15px 5px;
+        text-decoration: none;
+    }
+
+/* el ícono para desplegar el menú */
+ul.menu li a span {
+  font-weight: normal;
+  padding-left: 3px;
+}
+ul.menu li.drop a {
+  padding-right: 7px;
+}
+ul.menu li.drop:hover li {
+  border: none;
+}
+ul.menu li.drop span.toggle {
+  background: transparent url(URL_toggle.png) no-repeat scroll 0 -20px;
+  display: block;
+  float: left;
+  height: 26px;
+  margin: 0 5px;
+  padding: 0;
+  width: 25px;
+}
+
+/* los efectos al pasar el ratón que desplegarán el submenú */
+ul.menu li.drop:hover {
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+}
+ul.menu li.drop:hover ul {
+  display: block;
+  padding: 0 0 10px 0;
+  z-index: 1;
+}
+
+ul.menu li ul { /* la lista con el submenú */
+  background-color: #000000;
+  display: none;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  /*padding: 0;*/
+  left:-10px;
+  position: absolute;
+  top: 43px;
+  width: 170px;
+}
+ul.menu li ul li { /* cada item del submenú */
+  border: none;
+  float: none;
+  height: auto;
+  margin: 0;
+  padding: 0px;
+}
+ul.menu li ul li a { /* cada item del submenú es un enlace */
+  background-color: transparent;
+  color: #0A6ACB !important;
+  display: block;
+  float: none;
+  font-size: 13px;
+  font-weight: normal;
+  height: auto;
+  margin: 0;
+  padding: 0px 15px;
+}
+
+/* efectos sobre los items del submenú */
+    ul.menu li:hover ul {
+        -moz-border-radius-bottomleft: 4px;
+        -moz-border-radius-bottomright: 4px;
+        border: none;
+        background-color: #E3EAF0;
+    }
+ul.menu li:hover ul * {
+  -moz-border-radius: 0;
+  background-color: transparent;
+    
+}
+/* color del over del submenu*/
+ul.menu li ul li:hover {
+  background-color: #BFD6EB;
+}
+ul.menu li ul li:hover a
+{
+    border: thin solid #FFFFFF;
+    color: #064482 !important;
+}

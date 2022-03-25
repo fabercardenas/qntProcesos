@@ -1,0 +1,27 @@
+D:\APP\Sitios Fuentes\nomiQ\Negocio\bin\Release\Negocio.dll
+D:\APP\Sitios Fuentes\nomiQ\Negocio\bin\Release\Negocio.pdb
+D:\APP\Sitios Fuentes\nomiQ\Negocio\bin\Release\Datos.dll
+D:\APP\Sitios Fuentes\nomiQ\Negocio\bin\Release\Datos.pdb
+D:\APP\Sitios Fuentes\nomiQ\Negocio\obj\Release\Negocio.csproj.AssemblyReference.cache
+D:\APP\Sitios Fuentes\nomiQ\Negocio\obj\Release\Negocio.csproj.CoreCompileInputs.cache
+D:\APP\Sitios Fuentes\nomiQ\Negocio\obj\Release\Negocio.csproj.CopyComplete
+D:\APP\Sitios Fuentes\nomiQ\Negocio\obj\Release\Negocio.dll
+D:\APP\Sitios Fuentes\nomiQ\Negocio\obj\Release\Negocio.pdb
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\bin\Release\Negocio.dll
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\bin\Release\Negocio.pdb
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\bin\Release\Datos.dll
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\bin\Release\Datos.pdb
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\obj\Release\Negocio.csproj.AssemblyReference.cache
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\obj\Release\Negocio.csproj.CoreCompileInputs.cache
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\obj\Release\Negocio.csproj.CopyComplete
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\obj\Release\Negocio.dll
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\obj\Release\Negocio.pdb
+D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Release\Negocio.dll
+D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Release\Negocio.pdb
+D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Release\Datos.dll
+D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Release\Datos.pdb
+D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Release\Negocio.csproj.AssemblyReference.cache
+D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Release\Negocio.csproj.CoreCompileInputs.cache
+D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Release\Negocio.csproj.CopyComplete
+D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Release\Negocio.dll
+D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Release\Negocio.pdb

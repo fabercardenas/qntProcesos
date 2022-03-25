@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterReportes.master.cs" Inherits="Web_MasterReportes" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../estilo/estilo.css"/>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="900"></asp:ScriptManager>
+        <table cellpadding="0" cellspacing="0" style="padding-left:15px;" >
+            <tr style="height: 21pt;">
+                <td style="width:20px;">&nbsp;</td>
+                <td>
+                    <asp:Image ID="imgLogoEmpresa" runat="server" />
+                </td>
+                <td class="tdTitulo02" style="text-align:center; height:28px;">
+                    <h3><asp:Label ID="lblTitulo" runat="server"></asp:Label></h3>
+                 </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="rowDetalleInfoFooter">&nbsp;</td>
+            </tr>                            
+        </table>
+
+
+        
+    </form>
+</body>
+</html>

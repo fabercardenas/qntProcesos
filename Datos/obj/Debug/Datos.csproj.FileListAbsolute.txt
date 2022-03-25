@@ -1,0 +1,12 @@
+D:\APP\Sitios Fuentes\nomiQ\Datos\bin\Debug\Datos.dll
+D:\APP\Sitios Fuentes\nomiQ\Datos\bin\Debug\Datos.pdb
+D:\APP\Sitios Fuentes\nomiQ\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+D:\APP\Sitios Fuentes\nomiQ\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+D:\APP\Sitios Fuentes\nomiQ\Datos\obj\Debug\Datos.dll
+D:\APP\Sitios Fuentes\nomiQ\Datos\obj\Debug\Datos.pdb
+D:\APP\Sitios Fuentes\qntProcesos\Datos\bin\Debug\Datos.dll
+D:\APP\Sitios Fuentes\qntProcesos\Datos\bin\Debug\Datos.pdb
+D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Debug\Datos.dll
+D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Debug\Datos.pdb
+D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
