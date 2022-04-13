@@ -52,6 +52,7 @@
                     <asp:BoundField DataField="tdc_numeroDocumento" HeaderText="Documento" />
                     <asp:BoundField DataField="canal" HeaderText="Canal" />
                     <asp:BoundField DataField="proceso" HeaderText="Proceso" />
+                    <asp:BoundField DataField="tdc_direccion" HeaderText="Direccion" />
                 </Columns>
             </asp:GridView>
         </div>

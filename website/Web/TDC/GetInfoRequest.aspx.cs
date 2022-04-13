@@ -15,16 +15,16 @@ using System.Text;
 using System.Net.Http.Headers;
 using Negocio;
 using System.Threading.Tasks;
+using System.Collections;
 
 public partial class GetInfoRequest : System.Web.UI.Page
 {
-    Negocio.NEmpleados nEmpleado = new Negocio.NEmpleados();
-    Datos.DClientes dClientes = new Datos.DClientes();
+    #region ELIMINAR AL TERMINAR
     public const string LoginEndpoint = "https://test.salesforce.com/services/oauth2/token";
     public const string ApiEndpoint = "/services/data/v36.0/"; //Use your org's version number
     public static string ServiceUrl;
     public static string AuthToken;
-
+    #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
        #region APGO
@@ -75,6 +75,24 @@ public partial class GetInfoRequest : System.Web.UI.Page
         #endregion
     }
 
+    protected void btnCargar_Click(object sender, EventArgs e)
+    {
+        //buscar las cedulas que esten sin actualizar
+        Negocio.NTDC nTDC = new NTDC();
+        nTDC.Sincronizar();
+        //Dictionary<string, string> resultado = nTDC.Sincronizar();
+        //if (resultado.ContainsKey("warning"))
+        //    ltrMensaje.Text = NMessaging.Warning(resultado["warning"].ToString());
+
+        //if (resultado.ContainsKey("error"))
+        //    ltrMensaje.Text = NMessaging.Error(resultado["error"].ToString());
+
+        //if (resultado.ContainsKey("success"))
+        //    ltrMensaje.Text = NMessaging.Warning(resultado["success"].ToString());
+
+    }
+
+    #region PARA ELIMINAR AL TERMINAR // TIENE EL QUERYRECORD
     private void GetToken()
     {
         HttpClient Client = new HttpClient();
@@ -173,64 +191,5 @@ public partial class GetInfoRequest : System.Web.UI.Page
         RestResponse finalResponse = client.ExecuteAsync(request).Result;
         
     }
-
-    public static async Task<ContactoLista> GetInfo4()
-    {
-        //joining together the json format string sample:"{"key":"valus"}";
-        string requestMessage = "{\"contactos\":[\"1112226613\"]}";
-
-        HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
-
-        ////create url using package name in URL
-        string endpoint = ServiceUrl + "/services/apexrest/ProcesosDatosBasicos";
-
-        ////create request message associated with POST verb
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, endpoint);
-
-        ////return JSON to the caller
-        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-        ////add token to header
-        request.Headers.Add("Authorization", "Bearer " + AuthToken);
-
-        ////add content to HttpRequestMessage;
-        request.Content = content;
-
-        #region ESTO FUNCIONA PERO ASINCRONICO
-        HttpClient putClient = new HttpClient();
-        //call endpoint async
-        HttpResponseMessage response = await putClient.SendAsync(request);
-        response.EnsureSuccessStatusCode();
-
-        string result = response.Content.ReadAsStringAsync().Result;
-        ContactoLista paraDevolver = JsonConvert.DeserializeObject<ContactoLista>(result);
-        #endregion
-        
-        return paraDevolver;
-    }
-
-    protected void btnCargar_Click(object sender, EventArgs e)
-    {
-        //buscar las cedulas que esten sin actualizar
-
-        GetToken();
-        callMethod();
-    }
-
-    public static async void callMethod()
-    {
-        Task<ContactoLista> haber = GetInfo4();
-        ContactoLista listado = await haber;
-        //validar la longitud de listado
-        if ((listado != null) && (listado.contactos.Count > 0))
-        {
-            foreach (var item in listado.contactos)
-            {
-                Console.WriteLine("id: " + item.Id + ", Direccion: " + item.Direccin_Residencia__c);
-                //actualizar cada cliente con los datos de ubicacion
-
-            }
-        }
-    }
-
+    #endregion
 }

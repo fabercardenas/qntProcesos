@@ -19,7 +19,7 @@ Copyright (C) Microsoft Corporation. Todos los derechos reservados.
     <ProjectGuid>{9a3e5071-2fa4-4d0c-93d7-3a3f5abdc441}</ProjectGuid>
     <SourceWebPhysicalPath>$(MSBuildThisFileDirectory)</SourceWebPhysicalPath>
     <SourceWebVirtualPath>/website</SourceWebVirtualPath>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <SourceWebProject>
     </SourceWebProject>
     <SourceWebMetabasePath>

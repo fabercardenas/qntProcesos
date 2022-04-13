@@ -10,3 +10,9 @@ D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Debug\Datos.csproj.CoreCompileInputs
 D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Debug\Datos.dll
 D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Debug\Datos.pdb
 D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+D:\APP\SitiosFuentes\qntProcesos\Datos\bin\Debug\Datos.dll
+D:\APP\SitiosFuentes\qntProcesos\Datos\bin\Debug\Datos.pdb
+D:\APP\SitiosFuentes\qntProcesos\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+D:\APP\SitiosFuentes\qntProcesos\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+D:\APP\SitiosFuentes\qntProcesos\Datos\obj\Debug\Datos.dll
+D:\APP\SitiosFuentes\qntProcesos\Datos\obj\Debug\Datos.pdb

@@ -30,7 +30,6 @@ public partial class Login : System.Web.UI.Page
             Session["ultimoAcceso"] = DateTime.Now;
             Session["ID_usuario"] = (int)dataUsuario.Rows[0]["ID_usuario"];
             Session["ID_empresaFK"] = dataUsuario.Rows[0]["ID_empresaFK"].ToString();
-            Session["ID_empresaOutsourcing"] = dataUsuario.Rows[0]["ID_empresaOutsourcing"].ToString();
             Session["ID_perfilFK"] = dataUsuario.Rows[0]["ID_perfilFK"].ToString();
             Session["per_nivel"] = dataUsuario.Rows[0]["per_nivel"].ToString();
             this.lblMensaje.Text = "";

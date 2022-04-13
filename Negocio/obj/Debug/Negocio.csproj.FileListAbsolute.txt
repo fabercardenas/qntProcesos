@@ -25,3 +25,6 @@ D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Debug\Negocio.csproj.CoreCompileInp
 D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Debug\Negocio.dll
 D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Debug\Negocio.pdb
+D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Debug\Negocio.dll.config
+D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Debug\Newtonsoft.Json.dll
+D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Debug\Newtonsoft.Json.xml

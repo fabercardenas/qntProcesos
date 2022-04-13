@@ -50,8 +50,8 @@ public partial class F_AdminReferencias : System.Web.UI.Page
     protected void gdvAdminSalud_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
     {
         btnGrabar.Text = "Grabar";
-        ltrCrear.Text = "Editar Administradora de Salud";
         DataTable tabla = dUtilidad.consultaReferenciaXID(gdvReferencias.DataKeys[e.NewSelectedIndex].Values[0].ToString());
+        ltrCrear.Text = "Editar " + tabla.Rows[0]["ref_modulo"].ToString();
         ddlTipo.SelectedValue = tabla.Rows[0]["ref_modulo"].ToString();
         ddlTipo.Enabled = false;
         txtValor.Text = tabla.Rows[0]["ref_valor"].ToString();

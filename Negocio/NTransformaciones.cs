@@ -10,7 +10,11 @@ namespace Negocio
 	{
 		public string Id { get; set; }
 		public string ID_Cliente__c { get; set; }
+		public string Ciudad_residencia__c { get; set; }
 		public string Direccin_Residencia__c { get; set; }
+		public string UpCelular__c { get; set; }
+		public string UpTelefonoFijo__c { get; set; }
+		public string UpCorreo__c { get; set; }
 	}
 
 	public class ContactoLista
