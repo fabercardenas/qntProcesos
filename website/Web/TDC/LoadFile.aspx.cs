@@ -174,7 +174,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                             afi_documento = dgl.Cells[1].Text;
                             if ((afi_documento != "&nbsp;") && (afi_documento != ""))
                             {
-                                nTDC.Insertar(dgl.Cells[0].Text, afi_documento, dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString());
+                                nTDC.Insertar(dgl.Cells[0].Text, afi_documento, dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString(), nombreArchivo);
                                 cargados++;
                             }
                         }

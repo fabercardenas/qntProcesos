@@ -18,9 +18,9 @@ namespace Negocio
 
 		#region   PASO 1 
 		public DataTable Insertar(string tdc_tipoDocumento, string tdc_numeroDocumento, string tdc_canal,
-			 string tdc_proceso, string ID_usuarioRegistraFK)
+			 string tdc_proceso, string ID_usuarioRegistraFK, string tdc_archivoCarga)
 		{
-			return dTDC.Insertar(tdc_tipoDocumento, tdc_numeroDocumento, tdc_canal, tdc_proceso, ID_usuarioRegistraFK);
+			return dTDC.Insertar(tdc_tipoDocumento, tdc_numeroDocumento, tdc_canal, tdc_proceso, ID_usuarioRegistraFK, tdc_archivoCarga);
 		}
 
 		public DataTable Consultar(string tdc_canal, string tdc_proceso)
@@ -30,7 +30,7 @@ namespace Negocio
 
 		#endregion
 
-		#region PASO 2
+		#region PASO 3
 		public Dictionary<string, string> Sincronizar()
 		{
 			DataTable tbDatos = dTDC.PorSincronizar();
@@ -131,12 +131,12 @@ namespace Negocio
 		}
 		#endregion
 
-		#region PASO 3
-		public DataTable InsertarInfo(string ID_tdcSolicitudFK, string tdc_numeroTarjeta,
+		#region PASO 2
+		public DataTable InsertarInfo(string tdc_numeroDocumento, string tdc_IdColocacion, string tdc_numeroTarjeta,
 			 string tdc_tipoProducto, string tdc_fechaRealce, string tdc_fechaActivacion, string tdc_Valor,
 			 string tdc_estado, string tdc_contrato, string tdc_nombre, string tdc_copiaNumeroTarjeta, string ID_usuarioRegistraFK)
 		{
-			return dTDC.InsertarInfo(ID_tdcSolicitudFK, tdc_numeroTarjeta,tdc_tipoProducto, tdc_fechaRealce, tdc_fechaActivacion, tdc_Valor,
+			return dTDC.InsertarInfo(tdc_numeroDocumento, tdc_IdColocacion, tdc_numeroTarjeta,tdc_tipoProducto, tdc_fechaRealce, tdc_fechaActivacion, tdc_Valor,
 			 tdc_estado, tdc_contrato, tdc_nombre, tdc_copiaNumeroTarjeta, ID_usuarioRegistraFK);
 		}
 		#endregion

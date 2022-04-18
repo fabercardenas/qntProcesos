@@ -3,13 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="tdImgVerde04">Carga de archivo paso 3</div>
+    <div class="tdImgVerde04">Carga de archivo paso 2</div>
     <br />
     <div class="alert alert-warning">
         En este módulo cargará la informacion complementaria de tarjeta de crédito
         <br />
         Puede descargar un formato de ejemplo carga pulsando click sobre el ícono
-        <a href="../../Formatos/FormatoTDC_P3.xlsx" target="_blank">
+        <a href="../../Formatos/FormatoTDC_P2.xlsx" target="_blank">
          <span class="glyphicon glyphicon-save" style="font-size:19px;"></span>
             </a>
     </div>

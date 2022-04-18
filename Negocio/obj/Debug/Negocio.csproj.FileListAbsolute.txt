@@ -28,3 +28,6 @@ D:\APP\SitiosFuentes\qntProcesos\Negocio\obj\Debug\Negocio.pdb
 D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Debug\Negocio.dll.config
 D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Debug\Newtonsoft.Json.dll
 D:\APP\SitiosFuentes\qntProcesos\Negocio\bin\Debug\Newtonsoft.Json.xml
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\bin\Debug\Negocio.dll.config
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\bin\Debug\Newtonsoft.Json.dll
+D:\APP\Sitios Fuentes\qntProcesos\Negocio\bin\Debug\Newtonsoft.Json.xml

@@ -23,7 +23,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
             {
                 //SUBE EL ARCHIVO
                 string extension = System.IO.Path.GetExtension(this.fupArchivo.PostedFile.FileName);
-                narchivo = "Paso3" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Millisecond.ToString() + extension;
+                narchivo = "Paso2" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Millisecond.ToString() + extension;
 
                 string ruta = Server.MapPath("~\\files\\TDC\\") + narchivo;
 
@@ -127,10 +127,14 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                                 #region VALIDAR CAMPOS
                                 if (Negocio.NUtilidades.IsNumeric(dgl.Cells[0].Text) == false)
                                     errorLinea += "El número de colocación no es válido";
-                                if (Negocio.NUtilidades.IsNumeric(dgl.Cells[1].Text) == false)
+                                if (Negocio.NUtilidades.IsDouble(dgl.Cells[1].Text) == false)
                                     errorLinea += "El número de tarjeta no es válido";
                                 if (Negocio.NUtilidades.IsNumeric(afi_documento) == false)
                                     errorLinea += "El número de documento no es válido";
+                                if (dgl.Cells[3].Text != "&nbsp;" & Negocio.NUtilidades.IsDate(dgl.Cells[3].Text) == false)
+                                    errorLinea += "La FechaRealce no tiene el formato de fecha requerido";
+                                if (dgl.Cells[4].Text != "&nbsp;" & Negocio.NUtilidades.IsDate(dgl.Cells[4].Text) == false)
+                                    errorLinea += "La FechaActivacion no tiene el formato de fecha requerido";
                                 #endregion
                             }
                             catch (Exception ex)
@@ -167,7 +171,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                             afi_documento = dgl.Cells[6].Text;
                             if ((afi_documento != "&nbsp;") && (afi_documento != ""))
                             {
-                                DataTable tbInserta = nTDC.InsertarInfo(dgl.Cells[0].Text, dgl.Cells[1].Text, dgl.Cells[2].Text, dgl.Cells[3].Text, dgl.Cells[4].Text, dgl.Cells[5].Text, 
+                                DataTable tbInserta = nTDC.InsertarInfo(dgl.Cells[6].Text, dgl.Cells[0].Text, dgl.Cells[1].Text, dgl.Cells[2].Text, dgl.Cells[3].Text, dgl.Cells[4].Text, dgl.Cells[5].Text, 
                                                   dgl.Cells[7].Text, dgl.Cells[8].Text, dgl.Cells[9].Text, dgl.Cells[10].Text, Session["ID_usuario"].ToString());
                                 if ((tbInserta.Rows.Count > 0) && (tbInserta.Rows[0]["Respuesta"].ToString() == "200"))
                                     cargados++;

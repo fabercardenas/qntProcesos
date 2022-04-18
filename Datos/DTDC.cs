@@ -11,7 +11,7 @@ namespace Datos
 
 		#region   PASO 1 
 		public DataTable Insertar(string tdc_tipoDocumento, string tdc_numeroDocumento, string tdc_canal, 
-			 string tdc_proceso, string ID_usuarioRegistraFK)
+			 string tdc_proceso, string ID_usuarioRegistraFK, string tdc_archivoCarga)
 		{
 			Hashtable param = new Hashtable(1);
 			param.Add("@tdc_tipoDocumento", tdc_tipoDocumento);
@@ -19,6 +19,7 @@ namespace Datos
 			param.Add("@tdc_canal", tdc_canal);
 			param.Add("@tdc_proceso", tdc_proceso);
 			param.Add("@ID_usuarioRegistraFK", ID_usuarioRegistraFK);
+			param.Add("@tdc_archivoCarga", tdc_archivoCarga);
 
             return procedureTable("tdcInsertar", true, param);
 		}
@@ -67,12 +68,13 @@ namespace Datos
 
 		#region PASO 3
 
-		public DataTable InsertarInfo(string ID_tdcSolicitudFK, string tdc_numeroTarjeta,
+		public DataTable InsertarInfo(string tdc_numeroDocumento, string tdc_IdColocacion, string tdc_numeroTarjeta,
 			 string tdc_tipoProducto, string tdc_fechaRealce, string tdc_fechaActivacion, string tdc_Valor,
 			 string tdc_estado, string tdc_contrato, string tdc_nombre, string tdc_copiaNumeroTarjeta, string ID_usuarioRegistraFK)
 		{
 			Hashtable param = new Hashtable(1);
-			param.Add("@ID_tdcSolicitudFK", ID_tdcSolicitudFK);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@tdc_IdColocacion", tdc_IdColocacion);
 			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
 			param.Add("@tdc_tipoProducto", tdc_tipoProducto);
 			param.Add("@tdc_fechaRealce", tdc_fechaRealce);
