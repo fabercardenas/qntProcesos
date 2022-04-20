@@ -4,6 +4,10 @@ using System.Web.UI.WebControls;
 using System.Data.OleDb;
 using System.IO;
 using System.Configuration;
+using OfficeOpenXml;
+using System.Text;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
 
 public partial class TDC_LoadFile : System.Web.UI.Page
 {
@@ -113,10 +117,11 @@ public partial class TDC_LoadFile : System.Web.UI.Page
             {
                 #region VALIDAR EXTRUCTURA
                 DataTable tbValidarReferencia;
+                DataTable tbValidarSolicitud;
                 foreach (DataGridItem dgl in dgFaber.Items)
                 {
                     errorLinea = "";
-                    if (dgl.Cells.Count == 4)
+                    if (dgl.Cells.Count == 5)
                     {
                         afi_documento = dgl.Cells[1].Text;
 
@@ -126,19 +131,22 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                             {
                                 #region VALIDAR CAMPOS
                                 if ((dgl.Cells[0].Text != "1") && (dgl.Cells[0].Text != "2"))
-                                    errorLinea += "Tipo de documento no valido. ";
-                                if (Negocio.NUtilidades.IsNumeric(afi_documento) == false)
-                                    errorLinea += "El número de documento no es válido";
-                                //if ((dgl.Cells[2].Text != "1") && (dgl.Cells[2].Text != "2"))
-                                //    errorLinea += "Canal no valido. ";
+                                    errorLinea += "Tipo de documento no válido. ";
+                                if (Negocio.NUtilidades.IsDouble(afi_documento) == false)
+                                    errorLinea += "El número de documento no es válido. ";
+                                //VALIDAR QUE NO EXISTA UNA SOLICITUD PARA EL DOCUMENTO
+                                tbValidarSolicitud = nTDC.consultaSolicitudXDocumento(afi_documento);
+                                if (tbValidarSolicitud.Rows.Count > 0)
+                                    errorLinea += "Ya existe una solicitud para este documento y se encuentra en el paso " + tbValidarSolicitud.Rows[0]["tdc_paso"].ToString() + ". ";
+                                    //esto se puede permitir si el cliente ha finalizado el proceso, por ahora no se ha definido cual es el paso final
                                 tbValidarReferencia = Negocio.NUtilidades.consultaReferenciaXModulo_y_Valor("Canales", dgl.Cells[2].Text);
                                 if(tbValidarReferencia.Rows.Count==0)
-                                    errorLinea += "Canal no valido. ";
-
+                                    errorLinea += "Canal no válido. ";
                                 tbValidarReferencia = Negocio.NUtilidades.consultaReferenciaXModulo_y_Valor("Procesos", dgl.Cells[3].Text);
                                 if (tbValidarReferencia.Rows.Count == 0)
-                                    errorLinea += "Proceso no valido. ";
-
+                                    errorLinea += "Proceso no válido. ";
+                                if (Negocio.NUtilidades.IsDate(dgl.Cells[4].Text) == false)
+                                    errorLinea += "la Fecha de Venta no es válida. ";
                                 #endregion
                             }
                             catch (Exception ex)
@@ -149,7 +157,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                         }
                     }
                     else
-                        errorLinea += "El número de columnas no es válido. Se necesitan 4 y el registro tiene " + dgl.Cells.Count + ". ";
+                        errorLinea += "El número de columnas no es válido. Se necesitan 5 y el registro tiene " + dgl.Cells.Count + ". ";
 
                     if (errorLinea != "")
                         errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", documento " + afi_documento + ": " + errorLinea + "<br />";
@@ -172,9 +180,10 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                         try
                         {
                             afi_documento = dgl.Cells[1].Text;
+                            
                             if ((afi_documento != "&nbsp;") && (afi_documento != ""))
                             {
-                                nTDC.Insertar(dgl.Cells[0].Text, afi_documento, dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString(), nombreArchivo);
+                                nTDC.Insertar(dgl.Cells[0].Text, afi_documento, dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString(), nombreArchivo, dgl.Cells[4].Text);
                                 cargados++;
                             }
                         }
@@ -184,10 +193,16 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                             throw;
                         }
                     }
-
                     #endregion
 
-                    ltrMensaje.Text = (cargados).ToString() + " registros cargados";
+                    #region SINCRONIZAR SALESFORCE
+                    #endregion
+
+                    #region GENERACIÓN FORMULARIO DE SALIDA
+                    consultaSolicitudXArchivo(nTDC.consultaSolicitudXArchivo(nombreArchivo));
+                    #endregion
+
+                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados");
                     dgFaber.DataSource = null;
                     dgFaber.DataBind();
                     return true;
@@ -210,6 +225,37 @@ public partial class TDC_LoadFile : System.Web.UI.Page
         {
             string nombreArchivo = "";
             validaArchivo(ref nombreArchivo);
+        }
+    }
+
+    protected void consultaSolicitudXArchivo(DataTable tbl)
+    {
+        if (tbl.Rows.Count > 0)
+        {
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            Page page = new Page();
+            HtmlForm form = new HtmlForm();
+
+            GridView gdvDatos = new GridView();
+            gdvDatos.DataSource = tbl;
+            gdvDatos.DataBind();
+
+            page.EnableEventValidation = false;
+            page.DesignerInitialize();
+            page.Controls.Add(form);
+            form.Controls.Add(gdvDatos);
+            page.RenderControl(htw);
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment; filename= SolicituddeEmisionTDC" + string.Format("{0:ddMMyyyy}", DateTime.Today) + ".xls");
+            Response.Charset = "UTF-8";
+            Response.ContentEncoding = Encoding.Default;
+            Response.Write(sb.ToString());
+            Response.End();
         }
     }
 }

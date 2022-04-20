@@ -11,7 +11,7 @@ namespace Datos
 
 		#region   PASO 1 
 		public DataTable Insertar(string tdc_tipoDocumento, string tdc_numeroDocumento, string tdc_canal, 
-			 string tdc_proceso, string ID_usuarioRegistraFK, string tdc_archivoCarga)
+			 string tdc_proceso, string ID_usuarioRegistraFK, string tdc_archivoCargaP1, string tdc_fechaVenta)
 		{
 			Hashtable param = new Hashtable(1);
 			param.Add("@tdc_tipoDocumento", tdc_tipoDocumento);
@@ -19,15 +19,57 @@ namespace Datos
 			param.Add("@tdc_canal", tdc_canal);
 			param.Add("@tdc_proceso", tdc_proceso);
 			param.Add("@ID_usuarioRegistraFK", ID_usuarioRegistraFK);
-			param.Add("@tdc_archivoCarga", tdc_archivoCarga);
+			param.Add("@tdc_archivoCargaP1", tdc_archivoCargaP1);
+			param.Add("@tdc_fechaVenta", tdc_fechaVenta);
 
             return procedureTable("tdcInsertar", true, param);
 		}
 
-        #endregion
+		public DataTable consultaSolicitudXDocumento(string tdc_numeroDocumento)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
 
-        #region PASO 2
-        public DataTable Consultar(string tdc_canal, string tdc_proceso)
+			return procedureTable("tdcConsultarSolicXdocumento", true, param);
+		}
+
+		public DataTable consultaSolicitudXArchivo(string tdc_archivoCargaP1)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_archivoCargaP1", tdc_archivoCargaP1);
+
+			return procedureTable("tdcConsultarSolicXarchivo", true, param);
+		}
+
+		#endregion
+
+		#region PASO 2
+
+		public DataTable InsertarInfo(string tdc_numeroDocumento, string tdc_IdColocacion, string tdc_numeroTarjeta,
+			 string tdc_tipoProducto, string tdc_fechaRealce, string tdc_fechaActivacion, string tdc_Valor,
+			 string tdc_estado, string tdc_contrato, string tdc_nombre, string tdc_copiaNumeroTarjeta, string ID_usuarioRegistraFK)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@tdc_IdColocacion", tdc_IdColocacion);
+			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
+			param.Add("@tdc_tipoProducto", tdc_tipoProducto);
+			param.Add("@tdc_fechaRealce", tdc_fechaRealce);
+			param.Add("@tdc_fechaActivacion", tdc_fechaActivacion);
+			param.Add("@tdc_Valor", tdc_Valor);
+			param.Add("@tdc_estado", tdc_estado);
+			param.Add("@tdc_contrato", tdc_contrato);
+			param.Add("@tdc_nombre", tdc_nombre);
+			param.Add("@tdc_copiaNumeroTarjeta", tdc_copiaNumeroTarjeta);
+			param.Add("@ID_usuarioRegistraFK", ID_usuarioRegistraFK);
+
+
+			return procedureTable("tdcInsertarInfo", true, param);
+		}
+		#endregion
+
+		#region PASO 3
+		public DataTable Consultar(string tdc_canal, string tdc_proceso)
 		{
 			Hashtable param = new Hashtable(1);
 			param.Add("@tdc_canal", tdc_canal);
@@ -66,29 +108,6 @@ namespace Datos
 		}
 		#endregion
 
-		#region PASO 3
-
-		public DataTable InsertarInfo(string tdc_numeroDocumento, string tdc_IdColocacion, string tdc_numeroTarjeta,
-			 string tdc_tipoProducto, string tdc_fechaRealce, string tdc_fechaActivacion, string tdc_Valor,
-			 string tdc_estado, string tdc_contrato, string tdc_nombre, string tdc_copiaNumeroTarjeta, string ID_usuarioRegistraFK)
-		{
-			Hashtable param = new Hashtable(1);
-			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
-			param.Add("@tdc_IdColocacion", tdc_IdColocacion);
-			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
-			param.Add("@tdc_tipoProducto", tdc_tipoProducto);
-			param.Add("@tdc_fechaRealce", tdc_fechaRealce);
-			param.Add("@tdc_fechaActivacion", tdc_fechaActivacion);
-			param.Add("@tdc_Valor", tdc_Valor);
-			param.Add("@tdc_estado", tdc_estado);
-			param.Add("@tdc_contrato", tdc_contrato);
-			param.Add("@tdc_nombre", tdc_nombre);
-			param.Add("@tdc_copiaNumeroTarjeta", tdc_copiaNumeroTarjeta);
-			param.Add("@ID_usuarioRegistraFK", ID_usuarioRegistraFK);
-
-
-			return procedureTable("tdcInsertarInfo", true, param);
-		}
-		#endregion
+		
 	}
 }
