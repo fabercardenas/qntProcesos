@@ -4,6 +4,10 @@ using System.Web.UI.WebControls;
 using System.Data.OleDb;
 using System.IO;
 using System.Configuration;
+using OfficeOpenXml;
+using System.Text;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
 
 public partial class TDC_LoadFile : System.Web.UI.Page
 {
@@ -106,35 +110,31 @@ public partial class TDC_LoadFile : System.Web.UI.Page
             Negocio.NTDC nTDC = new Negocio.NTDC();
             
 
-            string afi_documento = "";
+            string cli_nombre = "";
             string errores = "", errorLinea = "";
 
             try
             {
                 #region VALIDAR EXTRUCTURA
-                DataTable tbValidarReferencia;
                 foreach (DataGridItem dgl in dgFaber.Items)
                 {
                     errorLinea = "";
-                    if (dgl.Cells.Count == 11)
+                    if (dgl.Cells.Count == 12)
                     {
-                        afi_documento = dgl.Cells[6].Text;
-
-                        if ((afi_documento != "&nbsp;") && (afi_documento != ""))
+                        cli_nombre = dgl.Cells[9].Text;
+                        if ((cli_nombre != "&nbsp;") && (cli_nombre != ""))
                         {
                             try
                             {
                                 #region VALIDAR CAMPOS
                                 if (Negocio.NUtilidades.IsNumeric(dgl.Cells[0].Text) == false)
                                     errorLinea += "El número de colocación no es válido";
-                                if (Negocio.NUtilidades.IsDouble(dgl.Cells[1].Text) == false)
-                                    errorLinea += "El número de tarjeta no es válido";
-                                if (Negocio.NUtilidades.IsNumeric(afi_documento) == false)
-                                    errorLinea += "El número de documento no es válido";
                                 if (dgl.Cells[3].Text != "&nbsp;" & Negocio.NUtilidades.IsDate(dgl.Cells[3].Text) == false)
                                     errorLinea += "La FechaRealce no tiene el formato de fecha requerido";
                                 if (dgl.Cells[4].Text != "&nbsp;" & Negocio.NUtilidades.IsDate(dgl.Cells[4].Text) == false)
                                     errorLinea += "La FechaActivacion no tiene el formato de fecha requerido";
+                                if (Negocio.NUtilidades.IsNumeric(dgl.Cells[8].Text) == false)
+                                    errorLinea += "El número de contrato no es válido";
                                 #endregion
                             }
                             catch (Exception ex)
@@ -145,10 +145,10 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                         }
                     }
                     else
-                        errorLinea += "El número de columnas no es válido. Se necesitan 11 y el registro tiene " + dgl.Cells.Count + ". ";
+                        errorLinea += "El número de columnas no es válido. Se necesitan 12 y el registro tiene " + dgl.Cells.Count + ". ";
 
                     if (errorLinea != "")
-                        errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", documento " + afi_documento + ": " + errorLinea + "<br />";
+                        errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", nombre " + cli_nombre + ": " + errorLinea + "<br />";
                 }
                 #endregion
 
@@ -164,19 +164,51 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     #region INSERTAR
                     int cargados = 0;
                     string fallas = "";
+                    DataTable tbExcelResult = new DataTable();
+                    tbExcelResult.Columns.Add("IdColocacion");
+                    tbExcelResult.Columns.Add("NumeroTarjeta", Type.GetType("System.Int64"));
+                    tbExcelResult.Columns.Add("TipoProducto");
+                    tbExcelResult.Columns.Add("FechaRealce");
+                    tbExcelResult.Columns.Add("FechaActivacion");
+                    tbExcelResult.Columns.Add("MontoAprobado");
+                    tbExcelResult.Columns.Add("NumeroIndentificacion");
+                    tbExcelResult.Columns.Add("EstadoTarjeta");
+                    tbExcelResult.Columns.Add("Contrato", Type.GetType("System.Int64"));
+                    tbExcelResult.Columns.Add("Nombre");
+                    tbExcelResult.Columns.Add("CopiadeNumeroTarjeta");
+                    tbExcelResult.Columns.Add("ID_BMP");
+
+                    GridView gdvDatos = new GridView();
+                    
                     foreach (DataGridItem dgl in dgFaber.Items)
                     {
                         try
                         {
-                            afi_documento = dgl.Cells[6].Text;
-                            if ((afi_documento != "&nbsp;") && (afi_documento != ""))
+                            cli_nombre = dgl.Cells[9].Text;
+                            if ((cli_nombre != "&nbsp;") && (cli_nombre != ""))
                             {
-                                DataTable tbInserta = nTDC.InsertarInfo(dgl.Cells[6].Text, dgl.Cells[0].Text, dgl.Cells[1].Text, dgl.Cells[2].Text, dgl.Cells[3].Text, dgl.Cells[4].Text, dgl.Cells[5].Text, 
-                                                  dgl.Cells[7].Text, dgl.Cells[8].Text, dgl.Cells[9].Text, dgl.Cells[10].Text, Session["ID_usuario"].ToString());
+                                DataTable tbInserta = nTDC.InsertarInfo(dgl.Cells[0].Text, dgl.Cells[3].Text, 
+                                                  dgl.Cells[7].Text, dgl.Cells[8].Text, dgl.Cells[9].Text, Session["ID_usuario"].ToString(), nombreArchivo);
                                 if ((tbInserta.Rows.Count > 0) && (tbInserta.Rows[0]["Respuesta"].ToString() == "200"))
+                                {
                                     cargados++;
+                                    DataRow filaExel = tbExcelResult.NewRow();
+                                    filaExel["IdColocacion"] = dgl.Cells[0].Text;
+                                    filaExel["NumeroTarjeta"] = dgl.Cells[1].Text;
+                                    filaExel["TipoProducto"] = dgl.Cells[2].Text;
+                                    filaExel["FechaRealce"] = dgl.Cells[3].Text;
+                                    filaExel["FechaActivacion"] = "";
+                                    filaExel["MontoAprobado"] = dgl.Cells[5].Text;
+                                    filaExel["NumeroIndentificacion"] = dgl.Cells[6].Text;
+                                    filaExel["EstadoTarjeta"] = dgl.Cells[7].Text;
+                                    filaExel["Contrato"] = dgl.Cells[8].Text;
+                                    filaExel["Nombre"] = dgl.Cells[9].Text;
+                                    filaExel["CopiadeNumeroTarjeta"] = dgl.Cells[10].Text;
+                                    filaExel["ID_BMP"] = "OK";
+                                    tbExcelResult.Rows.Add(filaExel);
+                                }
                                 else
-                                    fallas += afi_documento + " : " + tbInserta.Rows[0]["Mensaje"].ToString() +  "<br />";
+                                    fallas += cli_nombre + " : " + tbInserta.Rows[0]["Mensaje"].ToString() +  "<br />";
                             }
                         }
                         catch (Exception ex)
@@ -185,13 +217,42 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                             throw;
                         }
                     }
-
+                    gdvDatos.DataSource = tbExcelResult;
+                    gdvDatos.DataBind();
                     #endregion
+
+                    #region GENERACIÓN ARCHIVO DE SALIDA
+                    if (gdvDatos.Rows.Count > 0)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        StringWriter sw = new StringWriter(sb);
+                        HtmlTextWriter htw = new HtmlTextWriter(sw);
+                        Page page = new Page();
+                        HtmlForm form = new HtmlForm();
+                        
+                        page.EnableEventValidation = false;
+                        page.DesignerInitialize();
+                        page.Controls.Add(form);
+                        form.Controls.Add(gdvDatos);
+                        page.RenderControl(htw);
+
+                        Response.Clear();
+                        Response.Buffer = true;
+                        Response.ContentType = "application/vnd.ms-excel";
+                        Response.AddHeader("Content-Disposition", "attachment; filename= ResultadoPaso2TDC" + string.Format("{0:ddMMyyyy}", DateTime.Today) + ".xls");
+                        Response.Charset = "UTF-8";
+                        Response.ContentEncoding = Encoding.Default;
+                        Response.Write(sb.ToString());
+                        Response.End();
+                    }
+                    #endregion
+
                     if (fallas.Length > 0)
                         fallas = "<br />Se presentaron fallas en los siguientes registros:<br />" + fallas;
                     ltrMensaje.Text = Messaging.Success((cargados).ToString() + " registros cargados" + fallas);
                     dgFaber.DataSource = null;
                     dgFaber.DataBind();
+                    
                     return true;
                 }
             }
@@ -206,7 +267,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
             return false;
     }
 
-    protected void btnCargar_Click(object sender, EventArgs e)
+    protected void lnbCargar_Click(object sender, EventArgs e)
     {
         if (Session["ID_usuario"] != null)
         {

@@ -219,7 +219,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
             return false;
     }
 
-    protected void btnCargar_Click(object sender, EventArgs e)
+    protected void lnbCargar_Click(object sender, EventArgs e)
     {
         if (Session["ID_usuario"] != null)
         {

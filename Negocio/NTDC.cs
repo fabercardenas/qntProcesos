@@ -41,12 +41,9 @@ namespace Negocio
 		#endregion
 
 		#region PASO 2
-		public DataTable InsertarInfo(string tdc_numeroDocumento, string tdc_IdColocacion, string tdc_numeroTarjeta,
-			 string tdc_tipoProducto, string tdc_fechaRealce, string tdc_fechaActivacion, string tdc_Valor,
-			 string tdc_estado, string tdc_contrato, string tdc_nombre, string tdc_copiaNumeroTarjeta, string ID_usuarioRegistraFK)
+		public DataTable InsertarInfo(string tdc_IdColocacion, string tdc_fechaRealce, string tdc_estado, string tdc_contrato, string tdc_nombre, string ID_usuarioRegistraFK, string tdc_archivoCargaP2)
 		{
-			return dTDC.InsertarInfo(tdc_numeroDocumento, tdc_IdColocacion, tdc_numeroTarjeta, tdc_tipoProducto, tdc_fechaRealce, tdc_fechaActivacion, tdc_Valor,
-			 tdc_estado, tdc_contrato, tdc_nombre, tdc_copiaNumeroTarjeta, ID_usuarioRegistraFK);
+			return dTDC.InsertarInfo(tdc_IdColocacion, tdc_fechaRealce, tdc_estado, tdc_contrato, tdc_nombre, ID_usuarioRegistraFK, tdc_archivoCargaP2);
 		}
 		#endregion
 
@@ -125,7 +122,7 @@ namespace Negocio
 			HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
 
 			////create url using package name in URL
-			string endpoint = ServiceUrl + "/services/apexrest/ProcesosDatosBasicos";
+			string endpoint = ServiceUrl + "/services/apexrest/BPMDatosBasicos";
 
 			////create request message associated with POST verb
 			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, endpoint);

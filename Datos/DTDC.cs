@@ -45,23 +45,16 @@ namespace Datos
 
 		#region PASO 2
 
-		public DataTable InsertarInfo(string tdc_numeroDocumento, string tdc_IdColocacion, string tdc_numeroTarjeta,
-			 string tdc_tipoProducto, string tdc_fechaRealce, string tdc_fechaActivacion, string tdc_Valor,
-			 string tdc_estado, string tdc_contrato, string tdc_nombre, string tdc_copiaNumeroTarjeta, string ID_usuarioRegistraFK)
+		public DataTable InsertarInfo(string tdc_IdColocacion, string tdc_fechaRealce, string tdc_estado, string tdc_contrato, string tdc_nombre, string ID_usuarioRegistraFK, string tdc_archivoCargaP2)
 		{
 			Hashtable param = new Hashtable(1);
-			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
 			param.Add("@tdc_IdColocacion", tdc_IdColocacion);
-			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
-			param.Add("@tdc_tipoProducto", tdc_tipoProducto);
 			param.Add("@tdc_fechaRealce", tdc_fechaRealce);
-			param.Add("@tdc_fechaActivacion", tdc_fechaActivacion);
-			param.Add("@tdc_Valor", tdc_Valor);
 			param.Add("@tdc_estado", tdc_estado);
 			param.Add("@tdc_contrato", tdc_contrato);
 			param.Add("@tdc_nombre", tdc_nombre);
-			param.Add("@tdc_copiaNumeroTarjeta", tdc_copiaNumeroTarjeta);
 			param.Add("@ID_usuarioRegistraFK", ID_usuarioRegistraFK);
+			param.Add("@tdc_archivoCargaP2", tdc_archivoCargaP2);
 
 
 			return procedureTable("tdcInsertarInfo", true, param);
