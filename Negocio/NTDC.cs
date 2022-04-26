@@ -28,6 +28,11 @@ namespace Negocio
 			return dTDC.Consultar(tdc_canal, tdc_proceso);
 		}
 
+		public DataTable ConsultarXestado(Int16 tdc_paso)
+		{
+			return dTDC.ConsultarXestado(tdc_paso);
+		}
+
 		public DataTable consultaSolicitudXDocumento(string tdc_numeroDocumento)
 		{
 			return dTDC.consultaSolicitudXDocumento(tdc_numeroDocumento);
@@ -41,9 +46,9 @@ namespace Negocio
 		#endregion
 
 		#region PASO 2
-		public DataTable InsertarInfo(string tdc_IdColocacion, string tdc_fechaRealce, string tdc_estado, string tdc_contrato, string tdc_nombre, string ID_usuarioRegistraFK, string tdc_archivoCargaP2)
+		public DataTable InsertarInfo(string tdc_IdColocacion, string tdc_fechaRealce, string tdc_estado, string tdc_contrato, string tdc_nombre, string ID_usuarioRegistraFK, string tdc_archivoCargaP2, string tdc_numeroTarjeta, string tdc_numeroDocumentoFK)
 		{
-			return dTDC.InsertarInfo(tdc_IdColocacion, tdc_fechaRealce, tdc_estado, tdc_contrato, tdc_nombre, ID_usuarioRegistraFK, tdc_archivoCargaP2);
+			return dTDC.InsertarInfo(tdc_IdColocacion, tdc_fechaRealce, tdc_estado, tdc_contrato, tdc_nombre, ID_usuarioRegistraFK, tdc_archivoCargaP2, tdc_numeroTarjeta, tdc_numeroDocumentoFK);
 		}
 		#endregion
 

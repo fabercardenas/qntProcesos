@@ -110,7 +110,8 @@ public partial class TDC_LoadFile : System.Web.UI.Page
             Negocio.NTDC nTDC = new Negocio.NTDC();
             
 
-            string cli_nombre = "";
+            //string cli_nombre = ""; Modificación 26 de Abril
+            string cli_documento = "";
             string errores = "", errorLinea = "";
 
             try
@@ -119,22 +120,28 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                 foreach (DataGridItem dgl in dgFaber.Items)
                 {
                     errorLinea = "";
-                    if (dgl.Cells.Count == 12)
+                    if (dgl.Cells.Count == 14)
                     {
-                        cli_nombre = dgl.Cells[9].Text;
-                        if ((cli_nombre != "&nbsp;") && (cli_nombre != ""))
+                        //cli_nombre = dgl.Cells[9].Text;
+                        //if ((cli_nombre != "&nbsp;") && (cli_nombre != ""))
+                        cli_documento = dgl.Cells[13].Text;
+                        if ((cli_documento != "&nbsp;") && (cli_documento != ""))
                         {
                             try
                             {
                                 #region VALIDAR CAMPOS
+                                //if (Negocio.NUtilidades.IsNumeric(dgl.Cells[13].Text) == false)
+                                //    errorLinea += "El número de documento no es válido. ";
                                 if (Negocio.NUtilidades.IsNumeric(dgl.Cells[0].Text) == false)
-                                    errorLinea += "El número de colocación no es válido";
+                                    errorLinea += "El número de colocación no es válido. ";
                                 if (dgl.Cells[3].Text != "&nbsp;" & Negocio.NUtilidades.IsDate(dgl.Cells[3].Text) == false)
-                                    errorLinea += "La FechaRealce no tiene el formato de fecha requerido";
+                                    errorLinea += "La FechaRealce no tiene el formato de fecha requerido. ";
                                 if (dgl.Cells[4].Text != "&nbsp;" & Negocio.NUtilidades.IsDate(dgl.Cells[4].Text) == false)
-                                    errorLinea += "La FechaActivacion no tiene el formato de fecha requerido";
+                                    errorLinea += "La FechaActivacion no tiene el formato de fecha requerido. ";
                                 if (Negocio.NUtilidades.IsNumeric(dgl.Cells[8].Text) == false)
-                                    errorLinea += "El número de contrato no es válido";
+                                    errorLinea += "El número de contrato no es válido. ";
+                                if (Negocio.NUtilidades.IsNumeric(dgl.Cells[12].Text) == false)
+                                    errorLinea += "El número de tarjeta de crédito no es válido. ";
                                 #endregion
                             }
                             catch (Exception ex)
@@ -145,10 +152,10 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                         }
                     }
                     else
-                        errorLinea += "El número de columnas no es válido. Se necesitan 12 y el registro tiene " + dgl.Cells.Count + ". ";
+                        errorLinea += "El número de columnas no es válido. Se necesitan 14 y el registro tiene " + dgl.Cells.Count + ". ";
 
                     if (errorLinea != "")
-                        errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", nombre " + cli_nombre + ": " + errorLinea + "<br />";
+                        errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", documento " + cli_documento + ": " + errorLinea + "<br />";
                 }
                 #endregion
 
@@ -177,6 +184,8 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     tbExcelResult.Columns.Add("Nombre");
                     tbExcelResult.Columns.Add("CopiadeNumeroTarjeta");
                     tbExcelResult.Columns.Add("ID_BMP");
+                    tbExcelResult.Columns.Add("no_TarjetaDeCredito", Type.GetType("System.Int64"));
+                    tbExcelResult.Columns.Add("DocumentoCliente");
 
                     GridView gdvDatos = new GridView();
                     
@@ -184,11 +193,13 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     {
                         try
                         {
-                            cli_nombre = dgl.Cells[9].Text;
-                            if ((cli_nombre != "&nbsp;") && (cli_nombre != ""))
+                            //cli_nombre = dgl.Cells[9].Text;
+                            //if ((cli_nombre != "&nbsp;") && (cli_nombre != ""))
+                            cli_documento = dgl.Cells[13].Text;
+                            if ((cli_documento != "&nbsp;") && (cli_documento != ""))
                             {
                                 DataTable tbInserta = nTDC.InsertarInfo(dgl.Cells[0].Text, dgl.Cells[3].Text, 
-                                                  dgl.Cells[7].Text, dgl.Cells[8].Text, dgl.Cells[9].Text, Session["ID_usuario"].ToString(), nombreArchivo);
+                                                  dgl.Cells[7].Text, dgl.Cells[8].Text, dgl.Cells[9].Text, Session["ID_usuario"].ToString(), nombreArchivo, dgl.Cells[12].Text, dgl.Cells[13].Text);
                                 if ((tbInserta.Rows.Count > 0) && (tbInserta.Rows[0]["Respuesta"].ToString() == "200"))
                                 {
                                     cargados++;
@@ -205,10 +216,12 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                                     filaExel["Nombre"] = dgl.Cells[9].Text;
                                     filaExel["CopiadeNumeroTarjeta"] = dgl.Cells[10].Text;
                                     filaExel["ID_BMP"] = "OK";
+                                    filaExel["no_TarjetaDeCredito"] = dgl.Cells[12].Text;
+                                    filaExel["DocumentoCliente"] = dgl.Cells[13].Text; ;
                                     tbExcelResult.Rows.Add(filaExel);
                                 }
                                 else
-                                    fallas += cli_nombre + " : " + tbInserta.Rows[0]["Mensaje"].ToString() +  "<br />";
+                                    fallas += cli_documento + " : " + tbInserta.Rows[0]["Mensaje"].ToString() +  "<br />";
                             }
                         }
                         catch (Exception ex)

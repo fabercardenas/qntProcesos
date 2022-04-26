@@ -45,7 +45,7 @@ namespace Datos
 
 		#region PASO 2
 
-		public DataTable InsertarInfo(string tdc_IdColocacion, string tdc_fechaRealce, string tdc_estado, string tdc_contrato, string tdc_nombre, string ID_usuarioRegistraFK, string tdc_archivoCargaP2)
+		public DataTable InsertarInfo(string tdc_IdColocacion, string tdc_fechaRealce, string tdc_estado, string tdc_contrato, string tdc_nombre, string ID_usuarioRegistraFK, string tdc_archivoCargaP2, string tdc_numeroTarjeta, string tdc_numeroDocumentoFK)
 		{
 			Hashtable param = new Hashtable(1);
 			param.Add("@tdc_IdColocacion", tdc_IdColocacion);
@@ -55,7 +55,8 @@ namespace Datos
 			param.Add("@tdc_nombre", tdc_nombre);
 			param.Add("@ID_usuarioRegistraFK", ID_usuarioRegistraFK);
 			param.Add("@tdc_archivoCargaP2", tdc_archivoCargaP2);
-
+			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
+			param.Add("@tdc_numeroDocumentoFK", tdc_numeroDocumentoFK);
 
 			return procedureTable("tdcInsertarInfo", true, param);
 		}
@@ -101,6 +102,14 @@ namespace Datos
 		}
 		#endregion
 
-		
+		#region PASO 4
+		public DataTable ConsultarXestado(Int16 tdc_paso)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_paso", tdc_paso);
+
+			return procedureTable("tdcConsultarXestado", true, param);
+		}
+		#endregion
 	}
 }
