@@ -33,6 +33,15 @@ namespace Datos
 			return procedureTable("tdcConsultarSolicXdocumento", true, param);
 		}
 
+		public DataTable actualizaSolicitudXDocumento(string tdc_numeroDocumento, string ID_usuarioPrevalidacionFK)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@ID_usuarioPrevalidacionFK", ID_usuarioPrevalidacionFK);
+
+			return procedureTable("tdcActualizaSolicXdocumento", true, param);
+		}
+
 		public DataTable consultaSolicitudXArchivo(string tdc_archivoCargaP1)
 		{
 			Hashtable param = new Hashtable(1);
@@ -103,6 +112,7 @@ namespace Datos
 		#endregion
 
 		#region PASO 4
+
 		public DataTable ConsultarXestado(Int16 tdc_paso)
 		{
 			Hashtable param = new Hashtable(1);
@@ -110,6 +120,23 @@ namespace Datos
 
 			return procedureTable("tdcConsultarXestado", true, param);
 		}
+
+		public DataTable ConsultarXtarjeta(string tdc_numeroTarjeta)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
+
+			return procedureTable("tdcConsultarXtarjeta", true, param);
+		}
+
+		public DataTable consultaSolicitudXfechaPrevalidacion(string tdc_fechaPrevalidacion)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_fechaPrevalidacion", tdc_fechaPrevalidacion);
+
+			return procedureTable("tdcConsultarSolicXfechaPrevalidacion", true, param);
+		}
+
 		#endregion
 	}
 }

@@ -45,7 +45,7 @@
             <asp:GridView ID="gdvListaSolicitudes" runat="server" CssClass="table table-hover" 
                 EmptyDataText="No hay solicitues con los filtros seleccionados" 
                     AutoGenerateColumns="False" Width="100%"
-                    AllowPaging="true" PageSize="30" GridLines="None"
+                    AllowPaging="true" PageSize="30" GridLines="None" 
                     >
                 <Columns>
                     <asp:BoundField DataField="tdc_tipoDocumento" HeaderText="Tipo Documento" />

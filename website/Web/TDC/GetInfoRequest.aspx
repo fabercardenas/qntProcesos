@@ -11,7 +11,10 @@
         
     </div>
     <div class="form-inline">
-        <asp:Button ID="btnCargar" runat="server" CssClass="btn btn-info" Text="Sincronizar ubicaciones con Salesforce" OnClick="btnCargar_Click" />
+        <asp:LinkButton ID="lnbCargar" runat="server" CssClass="btn btn-info" OnClick="lnbCargar_Click">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        &nbsp;Sincronizar ubicaciones con Salesforce
+                 </asp:LinkButton>
     </div>
 
     <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>

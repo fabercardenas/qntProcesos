@@ -28,14 +28,14 @@ namespace Negocio
 			return dTDC.Consultar(tdc_canal, tdc_proceso);
 		}
 
-		public DataTable ConsultarXestado(Int16 tdc_paso)
-		{
-			return dTDC.ConsultarXestado(tdc_paso);
-		}
-
 		public DataTable consultaSolicitudXDocumento(string tdc_numeroDocumento)
 		{
 			return dTDC.consultaSolicitudXDocumento(tdc_numeroDocumento);
+		}
+
+		public DataTable actualizaSolicitudXDocumento(string tdc_numeroDocumento, string ID_usuarioPrevalidacionFK)
+		{
+			return dTDC.actualizaSolicitudXDocumento(tdc_numeroDocumento, ID_usuarioPrevalidacionFK);
 		}
 
 		public DataTable consultaSolicitudXArchivo(string tdc_archivoCargaP1)
@@ -151,6 +151,26 @@ namespace Negocio
 
 			return contactoReturn;
 		}
+		#endregion
+
+		#region PASO 4
+
+		public DataTable ConsultarXestado(Int16 tdc_paso)
+		{
+			return dTDC.ConsultarXestado(tdc_paso);
+		}
+
+		public DataTable ConsultarXtarjeta(string tdc_numeroTarjeta)
+		{
+			return dTDC.ConsultarXtarjeta(tdc_numeroTarjeta);
+		}
+
+		public DataTable consultaSolicitudXfechaPrevalidacion(string tdc_fechaPrevalidacion)
+		{
+			return dTDC.consultaSolicitudXfechaPrevalidacion(tdc_fechaPrevalidacion);
+		}
+
+
 		#endregion
 	}
 }

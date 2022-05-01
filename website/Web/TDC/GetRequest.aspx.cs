@@ -36,4 +36,5 @@ public partial class TDC_GetRequest : System.Web.UI.Page
         gdvListaSolicitudes.DataSource = nTDC.Consultar(ddlCanales.SelectedValue, ddlProcesos.SelectedValue);
         gdvListaSolicitudes.DataBind();
     }
+
 }

@@ -75,7 +75,7 @@ public partial class GetInfoRequest : System.Web.UI.Page
         #endregion
     }
 
-    protected void btnCargar_Click(object sender, EventArgs e)
+    protected void lnbCargar_Click(object sender, EventArgs e)
     {
         //buscar las cedulas que esten sin actualizar
         Negocio.NTDC nTDC = new NTDC();
