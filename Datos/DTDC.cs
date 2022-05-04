@@ -25,6 +25,20 @@ namespace Datos
             return procedureTable("tdcInsertar", true, param);
 		}
 
+		public DataTable ActualizaNombres(string tdc_numeroDocumento, string tdc_nombre1,string tdc_nombre2, 
+			string tdc_apellido1, string tdc_apellido2, int tdc_cupoAsignado)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@tdc_nombre1", tdc_nombre1);
+			param.Add("@tdc_nombre2", tdc_nombre2);
+			param.Add("@tdc_apellido1", tdc_apellido1);
+			param.Add("@tdc_apellido2", tdc_apellido2);
+			param.Add("@tdc_cupoAsignado", tdc_cupoAsignado);
+			
+			return procedureTable("tdcActualizaNombres", true, param);
+		}
+
 		public DataTable consultaSolicitudXDocumento(string tdc_numeroDocumento)
 		{
 			Hashtable param = new Hashtable(1);

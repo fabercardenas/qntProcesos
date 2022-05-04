@@ -21,4 +21,20 @@ namespace Negocio
 	{
 		public List<ContactoBasico> contactos { get; set; }
 	}
+
+	public class ContactoNombres
+	{
+		public string Id { get; set; }
+		public string ID_Cliente__c { get; set; }
+		public string FirstName { get; set; }
+		public string MiddleName { get; set; }
+		public string LastName { get; set; }
+		public Int32 Valor_Cupo__c { get; set; }
+	}
+
+	public class ContactoNombresLista
+	{
+		public List<ContactoNombres> Contactos { get; set; }
+	}
+
 }

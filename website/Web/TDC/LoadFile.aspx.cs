@@ -175,15 +175,16 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                 {
                     #region INSERTAR
                     int cargados = 0;
+                    string documentosSF = "";
                     foreach (DataGridItem dgl in dgFaber.Items)
                     {
                         try
                         {
-                            afi_documento = dgl.Cells[1].Text;
-                            
+                            afi_documento = dgl.Cells[1].Text;                            
                             if ((afi_documento != "&nbsp;") && (afi_documento != ""))
                             {
                                 nTDC.Insertar(dgl.Cells[0].Text, afi_documento, dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString(), nombreArchivo, dgl.Cells[4].Text);
+                                documentosSF += "\"" + afi_documento + "\",";
                                 cargados++;
                             }
                         }
@@ -196,6 +197,10 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     #endregion
 
                     #region SINCRONIZAR SALESFORCE
+                    if (documentosSF.Length > 0)
+                    {
+                        nTDC.SincronizarNombres(documentosSF.Substring(0, documentosSF.Length - 1));
+                    }
                     #endregion
 
                     #region GENERACIÓN FORMULARIO DE SALIDA
