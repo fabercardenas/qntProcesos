@@ -151,6 +151,14 @@ namespace Datos
 			return procedureTable("tdcConsultarSolicXfechaPrevalidacion", true, param);
 		}
 
+		public DataTable consultaSolicitudXfPreValiStikcer(string tdc_fechaPrevalidacion)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_fechaPrevalidacion", tdc_fechaPrevalidacion);
+
+			return procedureTable("tdcConsultarSolicXfPreValiStikcer", true, param);
+		}
+
 		#endregion
 	}
 }

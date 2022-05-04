@@ -13,10 +13,11 @@ public partial class TDC_LoadFile : System.Web.UI.Page
 {
     Negocio.NEmpleados nEmpleado = new Negocio.NEmpleados();
     Datos.DClientes dClientes = new Datos.DClientes();
-    
+    Negocio.NTDC nTDC = new Negocio.NTDC();
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+       
     }
 
     Boolean validaArchivo(ref string narchivo)
@@ -36,6 +37,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     if ((extension.ToUpper() == ".XLS") || (extension.ToUpper() == ".XLSX"))
                     {
                         fupArchivo.PostedFile.SaveAs(ruta);
+                        ltrNombreArchivo.Text = narchivo;
                         return ImportarAGrilla(ruta, extension, narchivo);
                     }
                     else
@@ -106,9 +108,6 @@ public partial class TDC_LoadFile : System.Web.UI.Page
             dgFaber.DataSource = dt;
             dgFaber.DataBind();
             #endregion
-
-            Negocio.NTDC nTDC = new Negocio.NTDC();
-            
 
             string afi_documento = "";
             string errores = "", errorLinea = "";
@@ -203,13 +202,10 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     }
                     #endregion
 
-                    #region GENERACIÓN FORMULARIO DE SALIDA
-                    consultaSolicitudXArchivo(nTDC.consultaSolicitudXArchivo(nombreArchivo));
-                    #endregion
-
-                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados");
+                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados. Decargue el archivo de Solicitud de Emisión TDC para Finandina");
                     dgFaber.DataSource = null;
                     dgFaber.DataBind();
+                    dvDescarga.Visible = true;
                     return true;
                 }
             }
@@ -229,7 +225,18 @@ public partial class TDC_LoadFile : System.Web.UI.Page
         if (Session["ID_usuario"] != null)
         {
             string nombreArchivo = "";
+            ltrNombreArchivo.Text = "";
             validaArchivo(ref nombreArchivo);
+        }
+    }
+
+    protected void lnbDescargar_Click(object sender, EventArgs e)
+    {
+        if (Session["ID_usuario"] != null)
+        {
+            #region GENERACIÓN FORMULARIO DE SALIDA
+            consultaSolicitudXArchivo(nTDC.consultaSolicitudXArchivo(ltrNombreArchivo.Text));
+            #endregion
         }
     }
 

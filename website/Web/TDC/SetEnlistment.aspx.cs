@@ -77,7 +77,7 @@ public partial class TDC_SetEnlistment: System.Web.UI.Page
     #region GENERACIÓN STIKERS
     protected void lnbStikers_Click(object sender, EventArgs e)
     {
-        GenerarArchivoStickers(nTDC.consultaSolicitudXfechaPrevalidacion(ltrFechaPrevalidacion.Text));
+        GenerarArchivoStickers(nTDC.consultaSolicitudXfPreValiStikcer(ltrFechaPrevalidacion.Text));
     }
 
     private void GenerarArchivoStickers(DataTable tbl)
@@ -143,17 +143,17 @@ public partial class TDC_SetEnlistment: System.Web.UI.Page
                     ws.Row(indicadorFila+1).Height = 15;
                     ExcelRange rngCiudad = ws.Cells[colContenidoC + (indicadorFila+1).ToString() + ":" + colContenidoD + (indicadorFila + 1).ToString()];
                     rngCiudad.Merge = true;
-                    rngNombre.Value = tbl.Rows[i]["CIUDAD"].ToString();
+                    rngCiudad.Value = tbl.Rows[i]["CIUDAD"].ToString();
 
                     ws.Cells[colTitulo + (indicadorFila + 2).ToString()].Value = "DIRECCIÓN";
                     ws.Row(indicadorFila + 2).Height = 40.5;
                     ExcelRange rngDireccion = ws.Cells[colContenidoC + (indicadorFila + 2).ToString() + ":" + colContenidoD + (indicadorFila + 2).ToString()];
                     rngDireccion.Merge = true;
-                    rngDireccion.Value = "la direccion";
+                    rngDireccion.Value = tbl.Rows[i]["DIRECCION"].ToString();
 
                     ws.Cells[colTitulo + (indicadorFila + 3).ToString()].Value = "TELÉFONO";
                     ws.Row(indicadorFila + 3).Height = 15;
-                    ws.Cells[colContenidoC + (indicadorFila + 3).ToString()].Value = "el telefono";
+                    ws.Cells[colContenidoC + (indicadorFila + 3).ToString()].Value = tbl.Rows[i]["TELEFONO"].ToString();
                     ws.Cells[colContenidoD + (indicadorFila + 3).ToString()].Value = tbl.Rows[i]["TARJETA"].ToString();
                     
                     ws.Row(indicadorFila + 4).Height = 22.5;

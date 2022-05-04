@@ -258,6 +258,11 @@ namespace Negocio
 			return dTDC.consultaSolicitudXfechaPrevalidacion(tdc_fechaPrevalidacion);
 		}
 
+		public DataTable consultaSolicitudXfPreValiStikcer(string tdc_fechaPrevalidacion)
+		{
+			return dTDC.consultaSolicitudXfPreValiStikcer(tdc_fechaPrevalidacion);
+		}
+
 
 		#endregion
 	}

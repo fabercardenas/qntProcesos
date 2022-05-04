@@ -16,16 +16,24 @@
          <span class="glyphicon glyphicon-save" style="font-size:19px;"></span>
             </a>
     </div>
+    <asp:Literal ID="ltrNombreArchivo" runat="server" Visible="false"></asp:Literal>
     <div class="form-inline">
         Seleccione el archivo   <asp:FileUpload ID="fupArchivo" runat="server" CssClass="form-control" />
                 <asp:LinkButton ID="lnbCargar" runat="server" CssClass="btn btn-success" OnClick="lnbCargar_Click">
-                        <span class="glyphicon glyphicon-resize-vertical"></span>
+                        <span class="glyphicon glyphicon-arrow-up"></span>
                         &nbsp;Cargar Archivo
                  </asp:LinkButton>
-
+        <br />
     </div>
-
+    <br />
     <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
+
+    <div class="form-inline" id="dvDescarga" runat="server" visible="false">
+        <asp:LinkButton ID="lnbDescargar" runat="server" CssClass="btn btn-primary" OnClick="lnbDescargar_Click">
+            <span class="glyphicon glyphicon-arrow-down"></span>
+            &nbsp;Descargar Archivo
+        </asp:LinkButton>
+    </div>
     
 </asp:Content>
 
