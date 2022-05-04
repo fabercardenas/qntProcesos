@@ -137,13 +137,13 @@ public partial class TDC_SetEnlistment: System.Web.UI.Page
                     ws.Row(indicadorFila).Height = 27;
                     ExcelRange rngNombre = ws.Cells[colContenidoC + indicadorFila.ToString() + ":" + colContenidoD + indicadorFila.ToString()];
                     rngNombre.Merge=true;
-                    rngNombre.Value = "LOS NOMBRES";
+                    rngNombre.Value = tbl.Rows[i]["NOMBRE"].ToString();
 
                     ws.Cells[colTitulo + (indicadorFila + 1).ToString()].Value = "CIUDAD";
                     ws.Row(indicadorFila+1).Height = 15;
                     ExcelRange rngCiudad = ws.Cells[colContenidoC + (indicadorFila+1).ToString() + ":" + colContenidoD + (indicadorFila + 1).ToString()];
                     rngCiudad.Merge = true;
-                    rngNombre.Value = "la ciudad";
+                    rngNombre.Value = tbl.Rows[i]["CIUDAD"].ToString();
 
                     ws.Cells[colTitulo + (indicadorFila + 2).ToString()].Value = "DIRECCIÓN";
                     ws.Row(indicadorFila + 2).Height = 40.5;
