@@ -3,13 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="tdImgVerde04">Carga de archivo paso 2</div>
+    <div class="tdImgVerde04">Carga de Archivo - Paso 2</div>
     <br />
     <div class="alert alert-warning">
-        En este módulo cargará la informacion complementaria de tarjeta de crédito
+        En este módulo cargará la informacion complementaria asociada a la Tarjeta de Crédito para los clientes
         <br />
         Al finalizar el proceso de carga se generará automáticamente un archivo para validar 
-        <br />
         que registros fueron insertados correctamente y cuales deben ser validados nuevamente.
         <br />
         <br />

@@ -3,10 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="tdImgVerde04">Sincronizar Ubicaciones Paso 3</div>
+    <div class="tdImgVerde04">Sincronización de Ubicaciones - Paso 3</div>
     <br />
     <div class="alert alert-warning">
-        Sincronizar ubicaciones
+        En este módulo solicitará la sincronización con SALESFORECE para traer la información de ubicaiones asociada a los clientes<br />
+        que han finalizado los pasos anteriores<br />
+        Campos a sincronizar: Dirección y Ciudad de Residencia, Teléfono y Celular de contacto
+        <br />
         <br />
         
     </div>

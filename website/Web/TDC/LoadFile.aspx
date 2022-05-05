@@ -8,7 +8,9 @@
     <div class="alert alert-info">
         En este módulo iniciará el proceso para las Tarjetas Aprobadas y cargará el archivo con los clientes aprobados.
         <br />
-        Al finalizar el proceso de carga se generará automáticamente el archivo para entragar a Finandina.
+        Automáticamente se sincronizará con SALESFORECE y traerá Nombres, Apellidos y cupo de los clientes aprobados en el archivo de carga.
+        <br />
+        Al finalizar el proceso prodrá generar el archivo para entragar a Finandina.
         <br />
         <br />
         Puede descargar un formato de ejemplo carga pulsando click sobre el ícono

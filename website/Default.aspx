@@ -14,7 +14,7 @@
     <div class="container body-content">
         <div class="col-lg-12">
             <h2 class="page-header">
-                Seguimiento de Procesos
+                Business Project Management
             </h2>
         </div>
         <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
