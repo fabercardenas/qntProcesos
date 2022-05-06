@@ -6,12 +6,15 @@
     <div class="tdImgVerde04">Carga de Archivo Soporte de Entrega</div>
     <br />
     <div class="alert alert-info">
-        En este módulo cargará el archivo de soporte de entrega suministrado por el proveedor de repartición de
+        Este módulo le permitirá llevar el control de las Tarjetas de Crédito entregadas con éxito por medio
         <br />
-        Tarjetas de Crédito.
+        de dos mecanismos:
         <br />
+        - Automático (por medio de un archivo).
         <br />
-        Puede descargar un formato de ejemplo carga pulsando click sobre el ícono
+        - Manual (buscar por número de tarjeta)
+        <br />
+        Puede descargar un formato de ejemplo carga para el proceso automático pulsando click sobre el ícono
         <a href="../../Formatos/FormatoTDC_P6.xlsx" target="_blank">
          <span class="glyphicon glyphicon-save" style="font-size:19px;"></span>
             </a>
