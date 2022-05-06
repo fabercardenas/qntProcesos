@@ -79,7 +79,7 @@ public partial class GetInfoRequest : System.Web.UI.Page
     {
         //buscar las cedulas que esten sin actualizar
         Negocio.NTDC nTDC = new NTDC();
-        nTDC.Sincronizar();
+        nTDC.Sincronizar(Session["ID_usuario"].ToString());
         //Dictionary<string, string> resultado = nTDC.Sincronizar();
         //if (resultado.ContainsKey("warning"))
         //    ltrMensaje.Text = NMessaging.Warning(resultado["warning"].ToString());

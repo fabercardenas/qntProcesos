@@ -36,17 +36,32 @@ public partial class TDC_SetEnlistment: System.Web.UI.Page
     protected void lnbConsultarFecha_Click(object sender, EventArgs e)
     {
         ltrFechaPrevalidacion.Text = string.Format("{0:yyyyMMdd}", txtFechaPreV.Text);
-        lnbTerminar.Visible = false;
-        lnbStikers.Visible = true;
-        lnbBloqueo.Visible = true;
-        lnbAcuse.Visible = true;
-        dvIdConsulta.Visible = false;
+        DataTable PrevalidacionFecha = nTDC.consultaSolicitudXfechaPrevalidacion(ltrFechaPrevalidacion.Text);
+        if (PrevalidacionFecha.Rows.Count>0)
+        {
+            ltrMensaje.Text = Messaging.Success("Prevalidaciones encontradas para la Fecha Seleccionada " + PrevalidacionFecha.Rows.Count);
+            lnbTerminar.Visible = false;
+            lnbStikers.Visible = true;
+            lnbBloqueo.Visible = true;
+            lnbAcuse.Visible = true;
+            dvIdConsulta.Visible = false;
+        }
+        else
+            ltrMensaje.Text = Messaging.Warning("No hay Prevalidaciones para la fecha seleccionada");
     }
 
     void ConsultarSolicitudesXestado()
     {
         gdvListaSolicitudes.DataSource = nTDC.ConsultarXestado(3);
         gdvListaSolicitudes.DataBind();
+    }
+
+    public string TieneDireccion(string tdc_direccion)
+    {
+        string retornar = "";
+        if (tdc_direccion.Length > 0)
+            retornar = "<span class='glyphicon glyphicon-ok'></span>";
+        return retornar;
     }
 
     void ConsultarSolicitudesXtarjeta()
@@ -66,12 +81,19 @@ public partial class TDC_SetEnlistment: System.Web.UI.Page
 
     protected void lnbTerminar_Click(object sender, EventArgs e)
     {
-        lnbTerminar.Visible = false;
-        lnbStikers.Visible = true;
-        lnbBloqueo.Visible = true;
-        lnbAcuse.Visible = true;
-        dvIdConsulta.Visible = false;
-        ltrMensaje.Text = "";
+        ltrFechaPrevalidacion.Text = string.Format("{0:yyyyMMdd}", DateTime.Today);
+        DataTable PrevalidacionProce = nTDC.consultaSolicitudXfechaPrevalidacion(ltrFechaPrevalidacion.Text);
+        if (PrevalidacionProce.Rows.Count > 0)
+        {
+            ltrMensaje.Text = Messaging.Success("Prevalidaciones encontradas para la Fecha Seleccionada " + PrevalidacionProce.Rows.Count);
+            lnbTerminar.Visible = false;
+            lnbStikers.Visible = true;
+            lnbBloqueo.Visible = true;
+            lnbAcuse.Visible = true;
+            dvIdConsulta.Visible = false;
+        }
+        else
+            ltrMensaje.Text = Messaging.Warning("No hay Prevalidaciones ejecutadas el día de hoy");
     }
 
     #region GENERACIÓN STIKERS

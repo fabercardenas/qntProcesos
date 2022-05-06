@@ -121,10 +121,7 @@ namespace Negocio
 			return dTDC.consultaSolicitudXDocumento(tdc_numeroDocumento);
 		}
 
-		public DataTable actualizaSolicitudXDocumento(string tdc_numeroDocumento, string ID_usuarioPrevalidacionFK)
-		{
-			return dTDC.actualizaSolicitudXDocumento(tdc_numeroDocumento, ID_usuarioPrevalidacionFK);
-		}
+		
 
 		public DataTable consultaSolicitudXArchivo(string tdc_archivoCargaP1)
 		{
@@ -141,7 +138,7 @@ namespace Negocio
 		#endregion
 
 		#region PASO 3
-		public Dictionary<string, string> Sincronizar()
+		public Dictionary<string, string> Sincronizar(string ID_usuarioSincronizaDatosFK)
 		{
 			DataTable tbDatos = dTDC.PorSincronizar();
 			Dictionary<string, string> response = new Dictionary<string, string>();
@@ -156,7 +153,7 @@ namespace Negocio
 
 				//consumir servicio y actualizar datos de clientes
 				//return SincronizarAsync(documentos.Substring(0, documentos.Length - 1));
-				SincronizarAsync(documentos.Substring(0, documentos.Length - 1));
+				SincronizarAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioSincronizaDatosFK);
 			}
 			else
 			{
@@ -165,7 +162,7 @@ namespace Negocio
 			return response;
 		}
 
-		public static async void SincronizarAsync(string documentos)
+		public static async void SincronizarAsync(string documentos, string ID_usuarioSincronizaDatosFK)
 		{
 			//solicitar token salesforce
 			Negocio.NSalesforce salesforce = new NSalesforce();
@@ -187,11 +184,11 @@ namespace Negocio
 					Console.WriteLine("id: " + item.Id + ", Direccion: " + item.Direccin_Residencia__c);
 					//actualizar cada cliente con los datos de ubicacion
 
-					//si no tiene direccion no actualiza
-					if ((item.Direccin_Residencia__c != null) && (item.Direccin_Residencia__c.ToString() != ""))
+					//si no tiene direccion y/o no tienen ciudad no actualiza
+					if ((item.Direccin_Residencia__c != null) && (item.Direccin_Residencia__c.ToString() != "") && (item.Ciudad_residencia__c.ToString() != null) && (item.Ciudad_residencia__c.ToString() != ""))
 					{
 						elTDC.ActualizaDatosUbicacion(item.ID_Cliente__c, item.Ciudad_residencia__c.ToString(), item.Direccin_Residencia__c.ToString(),
-						item.UpCorreo__c.ToString(), item.UpTelefonoFijo__c.ToString(), item.UpCelular__c.ToString(), "1");
+						item.UpCorreo__c.ToString(), item.UpTelefonoFijo__c.ToString(), item.UpCelular__c.ToString(), ID_usuarioSincronizaDatosFK);
 						totalProcesados++;
 					}
 					else
@@ -253,6 +250,11 @@ namespace Negocio
 			return dTDC.ConsultarXtarjeta(tdc_numeroTarjeta);
 		}
 
+		public DataTable actualizaSolicitudXDocumento(string tdc_numeroDocumento, string ID_usuarioPrevalidacionFK)
+		{
+			return dTDC.actualizaSolicitudXDocumento(tdc_numeroDocumento, ID_usuarioPrevalidacionFK);
+		}
+
 		public DataTable consultaSolicitudXfechaPrevalidacion(string tdc_fechaPrevalidacion)
 		{
 			return dTDC.consultaSolicitudXfechaPrevalidacion(tdc_fechaPrevalidacion);
@@ -263,7 +265,30 @@ namespace Negocio
 			return dTDC.consultaSolicitudXfPreValiStikcer(tdc_fechaPrevalidacion);
 		}
 
+		#endregion
+
+		#region PASO 5
+		public DataTable ConsultarXestadoVal(Int16 tdc_paso)
+		{
+			return dTDC.ConsultarXestadoVal(tdc_paso);
+		}
+
+		public DataTable ConsultarXtarjetaVal(string tdc_numeroTarjeta)
+		{
+			return dTDC.ConsultarXtarjetaVal(tdc_numeroTarjeta);
+		}
+
+		public DataTable consultaSolicitudXfechaValidacion(string tdc_fechaValidacion)
+		{
+			return dTDC.consultaSolicitudXfechaValidacion(tdc_fechaValidacion);
+		}
+
+		public DataTable actualizaSolicitudValXDocumento(string tdc_numeroDocumento, string ID_usuarioValidacionFK)
+		{
+			return dTDC.actualizaSolicitudValXDocumento(tdc_numeroDocumento, ID_usuarioValidacionFK);
+		}
 
 		#endregion
+
 	}
 }
