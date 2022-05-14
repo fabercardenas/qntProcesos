@@ -293,5 +293,24 @@ namespace Negocio
 
 		#endregion
 
+		#region PASO 6
+
+		public DataTable actualizaInfoXDocumento(string tdc_numeroTarjeta, string tdc_numeroDocumento, string tdc_fechaEntrega, string tdc_numeroGuia, string ID_usuarioEntregaFK, string tdc_archivoEntregaP6)
+		{
+			return dTDC.actualizaInfoXDocumento(tdc_numeroTarjeta, tdc_numeroDocumento, tdc_fechaEntrega, tdc_numeroGuia, ID_usuarioEntregaFK, tdc_archivoEntregaP6);
+		}
+
+		public DataTable ConsultarXtarjetaEntrega(string tdc_numeroTarjeta)
+		{
+			return dTDC.ConsultarXtarjetaEntrega(tdc_numeroTarjeta);
+		}
+
+		public DataTable ConsultarXestadoEntrega(Int16 tdc_paso)
+		{
+			return dTDC.ConsultarXestadoEntrega(tdc_paso);
+		}
+
+		#endregion
+
 	}
 }

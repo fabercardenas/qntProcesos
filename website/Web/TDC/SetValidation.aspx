@@ -50,8 +50,8 @@
                 <div class="col-md-3" style="padding-top:18px;">
                     <label></label>
                     <asp:TextBox ID="txtFechaVal" runat="server" CssClass="form-control" ValidationGroup="secundario"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="rfvFechaPreV" runat="server" ControlToValidate="txtFechaVal" ErrorMessage="* Campo Requerido" ValidationGroup="secundario"> </asp:RequiredFieldValidator>
-                    <asp:CalendarExtender ID="cleFechaPrevalidacion" runat="server" TargetControlID="txtFechaVal" Format="yyyy-MM-dd"></asp:CalendarExtender>
+                    <asp:RequiredFieldValidator ID="rfvFechaVal" runat="server" ControlToValidate="txtFechaVal" ErrorMessage="* Campo Requerido" ValidationGroup="secundario"> </asp:RequiredFieldValidator>
+                    <asp:CalendarExtender ID="cleFechaValidacion" runat="server" TargetControlID="txtFechaVal" Format="yyyy-MM-dd"></asp:CalendarExtender>
                 </div>
                 <div class="col-md-3" style="padding-top:20px;">
                     <asp:LinkButton ID="lnbConsultarFecha" runat="server" CssClass="btn btn-info" OnClick="lnbConsultarFecha_Click" ValidationGroup="secundario">

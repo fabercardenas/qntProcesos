@@ -198,5 +198,38 @@ namespace Datos
 
 		#endregion
 
+		#region PASO 6
+
+		public DataTable actualizaInfoXDocumento(string tdc_numeroTarjeta, string tdc_numeroDocumento, string tdc_fechaEntrega, string tdc_numeroGuia, string ID_usuarioEntregaFK, string tdc_archivoEntregaP6)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@tdc_fechaEntrega", tdc_fechaEntrega);
+			param.Add("@tdc_numeroGuia", tdc_numeroGuia);
+			param.Add("@ID_usuarioEntregaFK", ID_usuarioEntregaFK);
+			param.Add("@tdc_archivoEntregaP6", tdc_archivoEntregaP6);
+
+			return procedureTable("tdcActualizaInfoXdocumento", true, param);
+		}
+
+		public DataTable ConsultarXtarjetaEntrega(string tdc_numeroTarjeta)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
+
+			return procedureTable("tdcConsultarXtarjetaEntrega", true, param);
+		}
+
+		public DataTable ConsultarXestadoEntrega(Int16 tdc_paso)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_paso", tdc_paso);
+
+			return procedureTable("tdcConsultarXestadoEntrega", true, param);
+		}
+
+		#endregion
+
 	}
 }
