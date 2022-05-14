@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Web/MasterPage.master" AutoEventWireup="true" CodeFile="LoadFileInfo.aspx.cs" Inherits="TDC_LoadFile" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Web/MasterPage.master" AutoEventWireup="true" CodeFile="LoadFileInfo.aspx.cs" Inherits="TDC_LoadFile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -25,8 +25,16 @@
                  </asp:LinkButton>
 
     </div>
-
-    <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
+    <br />
+    <div class="col-md-9">
+        <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
+    </div>
+    <div class="col-md-3">
+        <asp:LinkButton ID="lnbExportarResultados" runat="server" CssClass="btn btn-lg btn-primary" Visible="false" OnClick="lnbExportarResultados_Click">
+            <span class="glyphicon glyphicon-indent-left"></span>
+            &nbsp;Exportar resultados
+        </asp:LinkButton>
+    </div>
     
 </asp:Content>
 

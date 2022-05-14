@@ -16,7 +16,10 @@ public partial class TDC_LoadFile : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!Page.IsPostBack)
+        {
+            lnbExportarResultados.Visible = false;
+        }
     }
 
     Boolean validaArchivo(ref string narchivo)
@@ -171,6 +174,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     #region INSERTAR
                     int cargados = 0;
                     string fallas = "";
+                    Session["tbExcelResult"] = null;
                     DataTable tbExcelResult = new DataTable();
                     tbExcelResult.Columns.Add("IdColocacion");
                     tbExcelResult.Columns.Add("NumeroTarjeta", Type.GetType("System.Int64"));
@@ -186,8 +190,6 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     tbExcelResult.Columns.Add("ID_BMP");
                     tbExcelResult.Columns.Add("no_TarjetaDeCredito", Type.GetType("System.Int64"));
                     tbExcelResult.Columns.Add("DocumentoCliente");
-
-                    GridView gdvDatos = new GridView();
                     
                     foreach (DataGridItem dgl in dgFaber.Items)
                     {
@@ -230,39 +232,13 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                             throw;
                         }
                     }
-                    gdvDatos.DataSource = tbExcelResult;
-                    gdvDatos.DataBind();
-                    #endregion
-
-                    #region GENERACIÓN ARCHIVO DE SALIDA
-                    if (gdvDatos.Rows.Count > 0)
-                    {
-                        StringBuilder sb = new StringBuilder();
-                        StringWriter sw = new StringWriter(sb);
-                        HtmlTextWriter htw = new HtmlTextWriter(sw);
-                        Page page = new Page();
-                        HtmlForm form = new HtmlForm();
-                        
-                        page.EnableEventValidation = false;
-                        page.DesignerInitialize();
-                        page.Controls.Add(form);
-                        form.Controls.Add(gdvDatos);
-                        page.RenderControl(htw);
-
-                        Response.Clear();
-                        Response.Buffer = true;
-                        Response.ContentType = "application/vnd.ms-excel";
-                        Response.AddHeader("Content-Disposition", "attachment; filename= ResultadoPaso2TDC" + string.Format("{0:ddMMyyyy}", DateTime.Today) + ".xls");
-                        Response.Charset = "UTF-8";
-                        Response.ContentEncoding = Encoding.Default;
-                        Response.Write(sb.ToString());
-                        Response.End();
-                    }
+                    Session["tbExcelResult"] = tbExcelResult;
                     #endregion
 
                     if (fallas.Length > 0)
                         fallas = "<br />Se presentaron fallas en los siguientes registros:<br />" + fallas;
                     ltrMensaje.Text = Messaging.Success((cargados).ToString() + " registros cargados" + fallas);
+                    lnbExportarResultados.Visible = true;
                     dgFaber.DataSource = null;
                     dgFaber.DataBind();
                     
@@ -285,7 +261,45 @@ public partial class TDC_LoadFile : System.Web.UI.Page
         if (Session["ID_usuario"] != null)
         {
             string nombreArchivo = "";
+            lnbExportarResultados.Visible = false;
+            ltrMensaje.Text = "";
             validaArchivo(ref nombreArchivo);
+        }
+    }
+
+    protected void lnbExportarResultados_Click(object sender, EventArgs e)
+    {
+        DataTable tbExcelResult = new DataTable();
+        if (Session["tbExcelResult"] != null)
+            tbExcelResult = Session["tbExcelResult"] as DataTable;
+        GridView gdvDatos = new GridView();
+        gdvDatos.DataSource = tbExcelResult;
+        gdvDatos.DataBind();
+
+        if (gdvDatos.Rows.Count > 0)
+        {
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            Page page = new Page();
+            HtmlForm form = new HtmlForm();
+
+            page.EnableEventValidation = false;
+            page.DesignerInitialize();
+            page.Controls.Add(form);
+            form.Controls.Add(gdvDatos);
+            page.RenderControl(htw);
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment; filename= ResultadoPaso2TDC" + string.Format("{0:ddMMyyyy}", DateTime.Today) + ".xls");
+            Response.Charset = "UTF-8";
+            Response.ContentEncoding = Encoding.Default;
+            Response.Write(sb.ToString());
+            Response.Flush();
+            Response.SuppressContent = true;
+            ApplicationInstance.CompleteRequest();
         }
     }
 }
