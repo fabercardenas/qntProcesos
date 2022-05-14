@@ -312,5 +312,32 @@ namespace Negocio
 
 		#endregion
 
+		#region DOCUMENTAL TDC
+		public async Task<Dictionary<string, string>> SincronizarFD(string ID_usuarioSincronizaDatosFK)
+		{
+			DataTable tbDatos = dTDC.PorSincronizarFD();
+			Dictionary<string, string> response = new Dictionary<string, string>();
+			if (tbDatos.Rows.Count > 0)
+			{
+				//organizar el array de strings, de cedulas para consultar
+				string documentos = "";
+				for (int i = 0; i < tbDatos.Rows.Count; i++)
+				{
+					documentos += "\"" + tbDatos.Rows[i]["tdc_numeroDocumento"] + "\",";
+				}
+
+				//consumir servicio y actualizar datos de clientes
+				//return SincronizarAsync(documentos.Substring(0, documentos.Length - 1));
+				return await SincronizarAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioSincronizaDatosFK);
+			}
+			else
+			{
+				response.Add("warning", "No hay registros por procesar");
+			}
+			return response;
+		}
+
+		#endregion
+
 	}
 }
