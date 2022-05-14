@@ -11,7 +11,6 @@
         Campos a sincronizar: Dirección y Ciudad de Residencia, Teléfono y Celular de contacto
         <br />
         <br />
-        
     </div>
     <div class="form-inline">
         <asp:LinkButton ID="lnbCargar" runat="server" CssClass="btn btn-info" OnClick="lnbCargar_Click">
@@ -19,7 +18,7 @@
                         &nbsp;Sincronizar ubicaciones con Salesforce
                  </asp:LinkButton>
     </div>
-
+    <br />
     <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
     
 </asp:Content>

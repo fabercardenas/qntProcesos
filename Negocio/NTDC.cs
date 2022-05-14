@@ -138,7 +138,7 @@ namespace Negocio
 		#endregion
 
 		#region PASO 3
-		public Dictionary<string, string> Sincronizar(string ID_usuarioSincronizaDatosFK)
+		public async Task<Dictionary<string, string>> Sincronizar(string ID_usuarioSincronizaDatosFK)
 		{
 			DataTable tbDatos = dTDC.PorSincronizar();
 			Dictionary<string, string> response = new Dictionary<string, string>();
@@ -153,7 +153,7 @@ namespace Negocio
 
 				//consumir servicio y actualizar datos de clientes
 				//return SincronizarAsync(documentos.Substring(0, documentos.Length - 1));
-				SincronizarAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioSincronizaDatosFK);
+				return await SincronizarAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioSincronizaDatosFK);
 			}
 			else
 			{
@@ -162,7 +162,7 @@ namespace Negocio
 			return response;
 		}
 
-		public static async void SincronizarAsync(string documentos, string ID_usuarioSincronizaDatosFK)
+		public static async Task<Dictionary<string, string>> SincronizarAsync(string documentos, string ID_usuarioSincronizaDatosFK)
 		{
 			//solicitar token salesforce
 			Negocio.NSalesforce salesforce = new NSalesforce();
@@ -194,13 +194,16 @@ namespace Negocio
 					else
 						totalFallidos++;
 				}
-				response.Add("success", "Registros actualizados: " + totalProcesados.ToString() + ". Registros sin dirección : " + totalFallidos.ToString());
-				//return response;
+				if(totalProcesados>0)
+					response.Add("success", "Registros actualizados: " + totalProcesados.ToString());
+				if (totalFallidos > 0)
+					response.Add("error", "Registros sin dirección : " + totalFallidos.ToString());
+				return response;
 			}
 			else
 			{
 				response.Add("error", "No se encontraron coinciencias en salesforce");
-				//return response;
+				return response;
 			}
 		}
 
