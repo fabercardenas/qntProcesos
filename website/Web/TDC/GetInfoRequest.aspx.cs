@@ -75,20 +75,25 @@ public partial class GetInfoRequest : System.Web.UI.Page
         #endregion
     }
 
-    protected void lnbCargar_Click(object sender, EventArgs e)
+    protected async void lnbCargar_Click(object sender, EventArgs e)
     {
         //buscar las cedulas que esten sin actualizar
         Negocio.NTDC nTDC = new NTDC();
-        nTDC.Sincronizar(Session["ID_usuario"].ToString());
-        //Dictionary<string, string> resultado = nTDC.Sincronizar();
-        //if (resultado.ContainsKey("warning"))
-        //    ltrMensaje.Text = NMessaging.Warning(resultado["warning"].ToString());
+        Dictionary<string, string> resultado = await nTDC.Sincronizar(Session["ID_usuario"].ToString());
+        ltrMensaje.Text = "";
+        foreach (var mensaje in resultado)
+        {
+            //storedProcCommand.Parameters.AddWithValue(mensaje.Key.ToString(), parametro.Value);
+            if (mensaje.Key.ToString()=="warning")
+                ltrMensaje.Text += NMessaging.Warning(mensaje.Value);
 
-        //if (resultado.ContainsKey("error"))
-        //    ltrMensaje.Text = NMessaging.Error(resultado["error"].ToString());
+            if (mensaje.Key.ToString() == "error")
+                ltrMensaje.Text += NMessaging.Error(mensaje.Value);
 
-        //if (resultado.ContainsKey("success"))
-        //    ltrMensaje.Text = NMessaging.Warning(resultado["success"].ToString());
+            //if (resultado.ContainsKey("success"))
+            if (mensaje.Key.ToString() == "success")
+                ltrMensaje.Text += NMessaging.Success(mensaje.Value);
+        }
 
     }
 
