@@ -17,7 +17,13 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        if ((Session["ID_usuario"] != null) && (!Page.IsPostBack))
+        {
+            dvIdConsulta.Visible = true;
+            ltrFechaEntrega.Text = string.Format("{0:yyyyMMdd}", DateTime.Today);
+            ltrNumeroGuia.Text = "";
+            ConsultarSolicitudesXestado();
+        }
     }
 
     Boolean validaArchivo(ref string narchivo)
@@ -28,7 +34,7 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
             {
                 //SUBE EL ARCHIVO
                 string extension = System.IO.Path.GetExtension(this.fupArchivo.PostedFile.FileName);
-                narchivo = "Paso1" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Millisecond.ToString() + extension;
+                narchivo = "Paso6" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Millisecond.ToString() + extension;
 
                 string ruta = Server.MapPath("~\\files\\TDC\\") + narchivo;
 
@@ -109,43 +115,41 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
             dgFaber.DataBind();
             #endregion
 
-            string afi_documento = "";
+            string cli_documento = "";
             string errores = "", errorLinea = "";
 
             try
             {
                 #region VALIDAR EXTRUCTURA
-                DataTable tbValidarReferencia;
                 DataTable tbValidarSolicitud;
                 foreach (DataGridItem dgl in dgFaber.Items)
                 {
                     errorLinea = "";
-                    if (dgl.Cells.Count == 5)
+                    if (dgl.Cells.Count == 4)
                     {
-                        afi_documento = dgl.Cells[1].Text;
+                        cli_documento = dgl.Cells[1].Text;
 
-                        if ((afi_documento != "&nbsp;") && (afi_documento != ""))
+                        if ((cli_documento != "&nbsp;") && (cli_documento != ""))
                         {
                             try
                             {
                                 #region VALIDAR CAMPOS
-                                if ((dgl.Cells[0].Text != "1") && (dgl.Cells[0].Text != "2"))
-                                    errorLinea += "Tipo de documento no válido. ";
-                                if (Negocio.NUtilidades.IsDouble(afi_documento) == false)
-                                    errorLinea += "El número de documento no es válido. ";
-                                //VALIDAR QUE NO EXISTA UNA SOLICITUD PARA EL DOCUMENTO
-                                tbValidarSolicitud = nTDC.consultaSolicitudXDocumento(afi_documento);
-                                if (tbValidarSolicitud.Rows.Count > 0)
-                                    errorLinea += "Ya existe una solicitud para este documento y se encuentra en el paso " + tbValidarSolicitud.Rows[0]["tdc_paso"].ToString() + ". ";
-                                    //esto se puede permitir si el cliente ha finalizado el proceso, por ahora no se ha definido cual es el paso final
-                                tbValidarReferencia = Negocio.NUtilidades.consultaReferenciaXModulo_y_Valor("Canales", dgl.Cells[2].Text);
-                                if(tbValidarReferencia.Rows.Count==0)
-                                    errorLinea += "Canal no válido. ";
-                                tbValidarReferencia = Negocio.NUtilidades.consultaReferenciaXModulo_y_Valor("Procesos", dgl.Cells[3].Text);
-                                if (tbValidarReferencia.Rows.Count == 0)
-                                    errorLinea += "Proceso no válido. ";
-                                if (Negocio.NUtilidades.IsDate(dgl.Cells[4].Text) == false)
-                                    errorLinea += "la Fecha de Venta no es válida. ";
+                                if ((dgl.Cells[0].Text == "&nbsp;") && (dgl.Cells[0].Text == ""))
+                                    errorLinea += "El número de tarejta es requerido. ";
+                                if (Negocio.NUtilidades.IsDouble(dgl.Cells[0].Text) == false)
+                                    errorLinea += "El número de tarejta no es válido. ";
+                                if (Negocio.NUtilidades.IsDouble(cli_documento) == false)
+                                    errorLinea += "El número de documento no válido. ";
+                                if ((dgl.Cells[2].Text == "&nbsp;") && (dgl.Cells[2].Text == ""))
+                                    errorLinea += "La Fecha de Entrega es requerida. ";
+                                if (dgl.Cells[2].Text != "&nbsp;" & Negocio.NUtilidades.IsDate(dgl.Cells[2].Text) == false)
+                                    errorLinea += "La Fecha de Entrega no es válida. ";
+                                if ((dgl.Cells[3].Text == "&nbsp;") && (dgl.Cells[3].Text == ""))
+                                    errorLinea += "El número de guia es requerido. ";
+                                //VALIDAR EL PASO DE LA SOLICITUD PARA IDENTIFICAR SI PUEDE MODIFICARSE A ENTREGADA
+                                tbValidarSolicitud = nTDC.consultaSolicitudXDocumento(cli_documento);
+                                if (tbValidarSolicitud.Rows[0]["tdc_paso"].ToString() != "5")
+                                    errorLinea += "La solicitud se encuentra en el paso " + tbValidarSolicitud.Rows[0]["tdc_paso"].ToString() + ". No puede ser modificada como entregada. ";
                                 #endregion
                             }
                             catch (Exception ex)
@@ -156,10 +160,10 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
                         }
                     }
                     else
-                        errorLinea += "El número de columnas no es válido. Se necesitan 5 y el registro tiene " + dgl.Cells.Count + ". ";
+                        errorLinea += "El número de columnas no es válido. Se necesitan 4 y el registro tiene " + dgl.Cells.Count + ". ";
 
                     if (errorLinea != "")
-                        errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", documento " + afi_documento + ": " + errorLinea + "<br />";
+                        errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", documento " + cli_documento + ": " + errorLinea + "<br />";
                 }
                 #endregion
 
@@ -179,11 +183,11 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
                     {
                         try
                         {
-                            afi_documento = dgl.Cells[1].Text;                            
-                            if ((afi_documento != "&nbsp;") && (afi_documento != ""))
+                            cli_documento = dgl.Cells[1].Text;                            
+                            if ((cli_documento != "&nbsp;") && (cli_documento != ""))
                             {
-                                nTDC.Insertar(dgl.Cells[0].Text, afi_documento, dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString(), nombreArchivo, dgl.Cells[4].Text);
-                                documentosSF += "\"" + afi_documento + "\",";
+                                nTDC.actualizaInfoXDocumento(dgl.Cells[0].Text, cli_documento,  dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString(), nombreArchivo);
+                                documentosSF += "\"" + cli_documento + "\",";
                                 cargados++;
                             }
                         }
@@ -195,17 +199,9 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
                     }
                     #endregion
 
-                    #region SINCRONIZAR SALESFORCE
-                    if (documentosSF.Length > 0)
-                    {
-                        nTDC.SincronizarNombres(documentosSF.Substring(0, documentosSF.Length - 1));
-                    }
-                    #endregion
-
-                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados. Decargue el archivo de Solicitud de Emisión TDC para Finandina");
+                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados exitosamente. ");
                     dgFaber.DataSource = null;
                     dgFaber.DataBind();
-                    dvDescarga.Visible = true;
                     return true;
                 }
             }
@@ -230,44 +226,59 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
         }
     }
 
-    protected void lnbDescargar_Click(object sender, EventArgs e)
+    protected void lnbConsultarTarjeta_Click(object sender, EventArgs e)
     {
-        if (Session["ID_usuario"] != null)
-        {
-            #region GENERACIÓN FORMULARIO DE SALIDA
-            consultaSolicitudXArchivo(nTDC.consultaSolicitudXArchivo(ltrNombreArchivo.Text));
-            #endregion
-        }
+        ConsultarSolicitudesXtarjeta();
     }
 
-    protected void consultaSolicitudXArchivo(DataTable tbl)
+    void ConsultarSolicitudesXestado()
     {
-        if (tbl.Rows.Count > 0)
-        {
-            StringBuilder sb = new StringBuilder();
-            StringWriter sw = new StringWriter(sb);
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            Page page = new Page();
-            HtmlForm form = new HtmlForm();
-
-            GridView gdvDatos = new GridView();
-            gdvDatos.DataSource = tbl;
-            gdvDatos.DataBind();
-
-            page.EnableEventValidation = false;
-            page.DesignerInitialize();
-            page.Controls.Add(form);
-            form.Controls.Add(gdvDatos);
-            page.RenderControl(htw);
-
-            Response.Clear();
-            Response.Buffer = true;
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", "attachment; filename= SolicituddeEmisionTDC" + string.Format("{0:ddMMyyyy}", DateTime.Today) + ".xls");
-            Response.Charset = "UTF-8";
-            Response.ContentEncoding = Encoding.Default;
-            Response.Write(sb.ToString());
-            Response.End();
-        }
+        gdvListaSolicitudes.DataSource = nTDC.ConsultarXestadoEntrega(5);
+        gdvListaSolicitudes.DataBind();
     }
+
+    public string TieneDireccion(string tdc_direccion)
+    {
+        string retornar = "";
+        if (tdc_direccion.Length > 0)
+            retornar = "<span class='glyphicon glyphicon-map-marker' style='color:red;'></span>";
+        return retornar;
+    }
+
+    public string TienePrevalidacion(string tdc_fechaPrevalidacion)
+    {
+        string retornar = "";
+        if (tdc_fechaPrevalidacion.Length > 0)
+            retornar = "<span class='glyphicon glyphicon-ok-sign' style='color:green;'></span>";
+        return retornar;
+    }
+
+    public string TieneValidacion(string tdc_fechaValidacion)
+    {
+        string retornar = "";
+        if (tdc_fechaValidacion.Length > 0)
+            retornar = "<span class='glyphicon glyphicon-ok-sign' style='color:green;'></span>";
+        return retornar;
+    }
+
+    void ConsultarSolicitudesXtarjeta()
+    {
+        gdvListaSolicitudes.DataSource = nTDC.ConsultarXtarjetaEntrega(txtNumTarjeta.Text);
+        gdvListaSolicitudes.DataBind();
+    }
+
+    protected void gdvListaSolicitudes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+    {
+        if (txtFechaEntrega.Text != "" && txtNoGuia.Text != "" && txtFechaEntrega.Text != "&nbsp;" && txtNoGuia.Text != "&nbsp;")
+        {
+            gdvListaSolicitudes.SelectedIndex = e.NewSelectedIndex;
+            string ltrCliDocumento = gdvListaSolicitudes.DataKeys[e.NewSelectedIndex].Values[0].ToString();
+            string ltrCliTarjeta = gdvListaSolicitudes.DataKeys[e.NewSelectedIndex].Values[1].ToString();
+            nTDC.actualizaInfoXDocumento(ltrCliTarjeta, ltrCliDocumento, txtFechaEntrega.Text, txtNoGuia.Text, Session["ID_usuario"].ToString(), "");
+            ltrMensaje.Text = Messaging.Success("La tarjeta " + ltrCliTarjeta + " gestionada con éxito");
+            ConsultarSolicitudesXestado();
+        }
+        ltrMensaje.Text = Messaging.Error("Los campos de Fecha de Entrega y/o Número de Guía son obligatorios. ");
+    }
+   
 }
