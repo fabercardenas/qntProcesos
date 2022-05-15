@@ -110,7 +110,7 @@ public partial class TDC_SetValidation : System.Web.UI.Page
         {
             using (ExcelPackage pck = new ExcelPackage())
             {
-                String nombreArchivo = "MeLoPela";
+                String nombreArchivo = "Entrega_Interrapidisimo" + String.Format("{0:yyyyMMdd}", DateTime.Today);
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add(nombreArchivo);
                 #region ENCABEZADO Y LOGO
                 #region LOGO
