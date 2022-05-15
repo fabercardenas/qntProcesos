@@ -327,8 +327,7 @@ namespace Negocio
 				}
 
 				//consumir servicio y actualizar datos de clientes
-				//return SincronizarAsync(documentos.Substring(0, documentos.Length - 1));
-				return await SincronizarAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioSincronizaDatosFK);
+				return await SincronizarFDAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioSincronizaDatosFK);
 			}
 			else
 			{
@@ -337,6 +336,70 @@ namespace Negocio
 			return response;
 		}
 
+		public static async Task<Dictionary<string, string>> SincronizarFDAsync(string documentos, string ID_usuarioSincronizaDatosFK)
+		{
+			//solicitar token salesforce
+			Negocio.NSalesforce salesforce = new NSalesforce();
+			Dictionary<string, string> authData = salesforce.GetToken();
+
+			Task<ContactoFDLista> resultadoServicio = SfExtraerFlujoDigital(authData["AuthToken"], authData["ServiceUrl"], documentos);
+
+			ContactoFDLista listado = await resultadoServicio;
+			Dictionary<string, string> response = new Dictionary<string, string>();
+
+			//validar la longitud de listado
+			if ((listado != null) && (listado.Contactos.Count > 0))
+			{
+				Datos.DTDC elTDC = new Datos.DTDC();
+				Int32 totalProcesados = 0;
+				foreach (var item in listado.Contactos)
+				{
+					elTDC.ActualizaFD(item.ID_Cliente__c, ID_usuarioSincronizaDatosFK);
+					totalProcesados++;
+				}
+				if (totalProcesados > 0)
+					response.Add("success", "Registros actualizados: " + totalProcesados.ToString());
+				return response;
+			}
+			else
+			{
+				response.Add("error", "No se encontraron coinciencias en salesforce");
+				return response;
+			}
+		}
+
+		public static async Task<ContactoFDLista> SfExtraerFlujoDigital(string AuthToken, string ServiceUrl, string documentos)
+		{
+			//joining together the json format string sample:"{"key":"valus"}";
+			string requestMessage = "{\"contactos\":[" + documentos + "]}";
+
+			HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
+
+			////create url using package name in URL
+			string endpoint = ServiceUrl + "/services/apexrest/BPMFlujoDigital";
+
+			////create request message associated with POST verb
+			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, endpoint);
+
+			////return JSON to the caller
+			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+			////add token to header
+			request.Headers.Add("Authorization", "Bearer " + AuthToken);
+
+			////add content to HttpRequestMessage;
+			request.Content = content;
+
+			HttpClient putClient = new HttpClient();
+			//call endpoint async
+			HttpResponseMessage response = await putClient.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+
+			string result = response.Content.ReadAsStringAsync().Result;
+			ContactoFDLista contactoReturn = JsonConvert.DeserializeObject<ContactoFDLista>(result);
+
+			return contactoReturn;
+		}
 		#endregion
 
 	}

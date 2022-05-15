@@ -27,52 +27,6 @@ public partial class GetDigitalFlow : System.Web.UI.Page
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
-       #region APGO
-        /*
-        string query = "SELECT id, Contacto__r.ID_Cliente__c, Contacto__r.Direccin_Residencia__c from ContactLocation__c  where Contacto__r.Direccin_Residencia__c !=''";
-        JObject objConsulta = JObject.Parse(QueryRecord(Client, query));
-
-        if ((string)objConsulta["totalSize"] == "1")
-        {
-            // Only one record, use it
-            string cedula = (string)objConsulta["records"][0]["Contacto__r.ID_Cliente__c"];
-            string direccion = (string)objConsulta["records"][0]["Contacto__r.Direccin_Residencia__c"];
-        }
-        if ((string)obj["totalSize"] == "0")
-        {
-            // No record, create an Account
-        }
-        else
-        {
-            string cedula = (string)objConsulta["records"][0]["Contacto__r.ID_Cliente__c"];
-            string direccion = (string)objConsulta["records"][0]["Contacto__r.Direccin_Residencia__c"];
-            // Multiple records, either filter further to determine correct Account or choose the first result
-        }
-        */
-
-        /*
-        string endpoint = "/services/apexrest/GestionSateliteHistorico";
-
-        string restQuery = ServiceUrl + endpoint;
-
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, restQuery);
-        request.Headers.Add("Authorization", "Bearer " + AuthToken);
-        request.Method = HttpMethod.Post;
-        var bodyEnable = new Negocio.geoUserUpdateGroup()
-        {
-            Identifier = "",
-            GroupIdentifier = "",
-            Custom1 = "",
-            Custom2 = "",
-            Custom3 = "@"
-        };
-        var serializedBodyEnable = JsonConvert.SerializeObject(bodyEnable);
-        //request.Content = serializedBodyEnable;
-
-        HttpResponseMessage finalResponse = Client.SendAsync(request).Result;
-        string algo = finalResponse.Content.ReadAsStringAsync().Result;
-        */
-        #endregion
     }
 
     protected async void lnbCargar_Click(object sender, EventArgs e)
