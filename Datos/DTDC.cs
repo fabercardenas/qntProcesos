@@ -231,5 +231,14 @@ namespace Datos
 
 		#endregion
 
+		#region DOCUMENTAL TDC
+
+		public DataTable PorSincronizarFD()
+		{
+			return procedureTable("tdcPorSincronizarFD", false);
+		}
+
+		#endregion
+
 	}
 }
