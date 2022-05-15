@@ -5,13 +5,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="tdImgVerde04">Sincronización de Flujo Digital</div>
     <br />
-    <div class="alert alert-warning">
-        En este módulo solicitará la sincronización con SALESFORECE para traer la información de Flujo Difital asociada a los clientes.<br />
+    <div class="alert alert-info">
+        En este módulo solicitará la sincronización con <b>Salesforce</b>  para traer la información de Flujo Difital asociada a los clientes.<br />
     </div>
     <div class="form-inline">
-        <asp:LinkButton ID="lnbCargar" runat="server" CssClass="btn btn-info" OnClick="lnbCargar_Click">
+        <asp:LinkButton ID="lnbCargar" runat="server" CssClass="btn btn-success" OnClick="lnbCargar_Click">
                         <span class="glyphicon glyphicon-refresh"></span>
-                        &nbsp;Sincronizar FD con Salesforce
+                        &nbsp;Sincronizar Flujo Digital con Salesforce
                  </asp:LinkButton>
     </div>
     <br />

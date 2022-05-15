@@ -237,7 +237,26 @@ namespace Datos
 		{
 			return procedureTable("tdcPorSincronizarFD", false);
 		}
+		
+		/// <summary>
+		/// Actualiza el flujo digital. Salesforce solo devuelve los que tienen flujo digital completo
+		/// </summary>
+		/// <param name="tdc_numeroDocumento"></param>
+		/// <param name="tdc_ciudad"></param>
+		/// <param name="tdc_direccion"></param>
+		/// <param name="tdc_correo"></param>
+		/// <param name="tdc_telefono"></param>
+		/// <param name="tdc_celular"></param>
+		/// <param name="ID_usuarioSincronizaDatosFK"></param>
+		/// <returns></returns>
+		public DataTable ActualizaFD(string tdc_numeroDocumento, string ID_usuarioSincronizaDatosFK)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@ID_usuarioSincronizaDatosFK", ID_usuarioSincronizaDatosFK);
 
+			return procedureTable("tdcActualizaFlujoDigital", true, param);
+		}
 		#endregion
 
 	}

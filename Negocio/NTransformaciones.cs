@@ -37,4 +37,17 @@ namespace Negocio
 		public List<ContactoNombres> Contactos { get; set; }
 	}
 
+	/// <summary>
+	/// Un contacto con flujo digital completo
+	/// </summary>
+	public class ContactoFD
+	{
+		public string Id { get; set; }
+		public string ID_Cliente__c { get; set; }
+	}
+
+	public class ContactoFDLista
+	{
+		public List<ContactoFD> Contactos { get; set; }
+	}
 }
