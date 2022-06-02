@@ -313,7 +313,7 @@ namespace Negocio
 		#endregion
 
 		#region DOCUMENTAL TDC
-		public async Task<Dictionary<string, string>> SincronizarFD(string ID_usuarioSincronizaDatosFK)
+		public async Task<Dictionary<string, string>> SincronizarFD(string ID_usuarioFDFK)
 		{
 			DataTable tbDatos = dTDC.PorSincronizarFD();
 			Dictionary<string, string> response = new Dictionary<string, string>();
@@ -327,7 +327,7 @@ namespace Negocio
 				}
 
 				//consumir servicio y actualizar datos de clientes
-				return await SincronizarFDAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioSincronizaDatosFK);
+				return await SincronizarFDAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioFDFK);
 			}
 			else
 			{
@@ -336,7 +336,7 @@ namespace Negocio
 			return response;
 		}
 
-		public static async Task<Dictionary<string, string>> SincronizarFDAsync(string documentos, string ID_usuarioSincronizaDatosFK)
+		public static async Task<Dictionary<string, string>> SincronizarFDAsync(string documentos, string ID_usuarioFDFK)
 		{
 			//solicitar token salesforce
 			Negocio.NSalesforce salesforce = new NSalesforce();
@@ -354,7 +354,7 @@ namespace Negocio
 				Int32 totalProcesados = 0;
 				foreach (var item in listado.Contactos)
 				{
-					elTDC.ActualizaFD(item.ID_Cliente__c, ID_usuarioSincronizaDatosFK);
+					elTDC.ActualizaFD(item.ID_Cliente__c, ID_usuarioFDFK);
 					totalProcesados++;
 				}
 				if (totalProcesados > 0)
@@ -377,6 +377,118 @@ namespace Negocio
 
 			////create url using package name in URL
 			string endpoint = ServiceUrl + "/services/apexrest/BPMFlujoDigital";
+
+			////create request message associated with POST verb
+			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, endpoint);
+
+			////return JSON to the caller
+			request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+			////add token to header
+			request.Headers.Add("Authorization", "Bearer " + AuthToken);
+
+			////add content to HttpRequestMessage;
+			request.Content = content;
+
+			HttpClient putClient = new HttpClient();
+			//call endpoint async
+			HttpResponseMessage response = await putClient.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+
+			string result = response.Content.ReadAsStringAsync().Result;
+			ContactoFDLista contactoReturn = JsonConvert.DeserializeObject<ContactoFDLista>(result);
+
+			return contactoReturn;
+		}
+
+		public DataTable InsertarPagare(string doc_codigoDeceval, string doc_tipoPagare, string doc_tipoDocOtorgante, string doc_documentoOtorgante, string doc_nombreOtorgante,
+			string doc_nombreCodeudor, string doc_tipoDocCodeudor, string doc_documentoCodeudor, string doc_fechaGrabacionPagare, string doc_estadoPagare, string doc_fechaFirmaPagare, string ID_usuarioPagareFK)
+		{
+			return dTDC.InsertarPagare(doc_codigoDeceval, doc_tipoPagare, doc_tipoDocOtorgante, doc_documentoOtorgante, doc_nombreOtorgante, doc_nombreCodeudor, doc_tipoDocCodeudor, doc_documentoCodeudor, doc_fechaGrabacionPagare, doc_estadoPagare, doc_fechaFirmaPagare, ID_usuarioPagareFK);
+		}
+
+		public DataTable ConsultarDocumental()
+		{
+			return dTDC.ConsultarDocumental();
+		}
+
+		public DataTable actualizaDocIngresosXDocumento(string tdc_numeroDocumento, string ID_usuarioDocIngresoFK)
+		{
+			return dTDC.actualizaDocIngresosXDocumento(tdc_numeroDocumento, ID_usuarioDocIngresoFK);
+		}
+
+		public DataTable actualizaDocIdentidadXDocumento(string tdc_numeroDocumento, string ID_usuarioDocIdentFK)
+		{
+			return dTDC.actualizaDocIdentidadXDocumento(tdc_numeroDocumento, ID_usuarioDocIdentFK);
+		}
+
+		#endregion
+
+		#region PASO 8
+		public async Task<Dictionary<string, string>> SincronizarDiasMora(string ID_usuarioFDFK)
+		{
+			DataTable tbDatos = dTDC.PorSincronizarDiasMora();
+			Dictionary<string, string> response = new Dictionary<string, string>();
+			if (tbDatos.Rows.Count > 0)
+			{
+				//organizar el array de strings, de cedulas para consultar
+				string documentos = "";
+				for (int i = 0; i < tbDatos.Rows.Count; i++)
+				{
+					documentos += "\"" + tbDatos.Rows[i]["tdc_numeroDocumento"] + "\",";
+				}
+
+				//consumir servicio y actualizar datos de clientes
+				return await SincronizarDiasMoraAsync(documentos.Substring(0, documentos.Length - 1), ID_usuarioFDFK);
+			}
+			else
+			{
+				response.Add("warning", "No hay registros por procesar");
+			}
+			return response;
+		}
+
+		public static async Task<Dictionary<string, string>> SincronizarDiasMoraAsync(string documentos, string ID_usuarioFDFK)
+		{
+			//solicitar token salesforce
+			Negocio.NSalesforce salesforce = new NSalesforce();
+			Dictionary<string, string> authData = salesforce.GetToken();
+
+			Task<ContactoFDLista> resultadoServicio = SfExtraerDiasMora(authData["AuthToken"], authData["ServiceUrl"], documentos);
+
+			ContactoFDLista listado = await resultadoServicio;
+			Dictionary<string, string> response = new Dictionary<string, string>();
+
+			//validar la longitud de listado
+			if ((listado != null) && (listado.Contactos.Count > 0))
+			{
+				Datos.DTDC elTDC = new Datos.DTDC();
+				Int32 totalProcesados = 0;
+				foreach (var item in listado.Contactos)
+				{
+					elTDC.ActualizaFD(item.ID_Cliente__c, ID_usuarioFDFK);
+					totalProcesados++;
+				}
+				if (totalProcesados > 0)
+					response.Add("success", "Registros actualizados: " + totalProcesados.ToString());
+				return response;
+			}
+			else
+			{
+				response.Add("error", "No se encontraron coinciencias en salesforce");
+				return response;
+			}
+		}
+
+		public static async Task<ContactoFDLista> SfExtraerDiasMora(string AuthToken, string ServiceUrl, string documentos)
+		{
+			//joining together the json format string sample:"{"key":"valus"}";
+			string requestMessage = "{\"contactos\":[" + documentos + "]}";
+
+			HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
+
+			////create url using package name in URL
+			string endpoint = ServiceUrl + "/services/apexrest/BPMDiasMora";
 
 			////create request message associated with POST verb
 			HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, endpoint);

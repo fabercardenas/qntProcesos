@@ -67,7 +67,7 @@ public partial class TDC_LoadPromissory : System.Web.UI.Page
     {
         if (Session["ID_usuario"] != null)
         {
-            string ruta = Server.MapPath("~\\website\\files\\TDC\\") + nombreArchivo;
+            string ruta = Server.MapPath("~\\files\\TDC\\") + nombreArchivo;
             StreamReader elArchivo = File.OpenText(ruta);
             string linea;
             ArrayList arreglo = new ArrayList();
@@ -81,32 +81,54 @@ public partial class TDC_LoadPromissory : System.Web.UI.Page
             #endregion
 
             #region 2) REVISAR TODAS LAS LINEAS PARA SABER SI LA ESTRUCTURA ESTA BIEN
+            DataTable tbValidarPagare;
             string errores = "", errorLinea = "";
             int fila = 1;
             foreach (string registro in arreglo)
             {
                 errorLinea = "";
                 string[] datos = registro.Split(';');
-                if (datos[0] != "CodigoDeceval" && datos[0] != "" && datos[0] != "&nbsp;")
+                if (datos.Length == 20)
                 {
-                    if (Negocio.NUtilidades.IsDouble(datos[10].ToString()) == false)
-                        errorLinea += "El número de documento no válido. ";
-                    //validar que la fecha de grabacion del pagare este correcta
-
-                    //validar que no tenga pagare cargado
-
+                    if (datos[0] != "CodigoDeceval" && datos[0] != "" && datos[0] != "&nbsp;")
+                    {
+                        if ((datos[8].ToString() == "&nbsp;") && (datos[8].ToString() == ""))
+                            errorLinea += "Tipo Pagaré requerido. ";
+                        if ((datos[9].ToString() == "&nbsp;") && (datos[9].ToString() == ""))
+                            errorLinea += "Tipo de Documento Otorgante requerido. ";
+                        if (Negocio.NUtilidades.IsDouble(datos[10].ToString()) == false)
+                            errorLinea += "El número de documento no válido. ";
+                        if ((datos[10].ToString() == "&nbsp;") && (datos[10].ToString() == ""))
+                            errorLinea += "Número de Documento Otorgante requerido. ";
+                        if ((datos[12].ToString() == "&nbsp;") && (datos[12].ToString() == ""))
+                            errorLinea += "Nombre otorgante requerido. ";
+                        if (Negocio.NUtilidades.IsDate(datos[17].ToString()) == false)
+                            errorLinea += "Fecha de Grabación del Pagaré no válida. ";
+                        if ((datos[18].ToString() == "&nbsp;") && (datos[18].ToString() == ""))
+                            errorLinea += "Nombre estado Pagaré requerido. ";
+                        //VALIDAR QUE NO TENGA PAGARÉ CARGADO
+                        tbValidarPagare = nTDC.consultaSolicitudXDocumento(datos[10].ToString());
+                        if (tbValidarPagare.Rows.Count > 0)
+                        {
+                            if (tbValidarPagare.Rows[0]["tdc_docPagare"].ToString() != "False")
+                                errorLinea += "La solicitud ya cuenta con un Pagaré, registrado el " + tbValidarPagare.Rows[0]["tdc_fechaRegistroPagare"].ToString() + ". ";
+                        }
+                        else
+                            errorLinea += "El documento " + datos[10].ToString() + " no cuenta con una solicitud en la aplicación. ";
+                        fila++;
+                }
+                }
+                else
+                    errorLinea += "El número de columnas no es válido. Se necesitan 20 y el registro tiene " + datos.Length + ". ";
                     if (errorLinea != "")
                         errores += "Fila " + fila.ToString() + ", documento " + datos[10].ToString() + ": " + errorLinea + "<br />";
-                    fila++;
-                }
             }
-
             #endregion
 
             #region 3) SI LA ESTRUCTURA ESTA BIEN, INSERTA LOS DATOS
             if ((errores != ""))
             {
-                ltrMensaje.Text = Messaging.Error("Hay errores en el archivo") + errores + "<br />";
+                ltrMensaje.Text = Messaging.Error("Hay errores en el archivo ") + errores + "<br />";
                 return false;
             }
             else 
@@ -117,10 +139,11 @@ public partial class TDC_LoadPromissory : System.Web.UI.Page
                     string[] datos = registro.Split(';');
                     if (datos[0] != "CodigoDeceval" && datos[0] != "" && datos[0] != "&nbsp;")
                     {
-                        //insertar en la base de datos
-                        //Ejemplo:
-                        //nTDC.actualizaInfoXDocumento(dgl.Cells[0].Text.......
-                        cargados++;
+                        if ((datos[10].ToString() != "&nbsp;") && (datos[10].ToString() != ""))
+                        {
+                            nTDC.InsertarPagare(datos[0].ToString(), datos[8].ToString(), datos[9].ToString(), datos[10].ToString(), datos[12].ToString(), datos[14].ToString(), datos[15].ToString(), datos[16].ToString(), datos[17].ToString(), datos[18].ToString(), datos[19].ToString(), Session["ID_usuario"].ToString());
+                            cargados++;
+                        }
                     }
                 }
                 ltrMensaje.Text = Messaging.Success((cargados).ToString() + " registros cargados exitosamente. ");

@@ -249,14 +249,69 @@ namespace Datos
 		/// <param name="tdc_celular"></param>
 		/// <param name="ID_usuarioSincronizaDatosFK"></param>
 		/// <returns></returns>
-		public DataTable ActualizaFD(string tdc_numeroDocumento, string ID_usuarioSincronizaDatosFK)
+		
+		public DataTable ActualizaFD(string tdc_numeroDocumento, string ID_usuarioFDFK)
 		{
 			Hashtable param = new Hashtable(1);
 			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
-			param.Add("@ID_usuarioSincronizaDatosFK", ID_usuarioSincronizaDatosFK);
+			param.Add("@ID_usuarioFDFK", ID_usuarioFDFK);
 
 			return procedureTable("tdcActualizaFlujoDigital", true, param);
 		}
+
+		public DataTable InsertarPagare(string doc_codigoDeceval, string doc_tipoPagare, string doc_tipoDocOtorgante, string doc_documentoOtorgante, string doc_nombreOtorgante, 
+			string doc_nombreCodeudor, string doc_tipoDocCodeudor, string doc_documentoCodeudor, string doc_fechaGrabacionPagare, string doc_estadoPagare, string doc_fechaFirmaPagare, string ID_usuarioPagareFK)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@doc_codigoDeceval", doc_codigoDeceval);
+			param.Add("@doc_tipoPagare", doc_tipoPagare);
+			param.Add("@doc_tipoDocOtorgante", doc_tipoDocOtorgante);
+			param.Add("@doc_documentoOtorgante", doc_documentoOtorgante);
+			param.Add("@doc_nombreOtorgante", doc_nombreOtorgante);
+			param.Add("@doc_nombreCodeudor", doc_nombreCodeudor);
+			param.Add("@doc_tipoDocCodeudor", doc_tipoDocCodeudor);
+			param.Add("@doc_documentoCodeudor", doc_documentoCodeudor);
+			param.Add("@doc_fechaGrabacionPagare", doc_fechaGrabacionPagare);
+			param.Add("@doc_estadoPagare", doc_estadoPagare);
+			param.Add("@doc_fechaFirmaPagare", doc_fechaFirmaPagare);
+			param.Add("@ID_usuarioPagareFK", ID_usuarioPagareFK);
+
+			return procedureTable("tdcInsertarPagare", true, param);
+		}
+
+		public DataTable ConsultarDocumental()
+		{
+			Hashtable param = new Hashtable(1);
+			return procedureTable("tdcConsultarDocumental", true, param);
+		}
+
+		public DataTable actualizaDocIngresosXDocumento(string tdc_numeroDocumento, string ID_usuarioDocIngresoFK)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@ID_usuarioDocIngresoFK", ID_usuarioDocIngresoFK);
+
+			return procedureTable("tdcActualizaDocIngresosXdocumento", true, param);
+		}
+
+		public DataTable actualizaDocIdentidadXDocumento(string tdc_numeroDocumento, string ID_usuarioDocIdentFK)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@ID_usuarioDocIdentFK", ID_usuarioDocIdentFK);
+
+			return procedureTable("tdcActualizaDocIdentidadXdocumento", true, param);
+		}
+
+		#endregion
+
+		#region PASO 8
+
+		public DataTable PorSincronizarDiasMora()
+		{
+			return procedureTable("tdcPorSincronizarDiasMora", false);
+		}
+
 		#endregion
 
 	}

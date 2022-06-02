@@ -278,7 +278,8 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
             ltrMensaje.Text = Messaging.Success("La tarjeta " + ltrCliTarjeta + " gestionada con éxito");
             ConsultarSolicitudesXestado();
         }
-        ltrMensaje.Text = Messaging.Error("Los campos de Fecha de Entrega y/o Número de Guía son obligatorios. ");
+        else
+            ltrMensaje.Text = Messaging.Error("Los campos de Fecha de Entrega y/o Número de Guía son obligatorios. ");
     }
    
 }
