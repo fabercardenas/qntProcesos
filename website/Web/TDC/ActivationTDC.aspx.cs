@@ -171,11 +171,11 @@ public partial class TDC_ActivationTDC : System.Web.UI.Page
                     {
                         try
                         {
-                            afi_documento = dgl.Cells[1].Text;                            
-                            if ((afi_documento != "&nbsp;") && (afi_documento != ""))
+                            cli_tarjeta = dgl.Cells[1].Text;                            
+                            if ((cli_tarjeta != "&nbsp;") && (cli_tarjeta != ""))
                             {
-                                nTDC.Insertar(dgl.Cells[0].Text, afi_documento, dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString(), nombreArchivo, dgl.Cells[4].Text);
-                                documentosSF += "\"" + afi_documento + "\",";
+                                nTDC.ActualizarInfoActivacion(cli_tarjeta, dgl.Cells[1].Text, Session["ID_usuario"].ToString(), nombreArchivo);
+                                documentosSF += "\"" + cli_tarjeta + "\",";
                                 cargados++;
                             }
                         }
