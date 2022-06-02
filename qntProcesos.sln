@@ -29,6 +29,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", "website\", "{FAA
 		SlnRelativePath = "website\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qntCygnusWF", "qntCygnusWF\qntCygnusWF.csproj", "{30DBB32F-9DC8-40EA-B47B-2CCF62A9152B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{FAA843E5-758A-4EE6-871A-5BB0DD8CF0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAA843E5-758A-4EE6-871A-5BB0DD8CF0B6}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{FAA843E5-758A-4EE6-871A-5BB0DD8CF0B6}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{30DBB32F-9DC8-40EA-B47B-2CCF62A9152B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30DBB32F-9DC8-40EA-B47B-2CCF62A9152B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30DBB32F-9DC8-40EA-B47B-2CCF62A9152B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30DBB32F-9DC8-40EA-B47B-2CCF62A9152B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
