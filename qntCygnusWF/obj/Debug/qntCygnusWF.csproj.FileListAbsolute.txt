@@ -1,0 +1,10 @@
+D:\APP\SitiosFuentes\qntCygnusWF\bin\Debug\qntCygnusWF.exe.config
+D:\APP\SitiosFuentes\qntCygnusWF\bin\Debug\qntCygnusWF.exe
+D:\APP\SitiosFuentes\qntCygnusWF\bin\Debug\qntCygnusWF.pdb
+D:\APP\SitiosFuentes\qntCygnusWF\obj\Debug\qntCygnusWF.csproj.AssemblyReference.cache
+D:\APP\SitiosFuentes\qntCygnusWF\obj\Debug\qntCygnusWF.Properties.Resources.resources
+D:\APP\SitiosFuentes\qntCygnusWF\obj\Debug\qntCygnusWF.csproj.GenerateResource.cache
+D:\APP\SitiosFuentes\qntCygnusWF\obj\Debug\qntCygnusWF.csproj.CoreCompileInputs.cache
+D:\APP\SitiosFuentes\qntCygnusWF\obj\Debug\qntCygnusWF.exe
+D:\APP\SitiosFuentes\qntCygnusWF\obj\Debug\qntCygnusWF.pdb
+D:\APP\SitiosFuentes\qntCygnusWF\obj\Debug\qntCygnusWF.Form1.resources
