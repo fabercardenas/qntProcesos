@@ -349,6 +349,14 @@ namespace Datos
 			return procedureTable("tdcActualizaInfoActivacion", true, param);
 		}
 
+		public DataTable consultaSolicitudXArchivoActi(string tdc_archivoActivacionP9)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_archivoActivacionP9", tdc_archivoActivacionP9);
+
+			return procedureTable("tdcConsultarSolicXarchivoActi", true, param);
+		}
+
 		#endregion
 
 	}

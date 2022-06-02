@@ -28,7 +28,7 @@ public partial class TDC_ActivationTDC : System.Web.UI.Page
             {
                 //SUBE EL ARCHIVO
                 string extension = System.IO.Path.GetExtension(this.fupArchivo.PostedFile.FileName);
-                narchivo = "Paso1" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Millisecond.ToString() + extension;
+                narchivo = "Paso9" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Millisecond.ToString() + extension;
 
                 string ruta = Server.MapPath("~\\files\\TDC\\") + narchivo;
 
@@ -171,7 +171,7 @@ public partial class TDC_ActivationTDC : System.Web.UI.Page
                     {
                         try
                         {
-                            cli_tarjeta = dgl.Cells[1].Text;                            
+                            cli_tarjeta = dgl.Cells[0].Text;                            
                             if ((cli_tarjeta != "&nbsp;") && (cli_tarjeta != ""))
                             {
                                 nTDC.ActualizarInfoActivacion(cli_tarjeta, dgl.Cells[1].Text, Session["ID_usuario"].ToString(), nombreArchivo);
@@ -187,7 +187,7 @@ public partial class TDC_ActivationTDC : System.Web.UI.Page
                     }
                     #endregion
 
-                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados. Decargue el archivo de Solicitud de Emisión TDC para Finandina");
+                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados. Decargue el archivo para Validación de las tarjetas Activadas");
                     dgFaber.DataSource = null;
                     dgFaber.DataBind();
                     dvDescarga.Visible = true;
@@ -220,7 +220,7 @@ public partial class TDC_ActivationTDC : System.Web.UI.Page
         if (Session["ID_usuario"] != null)
         {
             #region GENERACIÓN FORMULARIO DE SALIDA
-            consultaSolicitudXArchivo(nTDC.consultaSolicitudXArchivo(ltrNombreArchivo.Text));
+            consultaSolicitudXArchivo(nTDC.consultaSolicitudXArchivoActi(ltrNombreArchivo.Text));
             #endregion
         }
     }
@@ -248,7 +248,7 @@ public partial class TDC_ActivationTDC : System.Web.UI.Page
             Response.Clear();
             Response.Buffer = true;
             Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", "attachment; filename= SolicituddeEmisionTDC" + string.Format("{0:ddMMyyyy}", DateTime.Today) + ".xls");
+            Response.AddHeader("Content-Disposition", "attachment; filename= TarejtasActivadasTDC" + string.Format("{0:ddMMyyyy}", DateTime.Today) + ".xls");
             Response.Charset = "UTF-8";
             Response.ContentEncoding = Encoding.Default;
             Response.Write(sb.ToString());
