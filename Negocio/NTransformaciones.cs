@@ -37,10 +37,11 @@ namespace Negocio
 		public List<ContactoNombres> Contactos { get; set; }
 	}
 
-	/// <summary>
-	/// Un contacto con flujo digital completo
-	/// </summary>
-	public class ContactoFD
+    #region FLUJO DIGITAL
+    /// <summary>
+    /// Un contacto con flujo digital completo
+    /// </summary>
+    public class ContactoFD
 	{
 		public string Id { get; set; }
 		public string ID_Cliente__c { get; set; }
@@ -50,4 +51,24 @@ namespace Negocio
 	{
 		public List<ContactoFD> Contactos { get; set; }
 	}
+	#endregion
+
+	#region DIAS MORA
+	/// <summary>
+	/// Un contacto con flujo digital completo
+	/// </summary>
+	public class ContactoDiasMora
+	{
+		public string ID_Cliente__c { get; set; }
+		public Int32 Numero_Plan_de_Pagos_Pagado__c { get; set; }
+		public Int32 Dias_mora__c { get; set; }
+	}
+
+	public class ContactoDiasMoraLista
+	{
+		public List<ContactoDiasMora> ContactosMora { get; set; }
+	}
+
+	#endregion
+
 }

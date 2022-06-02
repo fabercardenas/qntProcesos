@@ -27,7 +27,6 @@ public partial class TDC_SetEnlistment: System.Web.UI.Page
         }
     }
 
-
     protected void lnbConsultarTarjeta_Click(object sender, EventArgs e)
     {
         ConsultarSolicitudesXtarjeta();

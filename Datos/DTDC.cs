@@ -312,6 +312,43 @@ namespace Datos
 			return procedureTable("tdcPorSincronizarDiasMora", false);
 		}
 
+		public DataTable ActualizaDiasMora(string tdc_numeroDocumento, Int32 tdc_numeroPagos, Int32 tdc_diasMora, string ID_usuarioDMFK)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroDocumento", tdc_numeroDocumento);
+			param.Add("@tdc_numeroPagos", tdc_numeroPagos);
+			param.Add("@tdc_diasMora", tdc_diasMora);
+			param.Add("@ID_usuarioDMFK", ID_usuarioDMFK);
+
+			return procedureTable("tdcActualizaDiasMora", true, param);
+		}
+
+		public DataTable consultaSolicitudXDiasMora()
+		{
+			Hashtable param = new Hashtable(1);
+			return procedureTable("tdcConsultarSolicXDiasMora", true, param);
+		}
+
+		public DataTable ConsultarXtarjetaActiva(string tdc_numeroTarjeta)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
+
+			return procedureTable("tdcConsultarXtarjetaActiva", true, param);
+		}
+
+		public DataTable ActualizarInfoActivacion(string tdc_numeroTarjeta, string tdc_fechaActivacion, string ID_usuarioActivacionFK,
+			 string tdc_archivoActivacionP9)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_numeroTarjeta", tdc_numeroTarjeta);
+			param.Add("@tdc_fechaActivacion", tdc_fechaActivacion);
+			param.Add("@ID_usuarioActivacionFK", ID_usuarioActivacionFK);
+			param.Add("@tdc_archivoActivacionP9", tdc_archivoActivacionP9);
+
+			return procedureTable("tdcActualizaInfoActivacion", true, param);
+		}
+
 		#endregion
 
 	}

@@ -424,7 +424,7 @@ namespace Negocio
 
 		#endregion
 
-		#region PASO 8
+		#region PASO 8 Dias Mora
 		public async Task<Dictionary<string, string>> SincronizarDiasMora(string ID_usuarioFDFK)
 		{
 			DataTable tbDatos = dTDC.PorSincronizarDiasMora();
@@ -448,25 +448,25 @@ namespace Negocio
 			return response;
 		}
 
-		public static async Task<Dictionary<string, string>> SincronizarDiasMoraAsync(string documentos, string ID_usuarioFDFK)
+		public static async Task<Dictionary<string, string>> SincronizarDiasMoraAsync(string documentos, string ID_usuarioFK)
 		{
 			//solicitar token salesforce
 			Negocio.NSalesforce salesforce = new NSalesforce();
 			Dictionary<string, string> authData = salesforce.GetToken();
 
-			Task<ContactoFDLista> resultadoServicio = SfExtraerDiasMora(authData["AuthToken"], authData["ServiceUrl"], documentos);
+			Task<ContactoDiasMoraLista> resultadoServicio = SfExtraerDiasMora(authData["AuthToken"], authData["ServiceUrl"], documentos);
 
-			ContactoFDLista listado = await resultadoServicio;
+			ContactoDiasMoraLista listado = await resultadoServicio;
 			Dictionary<string, string> response = new Dictionary<string, string>();
 
 			//validar la longitud de listado
-			if ((listado != null) && (listado.Contactos.Count > 0))
+			if ((listado != null) && (listado.ContactosMora!=null) && (listado.ContactosMora.Count > 0))
 			{
 				Datos.DTDC elTDC = new Datos.DTDC();
 				Int32 totalProcesados = 0;
-				foreach (var item in listado.Contactos)
+				foreach (var item in listado.ContactosMora)
 				{
-					elTDC.ActualizaFD(item.ID_Cliente__c, ID_usuarioFDFK);
+					elTDC.ActualizaDiasMora(item.ID_Cliente__c, item.Numero_Plan_de_Pagos_Pagado__c, item.Dias_mora__c, ID_usuarioFK);
 					totalProcesados++;
 				}
 				if (totalProcesados > 0)
@@ -480,7 +480,7 @@ namespace Negocio
 			}
 		}
 
-		public static async Task<ContactoFDLista> SfExtraerDiasMora(string AuthToken, string ServiceUrl, string documentos)
+		public static async Task<ContactoDiasMoraLista> SfExtraerDiasMora(string AuthToken, string ServiceUrl, string documentos)
 		{
 			//joining together the json format string sample:"{"key":"valus"}";
 			string requestMessage = "{\"contactos\":[" + documentos + "]}";
@@ -508,10 +508,27 @@ namespace Negocio
 			response.EnsureSuccessStatusCode();
 
 			string result = response.Content.ReadAsStringAsync().Result;
-			ContactoFDLista contactoReturn = JsonConvert.DeserializeObject<ContactoFDLista>(result);
+			ContactoDiasMoraLista contactoReturn = JsonConvert.DeserializeObject<ContactoDiasMoraLista>(result);
 
 			return contactoReturn;
 		}
+
+		public DataTable consultaSolicitudXDiasMora()
+		{
+			return dTDC.consultaSolicitudXDiasMora();
+		}
+
+		public DataTable ConsultarXtarjetaActiva(string tdc_numeroTarjeta)
+		{
+			return dTDC.ConsultarXtarjetaActiva(tdc_numeroTarjeta);
+		}
+
+		public DataTable ActualizarInfoActivacion(string tdc_numeroTarjeta, string tdc_fechaActivacion, string ID_usuarioActivacionFK,
+			 string tdc_archivoActivacionP9)
+		{
+			return dTDC.ActualizarInfoActivacion(tdc_numeroTarjeta, tdc_fechaActivacion, ID_usuarioActivacionFK, tdc_archivoActivacionP9);
+		}
+
 		#endregion
 
 	}
