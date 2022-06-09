@@ -529,6 +529,12 @@ namespace Negocio
 			return dTDC.ActualizarInfoActivacion(tdc_numeroTarjeta, tdc_fechaActivacion, ID_usuarioActivacionFK, tdc_archivoActivacionP9);
 		}
 
+		public DataTable consultaSolicitudXArchivoActi(string tdc_archivoActivacionP9)
+		{
+			return dTDC.consultaSolicitudXArchivoActi(tdc_archivoActivacionP9);
+		}
+
+
 		#endregion
 
 	}

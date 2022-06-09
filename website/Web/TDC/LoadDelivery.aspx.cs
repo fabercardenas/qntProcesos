@@ -197,6 +197,7 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
                             throw;
                         }
                     }
+                    ConsultarSolicitudesXestado();
                     #endregion
 
                     ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados exitosamente. ");
