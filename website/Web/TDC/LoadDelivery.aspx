@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="dvIdCargaArchivo">
-        <div class="tdImgVerde04">Consulta Confirmación de Entrega</div>
+        <div class="tdImgVerde04">Consulta Confirmación de Entrega - Paso 6</div>
         <br />
         <div class="alert alert-info">
             Este módulo le permitirá llevar el control de las Tarjetas de Crédito <b>entregadas con éxito</b>  por medio de dos mecanismos: (1) Automático, por medio de un archivo (2) Manual, buscar por número de tarjeta

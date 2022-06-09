@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="tdImgVerde04">Sincronización de Flujo Digital</div>
+    <div class="tdImgVerde04">Sincronización de Flujo Digital - Paso 7.1</div>
     <br />
     <div class="alert alert-info">
         En este módulo solicitará la sincronización con <b>Salesforce</b>  para traer la información de Flujo Difital asociada a los clientes.<br />

@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="page-title">
         <div class="title_left">
-            <h3>Consulta todas las Solucitudes para Validación</h3>
+            <h3>Consulta Validación - Paso 5</h3>
         </div>
     </div>
 <div class="clearfix"></div>

@@ -359,5 +359,18 @@ namespace Datos
 
 		#endregion
 
+		#region REPORTES
+
+		public DataTable consultaSolicitudGeneral(string filCampo, string filFiltro)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@filCampo", filCampo);
+			param.Add("@filFiltro", filFiltro);
+
+			return procedureTable("tdcConsultaGeneral", true, param);
+		}
+
+		#endregion
+
 	}
 }

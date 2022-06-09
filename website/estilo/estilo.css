@@ -2541,7 +2541,12 @@ table.details {
 /* '''''''''' FIN PANEL  DE HERRAMIENTAS '''''''''''''*/
 .icoInfo {
 	font-size: 48px;
-	color: #CE7ABE;
+	color: #87BD29;
+}
+
+.icoWar {
+	font-size: 48px;
+	color: #208ACB;
 }
 
 th {

@@ -460,11 +460,11 @@ namespace Negocio
 			Dictionary<string, string> response = new Dictionary<string, string>();
 
 			//validar la longitud de listado
-			if ((listado != null) && (listado.ContactosMora!=null) && (listado.ContactosMora.Count > 0))
+			if ((listado != null) && (listado.Contactos!=null) && (listado.Contactos.Count > 0))
 			{
 				Datos.DTDC elTDC = new Datos.DTDC();
 				Int32 totalProcesados = 0;
-				foreach (var item in listado.ContactosMora)
+				foreach (var item in listado.Contactos)
 				{
 					elTDC.ActualizaDiasMora(item.ID_Cliente__c, item.Numero_Plan_de_Pagos_Pagado__c, item.Dias_mora__c, ID_usuarioFK);
 					totalProcesados++;
@@ -534,6 +534,14 @@ namespace Negocio
 			return dTDC.consultaSolicitudXArchivoActi(tdc_archivoActivacionP9);
 		}
 
+		#endregion
+
+		#region REPORTES
+
+		public DataTable consultaSolicitudGeneral(string filCampo, string filFiltro)
+		{
+			return dTDC.consultaSolicitudGeneral(filCampo, filFiltro);
+		}
 
 		#endregion
 

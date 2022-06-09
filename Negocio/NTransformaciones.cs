@@ -66,7 +66,7 @@ namespace Negocio
 
 	public class ContactoDiasMoraLista
 	{
-		public List<ContactoDiasMora> ContactosMora { get; set; }
+		public List<ContactoDiasMora> Contactos { get; set; }
 	}
 
 	#endregion

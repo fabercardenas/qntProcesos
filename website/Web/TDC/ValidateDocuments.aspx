@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="page-title">
         <div class="title_left">
-            <h3>Consulta Documentación para Clientes con Tarjeta de Crédito</h3>
+            <h3>Validar Documentación - Paso 7.3</h3>
         </div>
     </div>
 <div class="clearfix"></div>

@@ -20,20 +20,60 @@ public partial class TDC_GetRequest : System.Web.UI.Page
     {
         if ((Session["ID_usuario"]!=null) && (!Page.IsPostBack))
         {
-            Negocio.NUtilidades.cargarDDLReferenciaXModulo(ddlCanales, "Canales", true);
-            Negocio.NUtilidades.cargarDDLReferenciaXModulo(ddlProcesos, "Procesos", true);
+            txtConsultaFiltro.Text = "";
         }
     }
 
+    protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ltrMensaje.Text = "";
+        txtConsultaFiltro.Text = "";
+        if (ddlFiltro.SelectedValue == "Paso")
+        {
+            dvFiltro2.Visible = true;
+            dvConsultaF.Visible = false;
+        }
+        else
+        {
+            dvFiltro2.Visible = false;
+            dvConsultaF.Visible = true;
+        }
+    }
 
     protected void btnConsultar_Click(object sender, EventArgs e)
     {
-        ConsultarSolicitudes();
+        switch (ddlFiltro.SelectedValue)
+        {
+            case "tdc_numeroDocumento":
+            case "tdc_contrato":
+            case "tdc_numeroTarjeta":
+                frvCondultarSolicitud.DataSource = nTDC.consultaSolicitudGeneral(ddlFiltro.SelectedValue, txtConsultaFiltro.Text);
+                frvCondultarSolicitud.DataBind();
+                break;
+            case "Paso":
+                gdvListaSolicitudes.DataSource = nTDC.consultaSolicitudGeneral(ddlFiltro.SelectedValue, txtConsultaFiltro.Text);
+                gdvListaSolicitudes.DataBind();
+                break;
+        }
+        
+    }
+
+    protected void btnDevolverPaso_Click(object sender, EventArgs e)
+    {
+        DropDownList ddlCambio = (DropDownList)frvCondultarSolicitud.FindControl("ddlCambioPaso");
+        ddlCambio.Visible = true;
+        Button btnDevuelve = (Button)frvCondultarSolicitud.FindControl("btnDevolver");
+        btnDevuelve.Visible = true;
+
+    }
+    protected void btnDevolver_Click(object sender, EventArgs e)
+    {
+
     }
 
     void ConsultarSolicitudes()
     {
-        gdvListaSolicitudes.DataSource = nTDC.Consultar(ddlCanales.SelectedValue, ddlProcesos.SelectedValue);
+        gdvListaSolicitudes.DataSource = nTDC.ConsultarDocumental();
         gdvListaSolicitudes.DataBind();
     }
 
