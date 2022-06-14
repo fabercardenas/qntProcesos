@@ -28,10 +28,11 @@
         <br />
     </div>
     <br />
-    <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
-
-    <div class="form-inline" id="dvDescarga" runat="server" visible="false">
-        <asp:LinkButton ID="lnbDescargar" runat="server" CssClass="btn btn-primary" OnClick="lnbDescargar_Click">
+    <div class="col-md-9">
+        <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
+    </div> 
+    <div class=" col-md-3 form-inline" id="dvDescarga" runat="server" visible="false">
+        <asp:LinkButton ID="lnbDescargar" runat="server"  CssClass="btn btn-lg btn-primary" OnClick="lnbDescargar_Click">
             <span class="glyphicon glyphicon-arrow-down"></span>
             &nbsp;Descargar Archivo
         </asp:LinkButton>

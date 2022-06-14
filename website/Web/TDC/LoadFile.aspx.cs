@@ -206,6 +206,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
                     dgFaber.DataSource = null;
                     dgFaber.DataBind();
                     dvDescarga.Visible = true;
+                    lnbDescargar.Visible = true;
                     return true;
                 }
             }
@@ -226,6 +227,7 @@ public partial class TDC_LoadFile : System.Web.UI.Page
         {
             string nombreArchivo = "";
             ltrNombreArchivo.Text = "";
+            lnbDescargar.Visible = false;
             validaArchivo(ref nombreArchivo);
         }
     }

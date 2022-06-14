@@ -268,6 +268,11 @@ namespace Negocio
 			return dTDC.consultaSolicitudXfPreValiStikcer(tdc_fechaPrevalidacion);
 		}
 
+		public DataTable consultaSolicitudXacuseRecibido(string tdc_fechaPrevalidacion)
+		{
+			return dTDC.consultaSolicitudXacuseRecibido(tdc_fechaPrevalidacion);
+		}
+
 		#endregion
 
 		#region PASO 5
@@ -541,6 +546,11 @@ namespace Negocio
 		public DataTable consultaSolicitudGeneral(string filCampo, string filFiltro)
 		{
 			return dTDC.consultaSolicitudGeneral(filCampo, filFiltro);
+		}
+
+		public DataTable DevolverSolicitud(string ID_tdcSolicitud, string tdc_pasoAnterior, string tdc_pasoNuevo, string ID_usuarioActualizaPaso)
+		{
+			return dTDC.DevolverSolicitud(ID_tdcSolicitud, tdc_pasoAnterior, tdc_pasoNuevo, ID_usuarioActualizaPaso);
 		}
 
 		#endregion

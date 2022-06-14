@@ -159,6 +159,14 @@ namespace Datos
 			return procedureTable("tdcConsultarSolicXfPreValiStikcer", true, param);
 		}
 
+		public DataTable consultaSolicitudXacuseRecibido(string tdc_fechaPrevalidacion)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@tdc_fechaPrevalidacion", tdc_fechaPrevalidacion);
+
+			return procedureTable("tdcConsultarSolicXacuseRecibido", true, param);
+		}
+
 		#endregion
 
 		#region PASO 5
@@ -368,6 +376,16 @@ namespace Datos
 			param.Add("@filFiltro", filFiltro);
 
 			return procedureTable("tdcConsultaGeneral", true, param);
+		}
+
+		public DataTable DevolverSolicitud(string ID_tdcSolicitud, string tdc_pasoAnterior, string tdc_pasoNuevo, string ID_usuarioActualizaPaso)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@ID_tdcSolicitud", ID_tdcSolicitud);
+			param.Add("@tdc_pasoAnterior", tdc_pasoAnterior);
+			param.Add("@tdc_pasoNuevo", tdc_pasoNuevo);
+			param.Add("@ID_usuarioActualizaPaso", ID_usuarioActualizaPaso);
+			return procedureTable("tdcDevolverPaso", true, param);
 		}
 
 		#endregion

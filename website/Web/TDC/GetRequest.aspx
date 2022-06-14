@@ -21,30 +21,29 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <label>Filtrar por:</label>
                 <asp:DropDownList ID="ddlFiltro" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlFiltro_SelectedIndexChanged" AutoPostBack ="true">
                     <asp:ListItem Value="tdc_numeroDocumento" Text="No. Documento"></asp:ListItem>
                     <asp:ListItem Value="tdc_contrato" Text="No. Contrato"></asp:ListItem>
                     <asp:ListItem Value="tdc_numeroTarjeta" Text="No. Tarjeta"></asp:ListItem>
-                    <asp:ListItem Value="Paso" Text="Paso"></asp:ListItem>
+                    <asp:ListItem Value="tdc_paso" Text="Paso"></asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div id="dvFiltro2" runat="server" class="col-md-4" visible="false" >
                 <label><br /></label>
                 <asp:DropDownList ID="ddlPasos" runat="server" CssClass="form-control" ValidationGroup="principal" >
-                    <asp:ListItem Value="Paso1" Text="Carga Tarjetas Aprobadas - Paso 1"></asp:ListItem>
-                    <asp:ListItem Value="Paso2" Text="Carga de Información Tarjetas - Paso 2"></asp:ListItem>
-                    <asp:ListItem Value="Paso3" Text="Sincronización de Ubicaciones - Paso 3"></asp:ListItem>
-                    <asp:ListItem Value="Paso4" Text="Consulta Prevalidación - Paso 4"></asp:ListItem>
-                    <asp:ListItem Value="Paso5" Text="Consulta Validación - Paso 5"></asp:ListItem>
-                    <asp:ListItem Value="Paso6" Text="Consulta Confirmación de Entrega - Paso 6"></asp:ListItem>
-                    <asp:ListItem Value="Paso7.1" Text="Sincronización de Flujo Digital - Paso 7.1"></asp:ListItem>
-                    <asp:ListItem Value="Paso7.2" Text="Carga de Pagaré - Paso 7.2"></asp:ListItem>
-                    <asp:ListItem Value="Paso7.3" Text="Validar Documentación - Paso 7.3"></asp:ListItem>
-                    <asp:ListItem Value="Paso8.1" Text="Sincronización de Días Mora - Paso 8.1"></asp:ListItem>
-                    <asp:ListItem Value="Paso8.2" Text="Tarjetas para Activación - Paso 8.2"></asp:ListItem>
-                    <asp:ListItem Value="Paso9" Text="Carga de Archivo para Activación TDC - Paso 9"></asp:ListItem>
+                    <asp:ListItem Value="1" Text="Carga Tarjetas Aprobadas - Paso 1"></asp:ListItem>
+                    <asp:ListItem Value="2" Text="Carga de Información Tarjetas - Paso 2"></asp:ListItem>
+                    <asp:ListItem Value="3" Text="Sincronización de Ubicaciones - Paso 3"></asp:ListItem>
+                    <asp:ListItem Value="4" Text="Consulta Prevalidación - Paso 4"></asp:ListItem>
+                    <asp:ListItem Value="5" Text="Consulta Validación - Paso 5"></asp:ListItem>
+                    <asp:ListItem Value="6" Text="Consulta Confirmación de Entrega - Paso 6"></asp:ListItem>
+                    <asp:ListItem Value="71" Text="Tienen Sincronización de Flujo Digital - Paso 7.1"></asp:ListItem>
+                    <asp:ListItem Value="72" Text="Tienen Pagaré Cargado- Paso 7.2"></asp:ListItem>
+                    <asp:ListItem Value="73" Text="Tienen Doc. Identidad y Soporte de Ingresos - Paso 7.3"></asp:ListItem>
+                    <asp:ListItem Value="8" Text="Tarjetas para Activación  - Paso 8.1 y Paso 8.2"></asp:ListItem>
+                    <asp:ListItem Value="9" Text="Carga de Archivo para Activación TDC - Paso 9"></asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div id="dvConsultaF" runat="server" class="col-md-4" visible="True" >
@@ -52,19 +51,24 @@
                 <asp:TextBox ID="txtConsultaFiltro" runat="server" CssClass="form-control" ValidationGroup="principal"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvNumTarjeta" runat="server" ControlToValidate="txtConsultaFiltro" ErrorMessage="* Campo Requerido" ValidationGroup="principal"> </asp:RequiredFieldValidator>
             </div>
-            <div class="col-md-4" style="padding-top:20px;">
+            <div class="col-md-2" style="padding-top:20px;">
                 <asp:Button ID="btnConsultar" runat="server" Text="Consultar" OnClick="btnConsultar_Click"
                         CssClass="btn btn-primary"  ValidationGroup="principal" />
+            </div>
+            <div class="col-md-2" style="padding-top:20px;" visible="False">
+                <asp:Button ID="btnGenerarExcel" runat="server" Text="Generar Archivo con X Registros" OnClick="btnGenerarExcel_Click"
+                        CssClass="btn btn-warning"  ValidationGroup="principal" />
             </div>
             <br />
             <br />
             <br />
             
-            <asp:FormView ID="frvCondultarSolicitud" runat="server" CssClass="tdGris02"  
+            <asp:FormView ID="frvConsultarSolicitud" runat="server" CssClass="tdGris02"  
                 CaptionAlign="Left" Width="100%" AllowPaging="True" PagerSettings-Mode="NumericFirstLast" PagerSettings-PageButtonCount="50"
-                CellPadding="0" PagerStyle-BackColor="White">
+                CellPadding="0" DataKeyNames="ID_tdcSolicitud" PagerStyle-BackColor="White">
                 <ItemTemplate>
                     <div id="dvDetSolicitud" style="width:100%; text-align:center;">
+                        <asp:Literal ID="ltrIdSolicitud" runat="server" Visible="false" Text='<%# Eval("ID_tdcSolicitud").ToString()%>'></asp:Literal>
                         <div class="x_panel">
                             <div class="x_content">
                                 <div class="row">
@@ -172,27 +176,19 @@
                                         </div>
                                     </div>
                                     <div class="col col-md-4" style="text-align:center;">
-                                        <b><span>PASO: <%#Eval("tdc_paso")%></span></b>
+                                        <b><span>Se encuentra en el Paso: <%#Eval("tdc_paso")%></span></b>
+                                        <br />
+                                        <asp:Literal ID="ltrHdfPasoActual" runat="server" Visible="false" Text='<%#Eval("tdc_paso").ToString()%>'></asp:Literal>
+                                        <asp:Literal ID="ltrHdfDireccion" runat="server" Visible="false" Text='<%#Eval("tdc_direccion").ToString()%>'></asp:Literal>
+                                        <asp:Literal ID="ltrMensajePaso" runat="server"></asp:Literal>
                                         <br />
                                         <asp:Button ID="btnDevolverPaso" runat="server" Text="Cambiar de Paso" OnClick="btnDevolverPaso_Click" 
                                             CssClass="btn btn-warning"  ValidationGroup="principal"
-                                             Visible='<%# ((Eval("tdc_paso").ToString()=="9")? false:true)%>'/>
+                                             Visible='<%# (((Eval("tdc_paso").ToString()=="9") || (Eval("tdc_paso").ToString()=="1"))? false:true)%>'/>
                                         <br />
                                         <br />
                                             <asp:DropDownList ID="ddlCambioPaso" runat="server" CssClass="form-control" ValidationGroup="principal" Visible="false"  >
-                                                <asp:ListItem Value="Paso1" Text="Carga Tarjetas Aprobadas - Paso 1"></asp:ListItem>
-                                                <asp:ListItem Value="Paso2" Text="Carga de Información Tarjetas - Paso 2"></asp:ListItem>
-                                                <asp:ListItem Value="Paso3" Text="Sincronización de Ubicaciones - Paso 3"></asp:ListItem>
-                                                <asp:ListItem Value="Paso4" Text="Consulta Prevalidación - Paso 4"></asp:ListItem>
-                                                <asp:ListItem Value="Paso5" Text="Consulta Validación - Paso 5"></asp:ListItem>
-                                                <asp:ListItem Value="Paso6" Text="Consulta Confirmación de Entrega - Paso 6"></asp:ListItem>
-                                                <asp:ListItem Value="Paso7.1" Text="Sincronización de Flujo Digital - Paso 7.1"></asp:ListItem>
-                                                <asp:ListItem Value="Paso7.2" Text="Carga de Pagaré - Paso 7.2"></asp:ListItem>
-                                                <asp:ListItem Value="Paso7.3" Text="Validar Documentación - Paso 7.3"></asp:ListItem>
-                                                <asp:ListItem Value="Paso8.1" Text="Sincronización de Días Mora - Paso 8.1"></asp:ListItem>
-                                                <asp:ListItem Value="Paso8.2" Text="Tarjetas para Activación - Paso 8.2"></asp:ListItem>
-                                                <asp:ListItem Value="Paso9" Text="Carga de Archivo para Activación TDC - Paso 9"></asp:ListItem>
-                                                </asp:DropDownList>
+                                            </asp:DropDownList>
                                             <asp:Button ID="btnDevolver" runat="server" Text="Cambiar" OnClick="btnDevolver_Click" 
                                                 CssClass="btn btn-danger"  ValidationGroup="principal"
                                                 Visible="false"/>
@@ -213,11 +209,16 @@
                     AllowPaging="true" PageSize="30" GridLines="None" 
                     >
                 <Columns>
-                    <asp:BoundField DataField="tdc_tipoDocumento" HeaderText="Tipo Documento" />
-                    <asp:BoundField DataField="tdc_numeroDocumento" HeaderText="Documento" />
-                    <asp:BoundField DataField="canal" HeaderText="Canal" />
-                    <asp:BoundField DataField="proceso" HeaderText="Proceso" />
-                    <asp:BoundField DataField="tdc_direccion" HeaderText="Direccion" />
+                    <%--Columna 0--%><asp:BoundField DataField="ref_nombre" HeaderText="Tipo Documento" />
+                    <%--Columna 1--%><asp:BoundField DataField="tdc_numeroDocumento" HeaderText="Documento" />
+                    <%--Columna 2--%><asp:BoundField DataField="NOMBRE" HeaderText="Nombres y Apellidos" />
+                    <%--Columna 3--%><asp:BoundField DataField="tdc_direccion" HeaderText="Dirección" />
+                    <%--Columna 4--%><asp:BoundField DataField="tdc_ciudad" HeaderText="Ciudad" />
+                    <%--Columna 5--%><asp:BoundField DataField="tdc_correo" HeaderText="Correo" />
+                    <%--Columna 6--%><asp:BoundField DataField="tdc_celular" HeaderText="Celular" />
+                    <%--Columna 7--%><asp:BoundField DataField="tdc_telefono" HeaderText="Teléfono" />
+                    <%--Columna 8--%><asp:BoundField DataField="TARJETA" HeaderText="No. Tarjeta" />
+                    <%--Columna 9--%><asp:BoundField DataField="tdc_fechaRealce" HeaderText="Fecha realce" DataFormatString="{0:yyyy-MM-dd}" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                 </Columns>
             </asp:GridView>
         </div>

@@ -1,0 +1,5 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FileAcknowReceipt.aspx.cs" Inherits="Web_TDC_FileAcknowReceipt" %>
+<% 
+    Response.ContentType ="text/plain" ;
+    Response.AddHeader("Content-Disposition", "attachment;filename=AcuseRecibido.xlsx");
+%> 
