@@ -80,6 +80,16 @@ public partial class TDC_GetRequest : System.Web.UI.Page
             else
                 ltrMensajePaso.Text = "";
 
+            //DataTable tbAccionesNoPermitidas = Session["AccionesNoPermitidas"] as DataTable;
+            //if (tbAccionesNoPermitidas != null)
+            //{
+                
+            //    DataRow[] result = tbAccionesNoPermitidas.Select("acc_pagina='Consulta Solicitudes' AND acc_objeto='btnDevolverPaso'");
+            //    if (((result == null) || (result.Length == 0)))
+            //        btnDevolverPaso.Visible = false;
+            //}
+            Button btnDevolverPaso = (Button)frvConsultarSolicitud.FindControl("btnDevolverPaso");
+            btnDevolverPaso.Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "Consulta Solicitudes", "btnDevolverPaso", btnDevolverPaso.Visible);
             CargarDDLCambioPaso(ltrHdfPasoActual.Text);
         }
         else
