@@ -11,8 +11,8 @@ using Newtonsoft.Json;
 
 namespace Negocio
 {
-    public class NCygnus
-    {
+	public class NCygnus
+	{
 		public async Task<ContactoAcuerdoNuevoLista> SincronizarAcuerdosAsync(DateTime fechaHoy)
 		{
 			//solicitar token salesforce
