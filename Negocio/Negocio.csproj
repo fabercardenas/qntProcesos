@@ -56,6 +56,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>app.settings</DependentUpon>
     </Compile>
+    <Compile Include="NCygnus.cs" />
+    <Compile Include="NCygnusTransformaciones.cs" />
     <Compile Include="NSalesforce.cs" />
     <Compile Include="NTDC.cs" />
     <Compile Include="NCliente.cs" />
