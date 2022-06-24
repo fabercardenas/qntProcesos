@@ -56,6 +56,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>app.settings</DependentUpon>
     </Compile>
+    <Compile Include="NPYS.cs" />
     <Compile Include="NSalesforce.cs" />
     <Compile Include="NTDC.cs" />
     <Compile Include="NCliente.cs" />

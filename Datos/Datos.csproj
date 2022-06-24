@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DPYS.cs" />
     <Compile Include="DTDC.cs" />
     <Compile Include="DClientes.cs" />
     <Compile Include="DEmpleados.cs" />
