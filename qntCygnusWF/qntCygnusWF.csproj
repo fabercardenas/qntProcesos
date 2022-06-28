@@ -129,11 +129,5 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Negocio\Negocio.csproj">
-      <Project>{276715cc-cfda-4f90-8720-708c66b8481a}</Project>
-      <Name>Negocio</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
