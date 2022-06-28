@@ -15,26 +15,27 @@ namespace qntCygnusWF
         public Form1()
         {
             InitializeComponent();
-            //Sincronizar();
-            string responseSoap = "<ETHOS><crearPersonas><Resultado>1.00</Resultado><MensajeError>1.00</MensajeError><CodigoCygnus>34.00</CodigoCygnus></crearPersonas></ETHOS>";
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(responseSoap);
+            Sincronizar();
+            //string responseSoap = "<ETHOS><crearPersonas><Resultado>1.00</Resultado><MensajeError>1.00</MensajeError><CodigoCygnus>34.00</CodigoCygnus></crearPersonas></ETHOS>";
+            //XmlDocument xmlDoc = new XmlDocument();
+            //xmlDoc.LoadXml(responseSoap);
 
-            string xpath = "/ETHOS/crearPersonas";
-            var nodes = xmlDoc.SelectNodes(xpath);
+            //string xpath = "/ETHOS/crearPersonas";
+            //var nodes = xmlDoc.SelectNodes(xpath);
 
-            foreach (XmlNode childrenNode in nodes)
-            {
-                lblMensaje.Text = "Resultado: " + childrenNode["Resultado"].InnerText + "\n";
-                lblMensaje.Text += "MensajeError: " + childrenNode["MensajeError"].InnerText + "\n";
-                lblMensaje.Text += "CodigoCygnus: " + childrenNode["CodigoCygnus"].InnerText + "\n";
-            }
+            //foreach (XmlNode childrenNode in nodes)
+            //{
+            //    lblMensaje.Text = "Resultado: " + childrenNode["Resultado"].InnerText + "\n";
+            //    lblMensaje.Text += "MensajeError: " + childrenNode["MensajeError"].InnerText + "\n";
+            //    lblMensaje.Text += "CodigoCygnus: " + childrenNode["CodigoCygnus"].InnerText + "\n";
+            //}
         }
 
         public async void Sincronizar()
         {
             NCygnus salesforce = new NCygnus();
-            ContactoAcuerdoNuevoLista resultado = await salesforce.SincronizarAcuerdosAsync(DateTime.Today);
+            //ContactoAcuerdoNuevoLista resultado = await salesforce.SincronizarAcuerdosAsync(DateTime.Today);
+            ContactoAcuerdoNuevoLista resultado = await salesforce.SincronizarAcuerdosAsync(Convert.ToDateTime("2022-06-02"));
 
             if ((resultado != null) && (resultado.ContactosNuevos!=null) && (resultado.ContactosNuevos.Count>0))
             {
