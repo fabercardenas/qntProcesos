@@ -42,15 +42,15 @@
                         Filtrar Paz y salvo en estado&nbsp; 
                         <asp:DropDownList ID="ddlListaEstados" runat="server" CssClass="dropdown" >
                             <asp:ListItem Value="-1" Text="Seleccione"></asp:ListItem>
-                            <asp:ListItem>Generado</asp:ListItem>
-                            <asp:ListItem>Devuelto</asp:ListItem>
+                            <asp:ListItem Value="1" Text="Generado"></asp:ListItem>
+                            <asp:ListItem Value="2" Text="Devuelto"></asp:ListItem>
                         </asp:DropDownList>
                         
                         &nbsp;y por&nbsp;  
                         <asp:DropDownList ID="ddlFiltroFecha" runat="server" CssClass="dropdown" OnSelectedIndexChanged="ddlFiltroFecha_SelectedIndexChanged" AutoPostBack ="true">
                             <asp:ListItem Value="-1" Text="Seleccione el filtro"></asp:ListItem>
-                            <asp:ListItem>Fecha de Pago</asp:ListItem>
-                            <asp:ListItem>Fecha de Proceso</asp:ListItem>
+                            <asp:ListItem Value="pys_fechaUltimoPago" Text="Fecha de Pago"></asp:ListItem>
+                            <asp:ListItem Value="pys_fechaSincronizacionSF" Text="Fecha de Proceso"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
                     <div id="dvdFechas" runat="server" visible="false">
@@ -69,8 +69,7 @@
                     </div>
                    <div class="col-md-1">
                        <br />
-                       <asp:LinkButton ID="lnbListaConsultar" runat="server" CssClass="btn btn-sm btn-warning">Consultar</asp:LinkButton>
-                        <%--<asp:LinkButton ID="lnbListaConsultar" runat="server" CssClass="btn btn-sm btn-warning" OnClick="lnbListaConsultar_Click">Consultar</asp:LinkButton>--%>
+                       <asp:LinkButton ID="lnbListaConsultar" runat="server" CssClass="btn btn-sm btn-warning" OnClick="lnbListaConsultar_Click">Consultar</asp:LinkButton>
                    </div>
                    <div class="col-md-2">
                    </div>
@@ -120,23 +119,30 @@
                 EmptyDataText="No hay Paz y Salvos con los filtros seleccionados" 
                     AutoGenerateColumns="False" Width="100%"
                     AllowPaging="true" PageSize="30" GridLines="None"
-                    DataKeyNames="ID_acuerdo">
+                    DataKeyNames="ID_acuerdo" OnRowEditing="gdvListaPazySalvo_RowEditing" OnRowCancelingEdit="gdvListaPazySalvo_RowCancelingEdit">
                 <Columns>
-                    <asp:BoundField DataField="pys_numeroRadicado" HeaderText="Número Radicado" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="ref_nombre" HeaderText="Tipo Documento" ItemStyle-HorizontalAlign="Center"  />
-                    <asp:BoundField DataField="cli_numeroDocumento" HeaderText="Número Documento" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="acu_numeroAcuerdo" HeaderText="Número Acuerdo" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="acu_nombresProductos" HeaderText="Productos" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="pys_fechaUltimoPago" HeaderText="Ultimo Pago" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:yyyy-MM-dd}" />
-                    <asp:BoundField DataField="pys_fechaSincronizacionSF" HeaderText="Fecha Proceso" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:yyyy-MM-dd}" />
-                    <asp:TemplateField ItemStyle-Width="90px" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                        <HeaderTemplate>Apr. Varios
-                            <asp:CheckBox ID="chkActualizaVariosEncabezado" runat="server" onclick="CheckActualizaVarios(this);" />
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <asp:CheckBox ID="chkActualizaVarios" runat="server" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
+                    <%--0--%><asp:BoundField DataField="pys_numeroRadicado" HeaderText="Número Radicado" ItemStyle-HorizontalAlign="Center" ReadOnly="true"  />
+                    <%--1--%><asp:BoundField DataField="ref_nombre" HeaderText="Tipo Documento" ItemStyle-HorizontalAlign="Center" ReadOnly="true"  />
+                    <%--2--%><asp:BoundField DataField="cli_numeroDocumento" HeaderText="Número Documento" ItemStyle-HorizontalAlign="Center" ReadOnly="true"  />
+                    <%--3--%><asp:BoundField DataField="acu_numeroAcuerdo" HeaderText="Número Acuerdo" ItemStyle-HorizontalAlign="Center" ReadOnly="true"  />
+                    <%--4--%><asp:BoundField DataField="acu_nombresProductos" HeaderText="Productos" ItemStyle-HorizontalAlign="Center" ReadOnly="true"  />
+                    <%--5--%><asp:BoundField DataField="pys_fechaUltimoPago" HeaderText="Ultimo Pago" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:yyyy-MM-dd}" ReadOnly="true"  />
+                    <%--6--%><asp:BoundField DataField="pys_fechaSincronizacionSF" HeaderText="Fecha Proceso" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:yyyy-MM-dd}" ReadOnly="true"  />
+                    <%--7--%><asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:LinkButton  ID="lnbAprobar" runat="server" CommandName="Aprobar" CommandArgument="<%# Container.DataItemIndex %>" Text="Aprobar" CssClass="btn btn-xs btn-success" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                    <%--8--%><asp:TemplateField ItemStyle-Width="90px" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                <HeaderTemplate>Apr. Varios
+                                    <asp:CheckBox ID="chkActualizaVariosEncabezado" runat="server" onclick="CheckActualizaVarios(this);" />
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkActualizaVarios" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                    <%--9--%><asp:BoundField DataField="pys_causalAsesor" HeaderText="Causal de Rechazo" ItemStyle-HorizontalAlign="Center" Visible="false"/>
+                    <%--10--%><asp:CommandField ShowEditButton="true" EditText="Rechazar"/>
                 </Columns>
             </asp:GridView>
         </div>
