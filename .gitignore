@@ -12,6 +12,7 @@
 *.csproj
 *.AssemblyReference
 *.cache
+*.csproj.AssemblyReference.cache
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
