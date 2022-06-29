@@ -52,8 +52,25 @@ namespace qntCygnusWF
                                                     "", "", "", "", "", "cygnus", "sqlebs", "E3C720DA4004");
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.LoadXml(responseSoap);
-                }
 
+                    string xpath = "/ETHOS/crearPersonas";
+                    var nodes = xmlDoc.SelectNodes(xpath);
+
+                    foreach (XmlNode childrenNode in nodes)
+                    {
+                        lblMensaje.Text = "Resultado: " + childrenNode["Resultado"].InnerText + "\n";
+                        lblMensaje.Text += "MensajeError: " + childrenNode["MensajeError"].InnerText + "\n";
+                        lblMensaje.Text += "CodigoCygnus: " + childrenNode["CodigoCygnus"].InnerText + "\n";
+
+                        //si la persona esta bien, le mando el acuerdo en cygnus
+
+                        //leer los acuerdo producto 
+
+                        //ws crear credito
+
+                    }
+
+                }
             }
 
             
