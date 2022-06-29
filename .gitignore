@@ -9,7 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.csproj
+#*.csproj
 *.AssemblyReference
 *.cache
 *.csproj.AssemblyReference.cache
@@ -21,6 +21,8 @@
 mono_crash.*
 
 # Build results
+Obj/
+Debug/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
