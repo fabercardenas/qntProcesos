@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace qntCygnusWF.ServiceReference1 {
+namespace qntCygnusWF.CygnusCredito {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,13 +17,13 @@ namespace qntCygnusWF.ServiceReference1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="SalFunctionalClass", Namespace="WSSimuladorCredito")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.General))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaRegistro))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaAtr))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.LiquidacionAtr))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaDocPlanPagos))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaDocPagare))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaCrea))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.General))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaRegistro))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaAtr))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.LiquidacionAtr))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaDocPlanPagos))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaDocPagare))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaCrea))]
     public partial class SalFunctionalClass : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -53,20 +53,20 @@ namespace qntCygnusWF.ServiceReference1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="General", Namespace="WSSimuladorCredito")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaRegistro))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaAtr))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.LiquidacionAtr))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaDocPlanPagos))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaDocPagare))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.ServiceReference1.RespuestaCrea))]
-    public partial class General : qntCygnusWF.ServiceReference1.SalFunctionalClass {
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaRegistro))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaAtr))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.LiquidacionAtr))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaDocPlanPagos))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaDocPagare))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(qntCygnusWF.CygnusCredito.RespuestaCrea))]
+    public partial class General : qntCygnusWF.CygnusCredito.SalFunctionalClass {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RespuestaRegistro", Namespace="WSSimuladorCredito")]
     [System.SerializableAttribute()]
-    public partial class RespuestaRegistro : qntCygnusWF.ServiceReference1.General {
+    public partial class RespuestaRegistro : qntCygnusWF.CygnusCredito.General {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string R_s_mensajeField;
@@ -89,7 +89,7 @@ namespace qntCygnusWF.ServiceReference1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RespuestaAtr", Namespace="WSSimuladorCredito")]
     [System.SerializableAttribute()]
-    public partial class RespuestaAtr : qntCygnusWF.ServiceReference1.General {
+    public partial class RespuestaAtr : qntCygnusWF.CygnusCredito.General {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string R_s_mensajeField;
@@ -104,7 +104,7 @@ namespace qntCygnusWF.ServiceReference1 {
         private string R_ValorCuotaAsociadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private qntCygnusWF.ServiceReference1.LiquidacionAtr[] R_LiquidacionField;
+        private qntCygnusWF.CygnusCredito.LiquidacionAtr[] R_LiquidacionField;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string R_s_mensaje {
@@ -159,7 +159,7 @@ namespace qntCygnusWF.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
-        public qntCygnusWF.ServiceReference1.LiquidacionAtr[] R_Liquidacion {
+        public qntCygnusWF.CygnusCredito.LiquidacionAtr[] R_Liquidacion {
             get {
                 return this.R_LiquidacionField;
             }
@@ -176,7 +176,7 @@ namespace qntCygnusWF.ServiceReference1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LiquidacionAtr", Namespace="WSSimuladorCredito")]
     [System.SerializableAttribute()]
-    public partial class LiquidacionAtr : qntCygnusWF.ServiceReference1.General {
+    public partial class LiquidacionAtr : qntCygnusWF.CygnusCredito.General {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string n_num_cuoField;
@@ -631,7 +631,7 @@ namespace qntCygnusWF.ServiceReference1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RespuestaDocPlanPagos", Namespace="WSSimuladorCredito")]
     [System.SerializableAttribute()]
-    public partial class RespuestaDocPlanPagos : qntCygnusWF.ServiceReference1.General {
+    public partial class RespuestaDocPlanPagos : qntCygnusWF.CygnusCredito.General {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string R_s_mensajeField;
@@ -700,7 +700,7 @@ namespace qntCygnusWF.ServiceReference1 {
         private string s_totalOtrosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private qntCygnusWF.ServiceReference1.LiquidacionAtr[] R_LiquidacionField;
+        private qntCygnusWF.CygnusCredito.LiquidacionAtr[] R_LiquidacionField;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string R_s_mensaje {
@@ -989,7 +989,7 @@ namespace qntCygnusWF.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=22)]
-        public qntCygnusWF.ServiceReference1.LiquidacionAtr[] R_Liquidacion {
+        public qntCygnusWF.CygnusCredito.LiquidacionAtr[] R_Liquidacion {
             get {
                 return this.R_LiquidacionField;
             }
@@ -1006,7 +1006,7 @@ namespace qntCygnusWF.ServiceReference1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RespuestaDocPagare", Namespace="WSSimuladorCredito")]
     [System.SerializableAttribute()]
-    public partial class RespuestaDocPagare : qntCygnusWF.ServiceReference1.General {
+    public partial class RespuestaDocPagare : qntCygnusWF.CygnusCredito.General {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string R_s_mensajeField;
@@ -1445,7 +1445,7 @@ namespace qntCygnusWF.ServiceReference1 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RespuestaCrea", Namespace="WSSimuladorCredito")]
     [System.SerializableAttribute()]
-    public partial class RespuestaCrea : qntCygnusWF.ServiceReference1.General {
+    public partial class RespuestaCrea : qntCygnusWF.CygnusCredito.General {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string R_s_mensajeField;
@@ -1513,50 +1513,50 @@ namespace qntCygnusWF.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="WSSimuladorCredito", ConfigurationName="ServiceReference1.WSSimuladorCreditoQntSoap")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="WSSimuladorCredito", ConfigurationName="CygnusCredito.WSSimuladorCreditoQntSoap")]
     public interface WSSimuladorCreditoQntSoap {
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento pws_monto del espacio de nombres WSSimuladorCredito no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/creaCredito", ReplyAction="*")]
-        qntCygnusWF.ServiceReference1.creaCreditoResponse creaCredito(qntCygnusWF.ServiceReference1.creaCreditoRequest request);
+        qntCygnusWF.CygnusCredito.creaCreditoResponse creaCredito(qntCygnusWF.CygnusCredito.creaCreditoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/creaCredito", ReplyAction="*")]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaCreditoResponse> creaCreditoAsync(qntCygnusWF.ServiceReference1.creaCreditoRequest request);
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaCreditoResponse> creaCreditoAsync(qntCygnusWF.CygnusCredito.creaCreditoRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento pws_numRadic del espacio de nombres WSSimuladorCredito no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/creaRegPagareCredito", ReplyAction="*")]
-        qntCygnusWF.ServiceReference1.creaRegPagareCreditoResponse creaRegPagareCredito(qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequest request);
+        qntCygnusWF.CygnusCredito.creaRegPagareCreditoResponse creaRegPagareCredito(qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/creaRegPagareCredito", ReplyAction="*")]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaRegPagareCreditoResponse> creaRegPagareCreditoAsync(qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequest request);
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaRegPagareCreditoResponse> creaRegPagareCreditoAsync(qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento pws_num_radic del espacio de nombres WSSimuladorCredito no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/creaCodeudorCredito", ReplyAction="*")]
-        qntCygnusWF.ServiceReference1.creaCodeudorCreditoResponse creaCodeudorCredito(qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequest request);
+        qntCygnusWF.CygnusCredito.creaCodeudorCreditoResponse creaCodeudorCredito(qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/creaCodeudorCredito", ReplyAction="*")]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaCodeudorCreditoResponse> creaCodeudorCreditoAsync(qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequest request);
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaCodeudorCreditoResponse> creaCodeudorCreditoAsync(qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento pws_monto del espacio de nombres WSSimuladorCredito no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/liqSimuladorCredito", ReplyAction="*")]
-        qntCygnusWF.ServiceReference1.liqSimuladorCreditoResponse liqSimuladorCredito(qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequest request);
+        qntCygnusWF.CygnusCredito.liqSimuladorCreditoResponse liqSimuladorCredito(qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/liqSimuladorCredito", ReplyAction="*")]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.liqSimuladorCreditoResponse> liqSimuladorCreditoAsync(qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequest request);
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.liqSimuladorCreditoResponse> liqSimuladorCreditoAsync(qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento pws_numRadic del espacio de nombres WSSimuladorCredito no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/docPlanPagos", ReplyAction="*")]
-        qntCygnusWF.ServiceReference1.docPlanPagosResponse docPlanPagos(qntCygnusWF.ServiceReference1.docPlanPagosRequest request);
+        qntCygnusWF.CygnusCredito.docPlanPagosResponse docPlanPagos(qntCygnusWF.CygnusCredito.docPlanPagosRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/docPlanPagos", ReplyAction="*")]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.docPlanPagosResponse> docPlanPagosAsync(qntCygnusWF.ServiceReference1.docPlanPagosRequest request);
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.docPlanPagosResponse> docPlanPagosAsync(qntCygnusWF.CygnusCredito.docPlanPagosRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento pws_numRadic del espacio de nombres WSSimuladorCredito no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/docPagareCredito", ReplyAction="*")]
-        qntCygnusWF.ServiceReference1.docPagareCreditoResponse docPagareCredito(qntCygnusWF.ServiceReference1.docPagareCreditoRequest request);
+        qntCygnusWF.CygnusCredito.docPagareCreditoResponse docPagareCredito(qntCygnusWF.CygnusCredito.docPagareCreditoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="WSSimuladorCredito/docPagareCredito", ReplyAction="*")]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.docPagareCreditoResponse> docPagareCreditoAsync(qntCygnusWF.ServiceReference1.docPagareCreditoRequest request);
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.docPagareCreditoResponse> docPagareCreditoAsync(qntCygnusWF.CygnusCredito.docPagareCreditoRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1566,12 +1566,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaCreditoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="creaCredito", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.creaCreditoRequestBody Body;
+        public qntCygnusWF.CygnusCredito.creaCreditoRequestBody Body;
         
         public creaCreditoRequest() {
         }
         
-        public creaCreditoRequest(qntCygnusWF.ServiceReference1.creaCreditoRequestBody Body) {
+        public creaCreditoRequest(qntCygnusWF.CygnusCredito.creaCreditoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1706,12 +1706,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaCreditoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="creaCreditoResponse", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.creaCreditoResponseBody Body;
+        public qntCygnusWF.CygnusCredito.creaCreditoResponseBody Body;
         
         public creaCreditoResponse() {
         }
         
-        public creaCreditoResponse(qntCygnusWF.ServiceReference1.creaCreditoResponseBody Body) {
+        public creaCreditoResponse(qntCygnusWF.CygnusCredito.creaCreditoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1723,12 +1723,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaCreditoResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public qntCygnusWF.ServiceReference1.RespuestaCrea creaCreditoResult;
+        public qntCygnusWF.CygnusCredito.RespuestaCrea creaCreditoResult;
         
         public creaCreditoResponseBody() {
         }
         
-        public creaCreditoResponseBody(qntCygnusWF.ServiceReference1.RespuestaCrea creaCreditoResult) {
+        public creaCreditoResponseBody(qntCygnusWF.CygnusCredito.RespuestaCrea creaCreditoResult) {
             this.creaCreditoResult = creaCreditoResult;
         }
     }
@@ -1740,12 +1740,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaRegPagareCreditoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="creaRegPagareCredito", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequestBody Body;
+        public qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequestBody Body;
         
         public creaRegPagareCreditoRequest() {
         }
         
-        public creaRegPagareCreditoRequest(qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequestBody Body) {
+        public creaRegPagareCreditoRequest(qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1826,12 +1826,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaRegPagareCreditoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="creaRegPagareCreditoResponse", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.creaRegPagareCreditoResponseBody Body;
+        public qntCygnusWF.CygnusCredito.creaRegPagareCreditoResponseBody Body;
         
         public creaRegPagareCreditoResponse() {
         }
         
-        public creaRegPagareCreditoResponse(qntCygnusWF.ServiceReference1.creaRegPagareCreditoResponseBody Body) {
+        public creaRegPagareCreditoResponse(qntCygnusWF.CygnusCredito.creaRegPagareCreditoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1843,12 +1843,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaRegPagareCreditoResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public qntCygnusWF.ServiceReference1.RespuestaRegistro creaRegPagareCreditoResult;
+        public qntCygnusWF.CygnusCredito.RespuestaRegistro creaRegPagareCreditoResult;
         
         public creaRegPagareCreditoResponseBody() {
         }
         
-        public creaRegPagareCreditoResponseBody(qntCygnusWF.ServiceReference1.RespuestaRegistro creaRegPagareCreditoResult) {
+        public creaRegPagareCreditoResponseBody(qntCygnusWF.CygnusCredito.RespuestaRegistro creaRegPagareCreditoResult) {
             this.creaRegPagareCreditoResult = creaRegPagareCreditoResult;
         }
     }
@@ -1860,12 +1860,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaCodeudorCreditoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="creaCodeudorCredito", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequestBody Body;
+        public qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequestBody Body;
         
         public creaCodeudorCreditoRequest() {
         }
         
-        public creaCodeudorCreditoRequest(qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequestBody Body) {
+        public creaCodeudorCreditoRequest(qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -1910,12 +1910,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaCodeudorCreditoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="creaCodeudorCreditoResponse", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.creaCodeudorCreditoResponseBody Body;
+        public qntCygnusWF.CygnusCredito.creaCodeudorCreditoResponseBody Body;
         
         public creaCodeudorCreditoResponse() {
         }
         
-        public creaCodeudorCreditoResponse(qntCygnusWF.ServiceReference1.creaCodeudorCreditoResponseBody Body) {
+        public creaCodeudorCreditoResponse(qntCygnusWF.CygnusCredito.creaCodeudorCreditoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -1927,12 +1927,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class creaCodeudorCreditoResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public qntCygnusWF.ServiceReference1.RespuestaCrea creaCodeudorCreditoResult;
+        public qntCygnusWF.CygnusCredito.RespuestaCrea creaCodeudorCreditoResult;
         
         public creaCodeudorCreditoResponseBody() {
         }
         
-        public creaCodeudorCreditoResponseBody(qntCygnusWF.ServiceReference1.RespuestaCrea creaCodeudorCreditoResult) {
+        public creaCodeudorCreditoResponseBody(qntCygnusWF.CygnusCredito.RespuestaCrea creaCodeudorCreditoResult) {
             this.creaCodeudorCreditoResult = creaCodeudorCreditoResult;
         }
     }
@@ -1944,12 +1944,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class liqSimuladorCreditoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="liqSimuladorCredito", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequestBody Body;
+        public qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequestBody Body;
         
         public liqSimuladorCreditoRequest() {
         }
         
-        public liqSimuladorCreditoRequest(qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequestBody Body) {
+        public liqSimuladorCreditoRequest(qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -2059,12 +2059,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class liqSimuladorCreditoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="liqSimuladorCreditoResponse", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.liqSimuladorCreditoResponseBody Body;
+        public qntCygnusWF.CygnusCredito.liqSimuladorCreditoResponseBody Body;
         
         public liqSimuladorCreditoResponse() {
         }
         
-        public liqSimuladorCreditoResponse(qntCygnusWF.ServiceReference1.liqSimuladorCreditoResponseBody Body) {
+        public liqSimuladorCreditoResponse(qntCygnusWF.CygnusCredito.liqSimuladorCreditoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -2076,12 +2076,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class liqSimuladorCreditoResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public qntCygnusWF.ServiceReference1.RespuestaAtr liqSimuladorCreditoResult;
+        public qntCygnusWF.CygnusCredito.RespuestaAtr liqSimuladorCreditoResult;
         
         public liqSimuladorCreditoResponseBody() {
         }
         
-        public liqSimuladorCreditoResponseBody(qntCygnusWF.ServiceReference1.RespuestaAtr liqSimuladorCreditoResult) {
+        public liqSimuladorCreditoResponseBody(qntCygnusWF.CygnusCredito.RespuestaAtr liqSimuladorCreditoResult) {
             this.liqSimuladorCreditoResult = liqSimuladorCreditoResult;
         }
     }
@@ -2093,12 +2093,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class docPlanPagosRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="docPlanPagos", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.docPlanPagosRequestBody Body;
+        public qntCygnusWF.CygnusCredito.docPlanPagosRequestBody Body;
         
         public docPlanPagosRequest() {
         }
         
-        public docPlanPagosRequest(qntCygnusWF.ServiceReference1.docPlanPagosRequestBody Body) {
+        public docPlanPagosRequest(qntCygnusWF.CygnusCredito.docPlanPagosRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -2139,12 +2139,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class docPlanPagosResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="docPlanPagosResponse", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.docPlanPagosResponseBody Body;
+        public qntCygnusWF.CygnusCredito.docPlanPagosResponseBody Body;
         
         public docPlanPagosResponse() {
         }
         
-        public docPlanPagosResponse(qntCygnusWF.ServiceReference1.docPlanPagosResponseBody Body) {
+        public docPlanPagosResponse(qntCygnusWF.CygnusCredito.docPlanPagosResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -2156,12 +2156,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class docPlanPagosResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public qntCygnusWF.ServiceReference1.RespuestaDocPlanPagos docPlanPagosResult;
+        public qntCygnusWF.CygnusCredito.RespuestaDocPlanPagos docPlanPagosResult;
         
         public docPlanPagosResponseBody() {
         }
         
-        public docPlanPagosResponseBody(qntCygnusWF.ServiceReference1.RespuestaDocPlanPagos docPlanPagosResult) {
+        public docPlanPagosResponseBody(qntCygnusWF.CygnusCredito.RespuestaDocPlanPagos docPlanPagosResult) {
             this.docPlanPagosResult = docPlanPagosResult;
         }
     }
@@ -2173,12 +2173,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class docPagareCreditoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="docPagareCredito", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.docPagareCreditoRequestBody Body;
+        public qntCygnusWF.CygnusCredito.docPagareCreditoRequestBody Body;
         
         public docPagareCreditoRequest() {
         }
         
-        public docPagareCreditoRequest(qntCygnusWF.ServiceReference1.docPagareCreditoRequestBody Body) {
+        public docPagareCreditoRequest(qntCygnusWF.CygnusCredito.docPagareCreditoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -2219,12 +2219,12 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class docPagareCreditoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="docPagareCreditoResponse", Namespace="WSSimuladorCredito", Order=0)]
-        public qntCygnusWF.ServiceReference1.docPagareCreditoResponseBody Body;
+        public qntCygnusWF.CygnusCredito.docPagareCreditoResponseBody Body;
         
         public docPagareCreditoResponse() {
         }
         
-        public docPagareCreditoResponse(qntCygnusWF.ServiceReference1.docPagareCreditoResponseBody Body) {
+        public docPagareCreditoResponse(qntCygnusWF.CygnusCredito.docPagareCreditoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -2236,23 +2236,23 @@ namespace qntCygnusWF.ServiceReference1 {
     public partial class docPagareCreditoResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public qntCygnusWF.ServiceReference1.RespuestaDocPagare docPagareCreditoResult;
+        public qntCygnusWF.CygnusCredito.RespuestaDocPagare docPagareCreditoResult;
         
         public docPagareCreditoResponseBody() {
         }
         
-        public docPagareCreditoResponseBody(qntCygnusWF.ServiceReference1.RespuestaDocPagare docPagareCreditoResult) {
+        public docPagareCreditoResponseBody(qntCygnusWF.CygnusCredito.RespuestaDocPagare docPagareCreditoResult) {
             this.docPagareCreditoResult = docPagareCreditoResult;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface WSSimuladorCreditoQntSoapChannel : qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap, System.ServiceModel.IClientChannel {
+    public interface WSSimuladorCreditoQntSoapChannel : qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class WSSimuladorCreditoQntSoapClient : System.ServiceModel.ClientBase<qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap>, qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap {
+    public partial class WSSimuladorCreditoQntSoapClient : System.ServiceModel.ClientBase<qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap>, qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap {
         
         public WSSimuladorCreditoQntSoapClient() {
         }
@@ -2274,11 +2274,11 @@ namespace qntCygnusWF.ServiceReference1 {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        qntCygnusWF.ServiceReference1.creaCreditoResponse qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.creaCredito(qntCygnusWF.ServiceReference1.creaCreditoRequest request) {
+        qntCygnusWF.CygnusCredito.creaCreditoResponse qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.creaCredito(qntCygnusWF.CygnusCredito.creaCreditoRequest request) {
             return base.Channel.creaCredito(request);
         }
         
-        public qntCygnusWF.ServiceReference1.RespuestaCrea creaCredito(
+        public qntCygnusWF.CygnusCredito.RespuestaCrea creaCredito(
                     string pws_monto, 
                     string pws_nro_cuotas, 
                     string pws_fecha_sol, 
@@ -2301,8 +2301,8 @@ namespace qntCygnusWF.ServiceReference1 {
                     string pws_bd, 
                     string pws_usu, 
                     string pws_psw) {
-            qntCygnusWF.ServiceReference1.creaCreditoRequest inValue = new qntCygnusWF.ServiceReference1.creaCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.creaCreditoRequestBody();
+            qntCygnusWF.CygnusCredito.creaCreditoRequest inValue = new qntCygnusWF.CygnusCredito.creaCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.creaCreditoRequestBody();
             inValue.Body.pws_monto = pws_monto;
             inValue.Body.pws_nro_cuotas = pws_nro_cuotas;
             inValue.Body.pws_fecha_sol = pws_fecha_sol;
@@ -2325,16 +2325,16 @@ namespace qntCygnusWF.ServiceReference1 {
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            qntCygnusWF.ServiceReference1.creaCreditoResponse retVal = ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).creaCredito(inValue);
+            qntCygnusWF.CygnusCredito.creaCreditoResponse retVal = ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).creaCredito(inValue);
             return retVal.Body.creaCreditoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaCreditoResponse> qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.creaCreditoAsync(qntCygnusWF.ServiceReference1.creaCreditoRequest request) {
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaCreditoResponse> qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.creaCreditoAsync(qntCygnusWF.CygnusCredito.creaCreditoRequest request) {
             return base.Channel.creaCreditoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaCreditoResponse> creaCreditoAsync(
+        public System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaCreditoResponse> creaCreditoAsync(
                     string pws_monto, 
                     string pws_nro_cuotas, 
                     string pws_fecha_sol, 
@@ -2357,8 +2357,8 @@ namespace qntCygnusWF.ServiceReference1 {
                     string pws_bd, 
                     string pws_usu, 
                     string pws_psw) {
-            qntCygnusWF.ServiceReference1.creaCreditoRequest inValue = new qntCygnusWF.ServiceReference1.creaCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.creaCreditoRequestBody();
+            qntCygnusWF.CygnusCredito.creaCreditoRequest inValue = new qntCygnusWF.CygnusCredito.creaCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.creaCreditoRequestBody();
             inValue.Body.pws_monto = pws_monto;
             inValue.Body.pws_nro_cuotas = pws_nro_cuotas;
             inValue.Body.pws_fecha_sol = pws_fecha_sol;
@@ -2381,17 +2381,17 @@ namespace qntCygnusWF.ServiceReference1 {
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            return ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).creaCreditoAsync(inValue);
+            return ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).creaCreditoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        qntCygnusWF.ServiceReference1.creaRegPagareCreditoResponse qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.creaRegPagareCredito(qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequest request) {
+        qntCygnusWF.CygnusCredito.creaRegPagareCreditoResponse qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.creaRegPagareCredito(qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequest request) {
             return base.Channel.creaRegPagareCredito(request);
         }
         
-        public qntCygnusWF.ServiceReference1.RespuestaRegistro creaRegPagareCredito(string pws_numRadic, string pws_numCuota, string pws_numPagare, string pws_valorPagare, string pws_fechaCuota, string pws_autorizacion, string pws_aprobacion, string pws_porcComision, string pws_valorComision, string pws_matricula, string pws_semestre, string pws_bd, string pws_usu, string pws_psw) {
-            qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequest inValue = new qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequestBody();
+        public qntCygnusWF.CygnusCredito.RespuestaRegistro creaRegPagareCredito(string pws_numRadic, string pws_numCuota, string pws_numPagare, string pws_valorPagare, string pws_fechaCuota, string pws_autorizacion, string pws_aprobacion, string pws_porcComision, string pws_valorComision, string pws_matricula, string pws_semestre, string pws_bd, string pws_usu, string pws_psw) {
+            qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequest inValue = new qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequestBody();
             inValue.Body.pws_numRadic = pws_numRadic;
             inValue.Body.pws_numCuota = pws_numCuota;
             inValue.Body.pws_numPagare = pws_numPagare;
@@ -2406,18 +2406,18 @@ namespace qntCygnusWF.ServiceReference1 {
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            qntCygnusWF.ServiceReference1.creaRegPagareCreditoResponse retVal = ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).creaRegPagareCredito(inValue);
+            qntCygnusWF.CygnusCredito.creaRegPagareCreditoResponse retVal = ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).creaRegPagareCredito(inValue);
             return retVal.Body.creaRegPagareCreditoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaRegPagareCreditoResponse> qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.creaRegPagareCreditoAsync(qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequest request) {
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaRegPagareCreditoResponse> qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.creaRegPagareCreditoAsync(qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequest request) {
             return base.Channel.creaRegPagareCreditoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaRegPagareCreditoResponse> creaRegPagareCreditoAsync(string pws_numRadic, string pws_numCuota, string pws_numPagare, string pws_valorPagare, string pws_fechaCuota, string pws_autorizacion, string pws_aprobacion, string pws_porcComision, string pws_valorComision, string pws_matricula, string pws_semestre, string pws_bd, string pws_usu, string pws_psw) {
-            qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequest inValue = new qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.creaRegPagareCreditoRequestBody();
+        public System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaRegPagareCreditoResponse> creaRegPagareCreditoAsync(string pws_numRadic, string pws_numCuota, string pws_numPagare, string pws_valorPagare, string pws_fechaCuota, string pws_autorizacion, string pws_aprobacion, string pws_porcComision, string pws_valorComision, string pws_matricula, string pws_semestre, string pws_bd, string pws_usu, string pws_psw) {
+            qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequest inValue = new qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.creaRegPagareCreditoRequestBody();
             inValue.Body.pws_numRadic = pws_numRadic;
             inValue.Body.pws_numCuota = pws_numCuota;
             inValue.Body.pws_numPagare = pws_numPagare;
@@ -2432,48 +2432,48 @@ namespace qntCygnusWF.ServiceReference1 {
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            return ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).creaRegPagareCreditoAsync(inValue);
+            return ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).creaRegPagareCreditoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        qntCygnusWF.ServiceReference1.creaCodeudorCreditoResponse qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.creaCodeudorCredito(qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequest request) {
+        qntCygnusWF.CygnusCredito.creaCodeudorCreditoResponse qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.creaCodeudorCredito(qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequest request) {
             return base.Channel.creaCodeudorCredito(request);
         }
         
-        public qntCygnusWF.ServiceReference1.RespuestaCrea creaCodeudorCredito(string pws_num_radic, string pws_identific, string pws_bd, string pws_usu, string pws_psw) {
-            qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequest inValue = new qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequestBody();
+        public qntCygnusWF.CygnusCredito.RespuestaCrea creaCodeudorCredito(string pws_num_radic, string pws_identific, string pws_bd, string pws_usu, string pws_psw) {
+            qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequest inValue = new qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequestBody();
             inValue.Body.pws_num_radic = pws_num_radic;
             inValue.Body.pws_identific = pws_identific;
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            qntCygnusWF.ServiceReference1.creaCodeudorCreditoResponse retVal = ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).creaCodeudorCredito(inValue);
+            qntCygnusWF.CygnusCredito.creaCodeudorCreditoResponse retVal = ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).creaCodeudorCredito(inValue);
             return retVal.Body.creaCodeudorCreditoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaCodeudorCreditoResponse> qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.creaCodeudorCreditoAsync(qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequest request) {
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaCodeudorCreditoResponse> qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.creaCodeudorCreditoAsync(qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequest request) {
             return base.Channel.creaCodeudorCreditoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.creaCodeudorCreditoResponse> creaCodeudorCreditoAsync(string pws_num_radic, string pws_identific, string pws_bd, string pws_usu, string pws_psw) {
-            qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequest inValue = new qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.creaCodeudorCreditoRequestBody();
+        public System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.creaCodeudorCreditoResponse> creaCodeudorCreditoAsync(string pws_num_radic, string pws_identific, string pws_bd, string pws_usu, string pws_psw) {
+            qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequest inValue = new qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.creaCodeudorCreditoRequestBody();
             inValue.Body.pws_num_radic = pws_num_radic;
             inValue.Body.pws_identific = pws_identific;
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            return ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).creaCodeudorCreditoAsync(inValue);
+            return ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).creaCodeudorCreditoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        qntCygnusWF.ServiceReference1.liqSimuladorCreditoResponse qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.liqSimuladorCredito(qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequest request) {
+        qntCygnusWF.CygnusCredito.liqSimuladorCreditoResponse qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.liqSimuladorCredito(qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequest request) {
             return base.Channel.liqSimuladorCredito(request);
         }
         
-        public qntCygnusWF.ServiceReference1.RespuestaAtr liqSimuladorCredito(
+        public qntCygnusWF.CygnusCredito.RespuestaAtr liqSimuladorCredito(
                     string pws_monto, 
                     string pws_nro_cuotas, 
                     string pws_fecha_sol, 
@@ -2491,8 +2491,8 @@ namespace qntCygnusWF.ServiceReference1 {
                     string pws_bd, 
                     string pws_usu, 
                     string pws_psw) {
-            qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequest inValue = new qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequestBody();
+            qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequest inValue = new qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequestBody();
             inValue.Body.pws_monto = pws_monto;
             inValue.Body.pws_nro_cuotas = pws_nro_cuotas;
             inValue.Body.pws_fecha_sol = pws_fecha_sol;
@@ -2510,16 +2510,16 @@ namespace qntCygnusWF.ServiceReference1 {
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            qntCygnusWF.ServiceReference1.liqSimuladorCreditoResponse retVal = ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).liqSimuladorCredito(inValue);
+            qntCygnusWF.CygnusCredito.liqSimuladorCreditoResponse retVal = ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).liqSimuladorCredito(inValue);
             return retVal.Body.liqSimuladorCreditoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.liqSimuladorCreditoResponse> qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.liqSimuladorCreditoAsync(qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequest request) {
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.liqSimuladorCreditoResponse> qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.liqSimuladorCreditoAsync(qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequest request) {
             return base.Channel.liqSimuladorCreditoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.liqSimuladorCreditoResponse> liqSimuladorCreditoAsync(
+        public System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.liqSimuladorCreditoResponse> liqSimuladorCreditoAsync(
                     string pws_monto, 
                     string pws_nro_cuotas, 
                     string pws_fecha_sol, 
@@ -2537,8 +2537,8 @@ namespace qntCygnusWF.ServiceReference1 {
                     string pws_bd, 
                     string pws_usu, 
                     string pws_psw) {
-            qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequest inValue = new qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.liqSimuladorCreditoRequestBody();
+            qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequest inValue = new qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.liqSimuladorCreditoRequestBody();
             inValue.Body.pws_monto = pws_monto;
             inValue.Body.pws_nro_cuotas = pws_nro_cuotas;
             inValue.Body.pws_fecha_sol = pws_fecha_sol;
@@ -2556,69 +2556,69 @@ namespace qntCygnusWF.ServiceReference1 {
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            return ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).liqSimuladorCreditoAsync(inValue);
+            return ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).liqSimuladorCreditoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        qntCygnusWF.ServiceReference1.docPlanPagosResponse qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.docPlanPagos(qntCygnusWF.ServiceReference1.docPlanPagosRequest request) {
+        qntCygnusWF.CygnusCredito.docPlanPagosResponse qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.docPlanPagos(qntCygnusWF.CygnusCredito.docPlanPagosRequest request) {
             return base.Channel.docPlanPagos(request);
         }
         
-        public qntCygnusWF.ServiceReference1.RespuestaDocPlanPagos docPlanPagos(string pws_numRadic, string pws_bd, string pws_usu, string pws_psw) {
-            qntCygnusWF.ServiceReference1.docPlanPagosRequest inValue = new qntCygnusWF.ServiceReference1.docPlanPagosRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.docPlanPagosRequestBody();
+        public qntCygnusWF.CygnusCredito.RespuestaDocPlanPagos docPlanPagos(string pws_numRadic, string pws_bd, string pws_usu, string pws_psw) {
+            qntCygnusWF.CygnusCredito.docPlanPagosRequest inValue = new qntCygnusWF.CygnusCredito.docPlanPagosRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.docPlanPagosRequestBody();
             inValue.Body.pws_numRadic = pws_numRadic;
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            qntCygnusWF.ServiceReference1.docPlanPagosResponse retVal = ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).docPlanPagos(inValue);
+            qntCygnusWF.CygnusCredito.docPlanPagosResponse retVal = ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).docPlanPagos(inValue);
             return retVal.Body.docPlanPagosResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.docPlanPagosResponse> qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.docPlanPagosAsync(qntCygnusWF.ServiceReference1.docPlanPagosRequest request) {
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.docPlanPagosResponse> qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.docPlanPagosAsync(qntCygnusWF.CygnusCredito.docPlanPagosRequest request) {
             return base.Channel.docPlanPagosAsync(request);
         }
         
-        public System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.docPlanPagosResponse> docPlanPagosAsync(string pws_numRadic, string pws_bd, string pws_usu, string pws_psw) {
-            qntCygnusWF.ServiceReference1.docPlanPagosRequest inValue = new qntCygnusWF.ServiceReference1.docPlanPagosRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.docPlanPagosRequestBody();
+        public System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.docPlanPagosResponse> docPlanPagosAsync(string pws_numRadic, string pws_bd, string pws_usu, string pws_psw) {
+            qntCygnusWF.CygnusCredito.docPlanPagosRequest inValue = new qntCygnusWF.CygnusCredito.docPlanPagosRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.docPlanPagosRequestBody();
             inValue.Body.pws_numRadic = pws_numRadic;
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            return ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).docPlanPagosAsync(inValue);
+            return ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).docPlanPagosAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        qntCygnusWF.ServiceReference1.docPagareCreditoResponse qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.docPagareCredito(qntCygnusWF.ServiceReference1.docPagareCreditoRequest request) {
+        qntCygnusWF.CygnusCredito.docPagareCreditoResponse qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.docPagareCredito(qntCygnusWF.CygnusCredito.docPagareCreditoRequest request) {
             return base.Channel.docPagareCredito(request);
         }
         
-        public qntCygnusWF.ServiceReference1.RespuestaDocPagare docPagareCredito(string pws_numRadic, string pws_bd, string pws_usu, string pws_psw) {
-            qntCygnusWF.ServiceReference1.docPagareCreditoRequest inValue = new qntCygnusWF.ServiceReference1.docPagareCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.docPagareCreditoRequestBody();
+        public qntCygnusWF.CygnusCredito.RespuestaDocPagare docPagareCredito(string pws_numRadic, string pws_bd, string pws_usu, string pws_psw) {
+            qntCygnusWF.CygnusCredito.docPagareCreditoRequest inValue = new qntCygnusWF.CygnusCredito.docPagareCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.docPagareCreditoRequestBody();
             inValue.Body.pws_numRadic = pws_numRadic;
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            qntCygnusWF.ServiceReference1.docPagareCreditoResponse retVal = ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).docPagareCredito(inValue);
+            qntCygnusWF.CygnusCredito.docPagareCreditoResponse retVal = ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).docPagareCredito(inValue);
             return retVal.Body.docPagareCreditoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.docPagareCreditoResponse> qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap.docPagareCreditoAsync(qntCygnusWF.ServiceReference1.docPagareCreditoRequest request) {
+        System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.docPagareCreditoResponse> qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap.docPagareCreditoAsync(qntCygnusWF.CygnusCredito.docPagareCreditoRequest request) {
             return base.Channel.docPagareCreditoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<qntCygnusWF.ServiceReference1.docPagareCreditoResponse> docPagareCreditoAsync(string pws_numRadic, string pws_bd, string pws_usu, string pws_psw) {
-            qntCygnusWF.ServiceReference1.docPagareCreditoRequest inValue = new qntCygnusWF.ServiceReference1.docPagareCreditoRequest();
-            inValue.Body = new qntCygnusWF.ServiceReference1.docPagareCreditoRequestBody();
+        public System.Threading.Tasks.Task<qntCygnusWF.CygnusCredito.docPagareCreditoResponse> docPagareCreditoAsync(string pws_numRadic, string pws_bd, string pws_usu, string pws_psw) {
+            qntCygnusWF.CygnusCredito.docPagareCreditoRequest inValue = new qntCygnusWF.CygnusCredito.docPagareCreditoRequest();
+            inValue.Body = new qntCygnusWF.CygnusCredito.docPagareCreditoRequestBody();
             inValue.Body.pws_numRadic = pws_numRadic;
             inValue.Body.pws_bd = pws_bd;
             inValue.Body.pws_usu = pws_usu;
             inValue.Body.pws_psw = pws_psw;
-            return ((qntCygnusWF.ServiceReference1.WSSimuladorCreditoQntSoap)(this)).docPagareCreditoAsync(inValue);
+            return ((qntCygnusWF.CygnusCredito.WSSimuladorCreditoQntSoap)(this)).docPagareCreditoAsync(inValue);
         }
     }
 }

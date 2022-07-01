@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="HZ4nADltBfDmtBHJyvYHEq2FzVHvcz7PoeIeVZtkN7A=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="XniVC8NTv8EpDZu3a7XYv3KXT3agTyFOXTpGHqOSYZY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="WSSimuladorCreditoQntSoap">
       <properties>
@@ -112,7 +112,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSSimuladorCreditoQntSoap" contract="ServiceReference1.WSSimuladorCreditoQntSoap" bindingType="basicHttpBinding" address="http://35.237.110.198/WSSimuladorQNT/WSSimuladorCreditoQnt.asmx" bindingConfiguration="WSSimuladorCreditoQntSoap">
+    <endpoint name="WSSimuladorCreditoQntSoap" contract="CygnusCredito.WSSimuladorCreditoQntSoap" bindingType="basicHttpBinding" address="http://35.237.110.198/WSSimuladorQNT/WSSimuladorCreditoQnt.asmx" bindingConfiguration="WSSimuladorCreditoQntSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://35.237.110.198/WSSimuladorQNT/WSSimuladorCreditoQnt.asmx</serializedValue>
@@ -127,7 +127,7 @@
           <serializedValue>WSSimuladorCreditoQntSoap</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceReference1.WSSimuladorCreditoQntSoap</serializedValue>
+          <serializedValue>CygnusCredito.WSSimuladorCreditoQntSoap</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
