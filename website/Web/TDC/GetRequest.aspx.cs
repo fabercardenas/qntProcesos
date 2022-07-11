@@ -89,7 +89,7 @@ public partial class TDC_GetRequest : System.Web.UI.Page
             //        btnDevolverPaso.Visible = false;
             //}
             Button btnDevolverPaso = (Button)frvConsultarSolicitud.FindControl("btnDevolverPaso");
-            btnDevolverPaso.Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "Consulta Solicitudes", "btnDevolverPaso", btnDevolverPaso.Visible);
+            btnDevolverPaso.Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "TDC-->Consulta Solicitudes", "btnDevolverPaso", btnDevolverPaso.Visible);
             CargarDDLCambioPaso(ltrHdfPasoActual.Text);
         }
         else

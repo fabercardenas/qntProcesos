@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Web/MasterPage.master" AutoEventWireup="true" CodeFile="FirstApproval.aspx.cs" Inherits="PYS_FirstApproval" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Web/MasterPage.master" AutoEventWireup="true" CodeFile="SecondApproval.aspx.cs" Inherits="PYS_SecondApproval" MaintainScrollPositionOnPostback="true" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -16,21 +16,14 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="tdImgVerde04">Paz y Salvos disponibles a Validar por los Asesores
+    <div class="tdImgVerde04">Paz y Salvos disponibles a Validar por los Supervisores
         <asp:Literal ID="ltrTotalRegistros" runat="server"></asp:Literal>
     </div>
     <br />
     <div class="alert alert-info">
-        En este módulo los asesores pueden aprobar o rechazar la generación del Paz y salvo para los clientes de QNT que han efectuado el último pago
+        En este módulo los supervisores pueden aprobar o rechazar la generación del Paz y salvo para los clientes de QNT que han efectuado el último pago
         <br />
         según la sincronización efectuada con SALESFORECE, sincronización que se efectúa automáticamente todas las noches.
-        <br />
-    </div>
-    <div class="form-inline">
-        <asp:LinkButton ID="lnbCargar" runat="server" CssClass="btn btn-info" OnClick="lnbCargar_Click">
-                        <span class="glyphicon glyphicon-refresh"></span>
-                        &nbsp;Sincronizar Clientes para Paz y Salvo con Salesforce
-        </asp:LinkButton>
         <br />
     </div>
 <div class="clearfix"></div>
@@ -113,16 +106,16 @@
                     <%--4--%><asp:BoundField DataField="acu_nombresProductos" HeaderText="Productos" ItemStyle-HorizontalAlign="Center" ReadOnly="true"  />
                     <%--5--%><asp:BoundField DataField="pys_fechaUltimoPago" HeaderText="Ultimo Pago" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:yyyy-MM-dd}" ReadOnly="true"  />
                     <%--6--%><asp:BoundField DataField="pys_fechaSincronizacionSF" HeaderText="Fecha Proceso" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:yyyy-MM-dd}" ReadOnly="true"  />
-                    <%--7--%><asp:TemplateField HeaderText="Causal Asesor" ItemStyle-HorizontalAlign="Center">
+                    <%--7--%><asp:BoundField DataField="pys_causalAsesor" HeaderText="Causal Asesor" ItemStyle-HorizontalAlign="Center" ReadOnly="true"  />
+                    <%--8--%><asp:TemplateField HeaderText="Causal Supervisor" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <%# Eval("pys_causalAsesor").ToString() %>
+                                    <%# Eval("pys_causalSupervisor").ToString() %>
                                 </ItemTemplate>
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtCausalRechazo" runat="server" ValidationGroup="rechazarAsesor"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvCausal" runat="server" ControlToValidate="txtCausalRechazo" ErrorMessage="*" ValidationGroup="rechazarAsesor"></asp:RequiredFieldValidator>
+                                    <asp:TextBox ID="txtCausalRechazo" runat="server" ValidationGroup="rechazarSupervisor"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvCausal" runat="server" ControlToValidate="txtCausalRechazo" ErrorMessage="*" ValidationGroup="rechazarSupervisor"></asp:RequiredFieldValidator>
                                 </EditItemTemplate>
                              </asp:TemplateField>
-                    <%--8--%><asp:BoundField DataField="pys_causalSupervisor" HeaderText="Causal Supervisor" ItemStyle-HorizontalAlign="Center" ReadOnly="true"  />
                     <%--9--%><asp:TemplateField ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:LinkButton  ID="lnbAprobar" runat="server" CommandName="Aprobar" CommandArgument="<%# Container.DataItemIndex %>" Text="Aprobar" CssClass="btn btn-xs btn-success" />

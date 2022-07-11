@@ -119,9 +119,24 @@ namespace Negocio
 		}
 		#endregion
 
-		public DataTable ConsultarPazySalvoXemitir()
+		public DataTable ConsultarPazySalvoXemitir(string pys_estado, string filCampo, string reg_fechaInicial, string reg_fechaFinal, string cli_numeroDocumento, string perfilAprobacion)
         {
-            return dPYS.ConsultarPazySalvoXemitir();
+            return dPYS.ConsultarPazySalvoXemitir(pys_estado, filCampo, reg_fechaInicial, reg_fechaFinal, cli_numeroDocumento, perfilAprobacion);
         }
-    }
+
+		public DataTable ConsultarPazySalvoXdocumento(string cli_numeroDocumento)
+		{
+			return dPYS.ConsultarPazySalvoXdocumento(cli_numeroDocumento);
+		}
+
+		public DataTable ActualizarXacuerdoRechazo(string ID_acuerdo, string pys_causal, string ID_usuarioFK, string perfilRechazo)
+		{
+			return dPYS.ActualizarXacuerdoRechazo(ID_acuerdo, pys_causal, ID_usuarioFK, perfilRechazo);
+		}
+
+		public DataTable ActualizarXacuerdoAprobar(string ID_acuerdo, string ID_usuarioFK, string perfilAprueba)
+		{
+			return dPYS.ActualizarXacuerdoAprobar(ID_acuerdo, ID_usuarioFK, perfilAprueba);
+		}
+	}
 }

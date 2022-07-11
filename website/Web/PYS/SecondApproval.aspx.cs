@@ -23,7 +23,7 @@ using Negocio;
 using System.Threading.Tasks;
 
 
-public partial class PYS_FirstApproval : System.Web.UI.Page
+public partial class PYS_SecondApproval : System.Web.UI.Page
 {
     Negocio.NPYS nPYS = new Negocio.NPYS();
 
@@ -55,33 +55,11 @@ public partial class PYS_FirstApproval : System.Web.UI.Page
         }
     }
 
-    protected async void lnbCargar_Click(object sender, EventArgs e)
-    {
-        //buscar las cedulas que esten sin actualizar
-        Negocio.NPYS nPYS = new NPYS();
-        Dictionary<string, string> resultado = await nPYS.Sincronizar(Session["ID_usuario"].ToString());
-        ltrMensaje.Text = "";
-        foreach (var mensaje in resultado)
-        {
-            //storedProcCommand.Parameters.AddWithValue(mensaje.Key.ToString(), parametro.Value);
-            if (mensaje.Key.ToString() == "warning")
-                ltrMensaje.Text += NMessaging.Warning(mensaje.Value);
-
-            if (mensaje.Key.ToString() == "error")
-                ltrMensaje.Text += NMessaging.Error(mensaje.Value);
-
-            //if (resultado.ContainsKey("success"))
-            if (mensaje.Key.ToString() == "success")
-                ltrMensaje.Text += NMessaging.Success(mensaje.Value);
-        }
-
-    }
-
     void ConsultarPazySalvoXemitir()
     {
         int indicadorVarios = 0;
         int indicadorQuita = 0;
-        gdvListaPazySalvo.DataSource = nPYS.ConsultarPazySalvoXemitir(ddlListaEstados.SelectedValue, ddlFiltroFecha.SelectedValue, txtFechaIni.Text, txtFechaFin.Text, txtListaDocumento.Text, "Asesor");
+        gdvListaPazySalvo.DataSource = nPYS.ConsultarPazySalvoXemitir(ddlListaEstados.SelectedValue, ddlFiltroFecha.SelectedValue, txtFechaIni.Text, txtFechaFin.Text, txtListaDocumento.Text, "Supervisor");
         gdvListaPazySalvo.DataBind();
         ltrTotalRegistros.Text = "(" + gdvListaPazySalvo.Rows.Count.ToString() + ") ";
 
@@ -91,10 +69,10 @@ public partial class PYS_FirstApproval : System.Web.UI.Page
                               "  {  GridVwHeaderChckbox.rows[i].cells[" + (indicadorVarios - indicadorQuita).ToString() + "].getElementsByTagName(\"INPUT\")[0].checked = Checkbox.checked; } " +
                               "} </script>";
 
-        Negocio.NUtilidades.SeguridadPerfilOcultar(Session["AccionesNoPermitidas"] as DataTable, Form.FindControl("ContentPlaceHolder1"), "PYS-->Validar Asesor", Session["ID_perfilFK"].ToString());
-        gdvListaPazySalvo.Columns[fAprobar].Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "PYS-->Validar Asesor", "gdv_AprobarAsesor", gdvListaPazySalvo.Columns[fAprobar].Visible);
-        gdvListaPazySalvo.Columns[fRechazar].Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "PYS-->Validar Asesor", "gdv_RechazarAsesor", gdvListaPazySalvo.Columns[fRechazar].Visible);
-        gdvListaPazySalvo.Columns[fCheckAprobar].Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "PYS-->Validar Asesor", "lnbActualizarVarios", gdvListaPazySalvo.Columns[fCheckAprobar].Visible);
+        Negocio.NUtilidades.SeguridadPerfilOcultar(Session["AccionesNoPermitidas"] as DataTable, Form.FindControl("ContentPlaceHolder1"), "PYS-->Validar Supervisor", Session["ID_perfilFK"].ToString());
+        gdvListaPazySalvo.Columns[fAprobar].Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "PYS-->Validar Supervisor", "gdv_AprobarSupervisor", gdvListaPazySalvo.Columns[fAprobar].Visible);
+        gdvListaPazySalvo.Columns[fRechazar].Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "PYS-->Validar Supervisor", "gdv_RechazarSupervisor", gdvListaPazySalvo.Columns[fRechazar].Visible);
+        gdvListaPazySalvo.Columns[fCheckAprobar].Visible = Negocio.NUtilidades.SeguridadPerfilOcultarEnGrilla(Session["AccionesNoPermitidas"] as DataTable, "PYS-->Validar Supervisor", "lnbActualizarVarios", gdvListaPazySalvo.Columns[fCheckAprobar].Visible);
     }
 
     protected void ddlFiltroFecha_SelectedIndexChanged(object sender, EventArgs e)
@@ -160,8 +138,8 @@ public partial class PYS_FirstApproval : System.Web.UI.Page
         GridViewRow Row = gdvListaPazySalvo.Rows[e.RowIndex];
         string idAcuerdo = gdvListaPazySalvo.DataKeys[e.RowIndex].Values[0].ToString();
         TextBox txtCausalRechazo = (TextBox)gdvListaPazySalvo.Rows[e.RowIndex].FindControl("txtCausalRechazo");
-        nPYS.ActualizarXacuerdoRechazo(idAcuerdo, txtCausalRechazo.Text, Session["ID_usuario"].ToString(), "Asesor");
-        ltrMensaje.Text = Messaging.Success("Acuerdo rechazado y actualizado para validación del supervisor");
+        nPYS.ActualizarXacuerdoRechazo(idAcuerdo, txtCausalRechazo.Text, Session["ID_usuario"].ToString(), "Supervisor");
+        ltrMensaje.Text = Messaging.Success("Acuerdo rechazado y actualizado con éxito");
         gdvListaPazySalvo.EditIndex = -1;
         gdvListaPazySalvo.Columns[fAprobar].Visible = true;
         gdvListaPazySalvo.Columns[fCheckAprobar].Visible = true;
@@ -183,9 +161,9 @@ public partial class PYS_FirstApproval : System.Web.UI.Page
         switch (e.CommandName)
         {
             case "Aprobar":
-                nPYS.ActualizarXacuerdoAprobar(gdvListaPazySalvo.DataKeys[RowIndex].Values[0].ToString(), Session["ID_usuario"].ToString(), "Asesor");
+                nPYS.ActualizarXacuerdoAprobar(gdvListaPazySalvo.DataKeys[RowIndex].Values[0].ToString(), Session["ID_usuario"].ToString(), "Supervisor");
                 ConsultarPazySalvoXemitir();
-                ltrMensaje.Text = Messaging.Success("Acuerdo actualizado para validación del supervisor");
+                ltrMensaje.Text = Messaging.Success("Acuerdo aprobado y actualizado con éxito");
                 break;
             default:
                 break;
@@ -205,7 +183,7 @@ public partial class PYS_FirstApproval : System.Web.UI.Page
                 switch (lnbActualizarVarios.Text)
                 {
                     case "Aprobar varios":
-                        nPYS.ActualizarXacuerdoAprobar(gdvListaPazySalvo.DataKeys[row.RowIndex].Values[0].ToString(), Session["ID_usuario"].ToString(), "Asesor");
+                        nPYS.ActualizarXacuerdoAprobar(gdvListaPazySalvo.DataKeys[row.RowIndex].Values[0].ToString(), Session["ID_usuario"].ToString(), "Supervisor");
                         modificados++;
                         break;
                     default:
