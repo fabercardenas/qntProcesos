@@ -75,7 +75,7 @@
 
     .sidebar-nav {
        position: absolute;
-       top: 0;
+       top: 50px;
        width: 250px;
        margin: 0;
        padding: 0;
@@ -216,7 +216,7 @@
         
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
-         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+          <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <asp:Repeater ID="rptMenuLateral" runat="server">
                 <ItemTemplate>
                     <li <%# CargarSubmenuLateral((Int32)Eval("Id_MenuItem") ) %>>
@@ -233,7 +233,45 @@
       <!-- /#sidebar-wrapper -->
       <!-- Page Content -->
       <div id="page-content-wrapper">
-         <div class="container-fluid">
+             
+          <nav class="navbar navbar-default navbar-fixed-top">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#" style="padding-top:3px !important;">
+                      <img src="/Imagenes/brand.png" alt="" />
+                  </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                    
+                    <asp:Repeater ID="rptMenuSuperior" runat="server">
+                        <ItemTemplate>
+                            <li <%# ClassActive(Eval("Id_MenuItem").ToString()) %>>
+                                <a href='/?Ap=<%# Eval("temporal") + "&" + Eval("Enlace")%>'>
+                                    <%# Eval("Nombre_Item")%>
+                                </a>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                  </ul>
+                  <%--<ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar/">Default</a></li>
+                    <li><a href="../navbar-static-top/">Static top</a></li>
+                    <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+                  </ul>--%>
+                </div><!--/.nav-collapse -->
+              </div>
+          </nav>
+
+
+
+         <div class="container-fluid" style="margin-top:40px;">
             <div class="row">
                <div class="col-12">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">

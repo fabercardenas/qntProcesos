@@ -13,6 +13,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Page.Title = System.Configuration.ConfigurationManager.AppSettings["nameSite"].ToString();
         if (Session["nombreUsuario"] != null)
         {
+            CargarMenuSuperior();
             CargarMenu();
             Datos.DUsuarios dUsuario = new Datos.DUsuarios();
             Negocio.NUsuario nUsuario = new Negocio.NUsuario();
@@ -30,64 +31,40 @@ public partial class MasterPage : System.Web.UI.MasterPage
             System.Web.Security.FormsAuthentication.RedirectToLoginPage();
         }
     }
+    //156826673
+    void CargarMenuSuperior()
+    {
+        Negocio.NMenu menu = new Negocio.NMenu();
+        DataTable tabla;
+        tabla = menu.consultaPadresImagen(Session["ID_perfilFK"].ToString(), "superior");
+        if (tabla.Rows.Count > 0)
+        {
+            rptMenuSuperior.DataSource = tabla;
+            rptMenuSuperior.DataBind();
+        }
+    }
 
     void CargarMenu()
     {
         Negocio.NMenu menu = new Negocio.NMenu();
         DataTable tabla;
-        tabla = menu.consultaPadresImagen(Session["ID_perfilFK"].ToString());
+        string tipo="interno','";
+        if (Request.QueryString["mod"] != null)
+            tipo += Request.QueryString["mod"].ToString();
+        else
+        {
+            if (Session["idActive"] != null)
+                tipo += Session["idActive"].ToString();
+        }
+
+        tabla = menu.consultaPadresImagen(Session["ID_perfilFK"].ToString(), tipo);
         if (tabla.Rows.Count > 0)
         {
             rptMenuLateral.DataSource = tabla;
             rptMenuLateral.DataBind();
         }
     }
-
-    public string cargarSubmenuBoos(Int32 Id_MenuItem)
-    {
-        string subMenu = "";
-        if (Session["ID_perfilFK"] != null)
-        {
-            DataTable tabla;
-            Negocio.NMenu menu = new Negocio.NMenu();
-            tabla = menu.consultaSubMenu(Id_MenuItem, Session["ID_perfilFK"].ToString());
-
-            if (tabla.Rows.Count > 0)
-            {
-                for (int i = 0; i <= tabla.Rows.Count - 1; i++)
-                {
-                    subMenu += "<li><a class='menu' href='" + ResolveClientUrl("~/Web/") + tabla.Rows[i]["Enlace"] + "'>" + tabla.Rows[i]["Nombre_Item"] + "</a></li>";
-                }
-            }
-        }
-        return subMenu;
-    }
-
-    public string CargarSubmenu(Int32  Id_MenuItem ) 
-    {
-        DataTable tabla;
-        string subMenu = "";
-        Negocio.NMenu menu = new Negocio.NMenu();
-        if (Session["ID_perfilFK"] != null)
-        {
-            tabla = menu.consultaSubMenu(Id_MenuItem, Session["ID_perfilFK"].ToString());
-
-            if (tabla.Rows.Count > 0)
-            {
-                subMenu += "<ul>";
-                for (int i = 0; i <= tabla.Rows.Count - 1; i++)
-                {
-                    if (tabla.Rows[i]["Tipo"].ToString() == "interno")
-                        subMenu += "<li><a class='menu' href='" + ResolveClientUrl("~/Web/") + tabla.Rows[i]["Enlace"] + "'>" + tabla.Rows[i]["Nombre_Item"] + "</a></li>";
-                    else
-                        subMenu += "<li><a class='menu' href='" + tabla.Rows[i]["Enlace"] + "' target='_blank'>" + tabla.Rows[i]["Nombre_Item"] + "</a></li>";
-
-                }
-                subMenu += "</ul>";
-            }
-        }
-        return subMenu;
-    }
+    
     public string CargarSubmenuLateral(Int32 Id_MenuItem)
     {
         DataTable tabla;
@@ -115,20 +92,89 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     }
 
+    public string ClassActive(string idMenu)
+    {
+        string retornar = "";
+        
+
+        if (Request.QueryString["mod"]!=null)
+        {
+            if (Request.QueryString["mod"].ToString() == idMenu)
+            {
+                retornar = "class='active'";
+                Session["idActive"] = idMenu;
+            }
+        }
+        else 
+        {
+            if (Session["idActive"] != null)
+            {
+                if (Session["idActive"].ToString() == idMenu)
+                    retornar = "class='active'";
+            }
+        }
+
+        return retornar;
+    }
+
     public string ConsultaItems()
     {
         return itemSubmenu;
     }
-    public string ValidaClassActive()
-    {
-        return "";
-    }
-
+    
     protected void ibtSalir_Click(object sender, ImageClickEventArgs e)
     {
         System.Web.Security.FormsAuthentication.SignOut();
         System.Web.Security.FormsAuthentication.RedirectToLoginPage();
     }
+
+    #region OLD MENU
+    //public string cargarSubmenuBoos(Int32 Id_MenuItem)
+    //{
+    //    string subMenu = "";
+    //    if (Session["ID_perfilFK"] != null)
+    //    {
+    //        DataTable tabla;
+    //        Negocio.NMenu menu = new Negocio.NMenu();
+    //        tabla = menu.consultaSubMenu(Id_MenuItem, Session["ID_perfilFK"].ToString());
+
+    //        if (tabla.Rows.Count > 0)
+    //        {
+    //            for (int i = 0; i <= tabla.Rows.Count - 1; i++)
+    //            {
+    //                subMenu += "<li><a class='menu' href='" + ResolveClientUrl("~/Web/") + tabla.Rows[i]["Enlace"] + "'>" + tabla.Rows[i]["Nombre_Item"] + "</a></li>";
+    //            }
+    //        }
+    //    }
+    //    return subMenu;
+    //}
+
+    //public string CargarSubmenu(Int32 Id_MenuItem)
+    //{
+    //    DataTable tabla;
+    //    string subMenu = "";
+    //    Negocio.NMenu menu = new Negocio.NMenu();
+    //    if (Session["ID_perfilFK"] != null)
+    //    {
+    //        tabla = menu.consultaSubMenu(Id_MenuItem, Session["ID_perfilFK"].ToString());
+
+    //        if (tabla.Rows.Count > 0)
+    //        {
+    //            subMenu += "<ul>";
+    //            for (int i = 0; i <= tabla.Rows.Count - 1; i++)
+    //            {
+    //                if (tabla.Rows[i]["Tipo"].ToString() == "interno")
+    //                    subMenu += "<li><a class='menu' href='" + ResolveClientUrl("~/Web/") + tabla.Rows[i]["Enlace"] + "'>" + tabla.Rows[i]["Nombre_Item"] + "</a></li>";
+    //                else
+    //                    subMenu += "<li><a class='menu' href='" + tabla.Rows[i]["Enlace"] + "' target='_blank'>" + tabla.Rows[i]["Nombre_Item"] + "</a></li>";
+
+    //            }
+    //            subMenu += "</ul>";
+    //        }
+    //    }
+    //    return subMenu;
+    //}
+    #endregion
 
 }
 
