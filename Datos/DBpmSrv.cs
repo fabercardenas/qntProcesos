@@ -26,5 +26,12 @@ namespace Datos
 			return procedureTable("extLogInsertar", true, param);
 		}
 
+		public DataTable extConsultaXDocumento(string ID_cliente)
+		{
+			Hashtable param = new Hashtable(1);
+			param.Add("@ID_cliente", ID_cliente);
+
+			return procedureTable("extConsultaXDocumento", true, param);
+		}
 	}
 }

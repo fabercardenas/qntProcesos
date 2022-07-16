@@ -10,19 +10,22 @@ public partial class MasterPage : System.Web.UI.MasterPage
     string itemSubmenu = "";
     protected void Page_Load(object sender, EventArgs e)
     {
-        Page.Title = System.Configuration.ConfigurationManager.AppSettings["nameSite"].ToString();
         if (Session["nombreUsuario"] != null)
         {
-            CargarMenuSuperior();
-            CargarMenu();
-            Datos.DUsuarios dUsuario = new Datos.DUsuarios();
-            Negocio.NUsuario nUsuario = new Negocio.NUsuario();
-            List<string> MenuXPerfil = (List<string>)Session["MenuXPerfil"];
-
-            if ((Session["per_nivel"].ToString() != "0") && (nUsuario.AutorizarModulo(MenuXPerfil, HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Length - 1]) == false))
+            if (!Page.IsPostBack)
             {
-                Session["noAcceso"] = "No tiene permisos de acceso a este modulo";
-                Response.Redirect("~/Web/Default.aspx");
+                Page.Title = System.Configuration.ConfigurationManager.AppSettings["nameSite"].ToString();
+                CargarMenuSuperior();
+                CargarMenu();
+                Datos.DUsuarios dUsuario = new Datos.DUsuarios();
+                Negocio.NUsuario nUsuario = new Negocio.NUsuario();
+                List<string> MenuXPerfil = (List<string>)Session["MenuXPerfil"];
+
+                if ((Session["per_nivel"].ToString() != "0") && (nUsuario.AutorizarModulo(MenuXPerfil, HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Length - 1]) == false))
+                {
+                    Session["noAcceso"] = "No tiene permisos de acceso a este modulo";
+                    Response.Redirect("~/Web/Default.aspx");
+                }
             }
         }
         else
