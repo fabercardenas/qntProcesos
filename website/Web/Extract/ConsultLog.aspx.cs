@@ -6,12 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.IO;
-using System.Text;
-using System.Web.UI.HtmlControls;
-using System.Data.OleDb;
-using Ionic.Zip;
-using OfficeOpenXml;
+using RestSharp;
+using System.Net;
 
 public partial class CosultLog : System.Web.UI.Page
 {
@@ -34,7 +30,29 @@ public partial class CosultLog : System.Web.UI.Page
 
     protected void gdvLista_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
     {
-        var client = new RestClient(ConfigurationManager.AppSettings["dominio"]);
         dvDatosEnvio.Visible = true;
+        string idCampaign = gdvLista.DataKeys[e.NewSelectedIndex].Values[0].ToString();
+        var client = new RestClient(ConfigurationManager.AppSettings["inticoDominio"]);
+        Dictionary<string, string> headers = new Dictionary<string, string>();
+
+        var request = new RestRequest("colombia/ReportCampaign", Method.Post);
+        request.AddHeader("Content-Type", "application/json");
+        request.AddHeader("apikey", ConfigurationManager.AppSettings["inticoApikey"]);
+        request.AddHeader("user", ConfigurationManager.AppSettings["inticoUser"]);
+        string bodyJson = "{\"data\":" +
+                                "{" +
+                                    "\"count\":\"10\"," +
+                                    "\"pag\":\"1\"," +
+                                    "\"idcampaign\":\"" + idCampaign + "\"" +
+                                "}" +
+                              "}";
+
+        request.AddParameter("application/json", bodyJson, ParameterType.RequestBody);
+        var response = client.Execute(request);
+
+        if (response.StatusCode == HttpStatusCode.OK) 
+        { 
+            //pintar los datos
+        }
     }
 }
