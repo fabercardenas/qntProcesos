@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Web/MasterPage.master" AutoEventWireup="true" CodeFile="ConsultLog.aspx.cs" Inherits="CosultLog" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Web/MasterPage.master" Async="true" AutoEventWireup="true" CodeFile="ConsultLog.aspx.cs" Inherits="CosultLog" MaintainScrollPositionOnPostback="true" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -41,7 +41,7 @@
                             <asp:BoundField DataField="ext_manchineUser" HeaderText="Enviado por" ItemStyle-HorizontalAlign="Left" />
                             <asp:BoundField DataField="ext_data" HeaderText="Id Envio" ItemStyle-HorizontalAlign="Left" />
                             <asp:BoundField DataField="ext_fechaRegistro" HeaderText="Fecha Envio" ItemStyle-HorizontalAlign="Right" DataFormatString="{0:yyyy-MM-dd HH:mm}" />
-                            <asp:CommandField ShowSelectButton="true" SelectText="Ver" ItemStyle-CssClass="btn btn-xs btn-info" />
+                            <asp:CommandField ShowSelectButton="true" SelectText="Ver" ItemStyle-CssClass="btn btn-xs btn-info" ButtonType="Link" />
                         </Columns>
                         <SelectedRowStyle BackColor="#e7e7e7" />
                     </asp:GridView>
@@ -49,9 +49,16 @@
                 <div style="float:left; padding-left:20px; width:50%;">
                     <div class="x_panel" id="dvDatosEnvio" runat="server" visible="false">
                         <div class="x_content">
-                            el contenido de pepe asdf asdf asdf asdf asd fasdf
-                            <br />
-                            no se si chupa
+                            <h2>Informacion de intico</h2>
+                            <asp:Literal ID="ltrIntMensaje" runat="server"></asp:Literal>
+                            <div id="dvIntInformacion" runat="server">
+                                <b>Fecha Carga : </b><asp:Literal ID="ltrIntFechaCarga" runat="server"></asp:Literal><br />
+                                <b>Estado : </b><asp:Literal ID="ltrIntEstado" runat="server"></asp:Literal><br />
+                                <b>Fecha Estado : </b><asp:Literal ID="ltrIntHoraEstado" runat="server"></asp:Literal><br />
+                                <b>Navegador : </b><asp:Literal ID="ltrIntBrowser" runat="server"></asp:Literal><br />
+                                <b>Sistema Operativo : </b><asp:Literal ID="ltrIntOs" runat="server"></asp:Literal><br />
+                                <b>Ubicacion : </b><asp:Literal ID="ltrIntUbicacion" runat="server"></asp:Literal><br />
+                            </div>
                         </div>
                     </div>
                 </div>
