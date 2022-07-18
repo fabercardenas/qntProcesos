@@ -8,6 +8,10 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using RestSharp;
 using System.Net;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
+using System.Net.Http.Headers;
 
 public partial class CosultLog : System.Web.UI.Page
 {
@@ -28,31 +32,64 @@ public partial class CosultLog : System.Web.UI.Page
         gdvLista.DataBind();
     }
 
-    protected void gdvLista_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+    protected async void gdvLista_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
     {
         dvDatosEnvio.Visible = true;
-        string idCampaign = gdvLista.DataKeys[e.NewSelectedIndex].Values[0].ToString();
-        var client = new RestClient(ConfigurationManager.AppSettings["inticoDominio"]);
-        Dictionary<string, string> headers = new Dictionary<string, string>();
+        try
+        {
+            string idCampaign = gdvLista.DataKeys[e.NewSelectedIndex].Values[0].ToString();
 
-        var request = new RestRequest("colombia/ReportCampaign", Method.Post);
-        request.AddHeader("Content-Type", "application/json");
-        request.AddHeader("apikey", ConfigurationManager.AppSettings["inticoApikey"]);
-        request.AddHeader("user", ConfigurationManager.AppSettings["inticoUser"]);
-        string bodyJson = "{\"data\":" +
-                                "{" +
-                                    "\"count\":\"10\"," +
-                                    "\"pag\":\"1\"," +
-                                    "\"idcampaign\":\"" + idCampaign + "\"" +
-                                "}" +
-                              "}";
+            //joining together the json format string sample:"{"key":"valus"}";
+            string requestMessage = "{\"data\":" +
+                                    "{" +
+                                        "\"count\":\"10\"," +
+                                        "\"pag\":\"1\"," +
+                                        "\"idcampaign\":\"" + idCampaign + "\"" +
+                                    "}" +
+                                  "}";
 
-        request.AddParameter("application/json", bodyJson, ParameterType.RequestBody);
-        var response = client.Execute(request);
+            HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
+            string endpoint = ConfigurationManager.AppSettings["inticoDominio"].ToString() + "colombia/ReportCampaign";
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, endpoint);
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //request.Headers.Add("Content-Type", "application/json");
+            request.Headers.Add("apikey", ConfigurationManager.AppSettings["inticoApikey"].ToString());
+            request.Headers.Add("user", ConfigurationManager.AppSettings["inticoUser"].ToString());
+            request.Content = content;
 
-        if (response.StatusCode == HttpStatusCode.OK) 
-        { 
-            //pintar los datos
+            HttpClient putClient = new HttpClient();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            //call endpoint async
+            HttpResponseMessage response = await putClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            string result = response.Content.ReadAsStringAsync().Result;
+            dynamic details = JsonConvert.DeserializeObject(result);
+            if (details.feedback.Count > 0)
+            {
+                dvIntInformacion.Visible = true;
+                ltrIntMensaje.Text = "";
+                ltrIntFechaCarga.Text = details.feedback[0].FECHA_CARGA.ToString();
+                ltrIntEstado.Text = details.feedback[0].DESESTADO.ToString();
+                ltrIntHoraEstado.Text = details.feedback[0].FECHORAESTADO.ToString();
+                ltrIntHoraEstado.Text = details.feedback[0].FECHORAESTADO.ToString();
+                ltrIntBrowser.Text = details.feedback[0].browser.ToString();
+                ltrIntOs.Text = details.feedback[0].os.ToString();
+                ltrIntUbicacion.Text = details.feedback[0].country.ToString() + details.feedback[0].location.ToString();
+            }
+            else
+            {
+                dvIntInformacion.Visible = false;
+                ltrIntMensaje.Text = Messaging.ErrorSimple("Procesado sin informacion disponible");
+            }
         }
+        catch (Exception)
+        {
+            dvIntInformacion.Visible = false;
+            ltrIntMensaje.Text = Messaging.ErrorSimple("No hay disponibilidad del servicio de intico");
+            throw;
+        }
+        
+
     }
 }
