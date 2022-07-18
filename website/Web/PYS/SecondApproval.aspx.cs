@@ -151,7 +151,7 @@ public partial class PYS_SecondApproval : System.Web.UI.Page
         ltrMensaje.Text = "";
         int index = 0;
         int RowIndex = 0;
-        if (e.CommandName != "Page")
+        if ((e.CommandName != "Page") && (e.CommandName != "Edit"))
         {
             index = Convert.ToInt32(e.CommandArgument);
             GridViewRow oItem = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
@@ -161,7 +161,7 @@ public partial class PYS_SecondApproval : System.Web.UI.Page
         switch (e.CommandName)
         {
             case "Aprobar":
-                nPYS.ActualizarXacuerdoAprobar(gdvListaPazySalvo.DataKeys[RowIndex].Values[0].ToString(), Session["ID_usuario"].ToString(), "Supervisor");
+                nPYS.ActualizarXacuerdoAprobar(gdvListaPazySalvo.DataKeys[Convert.ToInt32(e.CommandArgument)].Values[0].ToString(), Session["ID_usuario"].ToString(), "Supervisor");
                 ConsultarPazySalvoXemitir();
                 ltrMensaje.Text = Messaging.Success("Acuerdo aprobado y actualizado con éxito");
                 break;

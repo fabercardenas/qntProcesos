@@ -173,17 +173,17 @@ public partial class PYS_FirstApproval : System.Web.UI.Page
         ltrMensaje.Text = "";
         int index = 0;
         int RowIndex = 0;
-        if (e.CommandName != "Page")
-        {
-            index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow oItem = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
-            RowIndex = oItem.RowIndex;
-        }
+        //if ((e.CommandName != "Page") && (e.CommandName !="Edit"))
+        //{
+        //    index = Convert.ToInt32(e.CommandArgument);
+        //    GridViewRow oItem = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
+        //    RowIndex = oItem.RowIndex;
+        //}
 
         switch (e.CommandName)
         {
             case "Aprobar":
-                nPYS.ActualizarXacuerdoAprobar(gdvListaPazySalvo.DataKeys[RowIndex].Values[0].ToString(), Session["ID_usuario"].ToString(), "Asesor");
+                nPYS.ActualizarXacuerdoAprobar(gdvListaPazySalvo.DataKeys[Convert.ToInt32(e.CommandArgument)].Values[0].ToString(), Session["ID_usuario"].ToString(), "Asesor");
                 ConsultarPazySalvoXemitir();
                 ltrMensaje.Text = Messaging.Success("Acuerdo actualizado para validación del supervisor");
                 break;
