@@ -20,6 +20,8 @@ public partial class TDC_SetValidation : System.Web.UI.Page
     {
         if ((Session["ID_usuario"]!=null) && (!Page.IsPostBack))
         {
+            Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+            ltrTituloModulo.Text = "<span class='fa fa-codepen'></span> <b>Consulta Validación - Paso 5</b>";
             dvIdConsulta.Visible = true;
             ltrFechaValidacion.Text = string.Format("{0:yyyyMMdd}", DateTime.Today);
             ConsultarSolicitudesXestado();

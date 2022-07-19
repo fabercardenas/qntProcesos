@@ -16,6 +16,12 @@ public partial class TDC_LoadFile : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        if ((Session["ID_usuario"] != null) && (!Page.IsPostBack))
+        {
+            Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+            ltrTituloModulo.Text = "<span class='fa fa-codepen'></span> <b>Cargar Información de Tarjetas - Paso 2</b>";
+        }
+
         if (!Page.IsPostBack)
         {
             lnbExportarResultados.Visible = false;

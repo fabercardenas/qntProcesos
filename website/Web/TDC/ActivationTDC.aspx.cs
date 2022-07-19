@@ -17,7 +17,8 @@ public partial class TDC_ActivationTDC : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+        ltrTituloModulo.Text = "<span class='fa fa-credit-card'></span> <b>Carga de Archivo para Activación TDC - Paso 9</b>";
     }
 
     Boolean validaArchivo(ref string narchivo)

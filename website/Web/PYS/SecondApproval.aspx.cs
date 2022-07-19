@@ -61,7 +61,8 @@ public partial class PYS_SecondApproval : System.Web.UI.Page
         int indicadorQuita = 0;
         gdvListaPazySalvo.DataSource = nPYS.ConsultarPazySalvoXemitir(ddlListaEstados.SelectedValue, ddlFiltroFecha.SelectedValue, txtFechaIni.Text, txtFechaFin.Text, txtListaDocumento.Text, "Supervisor");
         gdvListaPazySalvo.DataBind();
-        ltrTotalRegistros.Text = "(" + gdvListaPazySalvo.Rows.Count.ToString() + ") ";
+        Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+        ltrTituloModulo.Text = "<span class='fa fa-calendar-check-o'></span> <b>Paz y Salvos disponibles a Validar por los Asesores</b> " + "<b>(" + gdvListaPazySalvo.Rows.Count.ToString() + ")</b> ";
 
         string myScript = "<script language='JavaScript'>function CheckActualizaVarios(Checkbox) {" +
                               " var GridVwHeaderChckbox = document.getElementById(\"" + gdvListaPazySalvo.ClientID.ToString() + "\");" +

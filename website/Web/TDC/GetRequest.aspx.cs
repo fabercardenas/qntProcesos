@@ -20,6 +20,8 @@ public partial class TDC_GetRequest : System.Web.UI.Page
     {
         if ((Session["ID_usuario"]!=null) && (!Page.IsPostBack))
         {
+            Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+            ltrTituloModulo.Text = "<span class='fa fa-codepen'></span> <b>Consulta Solicitudes</b>";
             ltrMensaje.Text = "";
             ltrMensaje.Visible = false;
             btnGenerarExcel.Visible = false;

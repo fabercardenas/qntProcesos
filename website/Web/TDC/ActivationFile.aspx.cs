@@ -21,6 +21,8 @@ public partial class TDC_ActivationFile : System.Web.UI.Page
     {
         if ((Session["ID_usuario"]!=null) && (!Page.IsPostBack))
         {
+            Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+            ltrTituloModulo.Text = "<span class='fa fa-credit-card'></span> <b>Tarjetas para Activación - Paso 8.2</b>";
             dvIdConsulta.Visible = true;
             ConsultarSolicitudesXestado();
         }

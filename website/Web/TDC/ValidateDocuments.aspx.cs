@@ -21,6 +21,8 @@ public partial class TDC_ValidateDocuments : System.Web.UI.Page
     {
         if ((Session["ID_usuario"] != null) && (!Page.IsPostBack))
         {
+            Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+            ltrTituloModulo.Text = "<span class='fa fa-newspaper-o'></span> <b>Validar Documentación - Paso 7.3</b>";
             dvIdConsulta.Visible = true;
             ConsultarDocumental();
         }

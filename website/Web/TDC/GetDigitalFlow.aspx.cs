@@ -27,6 +27,8 @@ public partial class GetDigitalFlow : System.Web.UI.Page
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
+        Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+        ltrTituloModulo.Text = "<span class='fa fa-newspaper-o'></span> <b>Sincronización de Flujo Digital - Paso 7.1</b>";
     }
 
     protected async void lnbCargar_Click(object sender, EventArgs e)

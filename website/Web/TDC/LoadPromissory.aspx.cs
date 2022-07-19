@@ -18,7 +18,8 @@ public partial class TDC_LoadPromissory : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+        ltrTituloModulo.Text = "<span class='fa fa-newspaper-o'></span> <b>Carga de Pagaré - Paso 7.2</b>";
     }
 
     Boolean validaArchivo(ref string narchivo)
