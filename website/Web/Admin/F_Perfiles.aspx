@@ -63,12 +63,11 @@
                         <td>Proceso</td>
                         <td>
                             <asp:DropDownList ID="ddlProceso" runat="server">
-                                <asp:ListItem Text="Recepcion"></asp:ListItem>
-                                <asp:ListItem Text="Contratacion"></asp:ListItem>
-                                <asp:ListItem Text="Nomina"></asp:ListItem>
-                                <asp:ListItem Text="Usuaria"></asp:ListItem>
-                                <asp:ListItem Text="Laboratorio"></asp:ListItem>
-                                <asp:ListItem Text="root"></asp:ListItem>
+                                <asp:ListItem Text="Operaciones"></asp:ListItem>
+                                <asp:ListItem Text="Gestion"></asp:ListItem>
+                                <asp:ListItem Text="Financiera"></asp:ListItem>
+                                <asp:ListItem Text="Servicio Cliente"></asp:ListItem>
+                                <asp:ListItem Text="Root"></asp:ListItem>
                             </asp:DropDownList>
                         </td>
                     </tr>
