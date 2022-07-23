@@ -19,6 +19,9 @@ namespace Negocio
 		public DateTime FechaPagoCuotaInicial__c { get; set; }
 		public double Vr_Total_Acuerdo__c { get; set; }
 		public Int16 Plazo_aceptado__c { get; set; }
+		public double Vr_Cuota_1__c { get; set; }
+		public double Vr_Cuota_Mensual__c { get; set; }
+		
 		public string AcuerdoName { get; set; }
 		public string AcuerdoId { get; set; }
 
