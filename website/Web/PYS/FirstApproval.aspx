@@ -16,10 +16,6 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="tdImgVerde04">Paz y Salvos disponibles a Validar por los Asesores
-        <asp:Literal ID="ltrTotalRegistros" runat="server"></asp:Literal>
-    </div>
-    <br />
     <div class="alert alert-info">
         En este módulo los asesores pueden aprobar o rechazar la generación del Paz y salvo para los clientes de QNT que han efectuado el último pago
         <br />

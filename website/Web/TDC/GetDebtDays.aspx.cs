@@ -27,6 +27,8 @@ public partial class GetDebtDays : System.Web.UI.Page
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
+        Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+        ltrTituloModulo.Text = "<span class='fa fa-credit-card'></span> <b>Sincronización de Días Mora - Paso 8</b>";
     }
 
     protected async void lnbCargar_Click(object sender, EventArgs e)

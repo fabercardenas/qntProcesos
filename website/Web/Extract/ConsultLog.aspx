@@ -4,7 +4,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div class="clearfix"></div>
+    <br />
+    <div class="alert alert-info">
+        En este módulo se consulta el estado del envío de correos electrónicos para los extractos de los clientes de QNT.
+        <br />
+        Efectuando la consulta por el número de identificación del cliente de interés.
+        <br />
+        <br />
+    </div>
+    <div class="clearfix"></div>
 
 <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
 

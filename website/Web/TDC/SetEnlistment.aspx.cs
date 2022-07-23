@@ -24,6 +24,8 @@ public partial class TDC_SetEnlistment: System.Web.UI.Page
     {
         if ((Session["ID_usuario"]!=null) && (!Page.IsPostBack))
         {
+            Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+            ltrTituloModulo.Text = "<span class='fa fa-codepen'></span> <b>Consulta Prevalidación - Paso 4</b>";
             dvIdConsulta.Visible = true;
             ltrFechaPrevalidacion.Text = string.Format("{0:yyyyMMdd}", DateTime.Today);
             ConsultarSolicitudesXestado();

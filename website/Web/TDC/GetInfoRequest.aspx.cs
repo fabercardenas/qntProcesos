@@ -27,7 +27,13 @@ public partial class GetInfoRequest : System.Web.UI.Page
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
-       #region APGO
+        if ((Session["ID_usuario"] != null) && (!Page.IsPostBack))
+        {
+            Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
+            ltrTituloModulo.Text = "<span class='fa fa-codepen'></span> <b>Sincronización de Ubicaciones - Paso 3</b>";
+        }
+
+        #region APGO
         /*
         string query = "SELECT id, Contacto__r.ID_Cliente__c, Contacto__r.Direccin_Residencia__c from ContactLocation__c  where Contacto__r.Direccin_Residencia__c !=''";
         JObject objConsulta = JObject.Parse(QueryRecord(Client, query));

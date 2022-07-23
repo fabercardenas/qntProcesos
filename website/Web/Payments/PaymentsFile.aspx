@@ -1,16 +1,17 @@
-﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Web/MasterPage.master" AutoEventWireup="true" CodeFile="ActivationTDC.aspx.cs" Inherits="TDC_ActivationTDC" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Web/MasterPage.master" AutoEventWireup="true" CodeFile="PaymentsFile.aspx.cs" Inherits="TDC_PaymentsFile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <br />
     <div class="alert alert-info">
-        En este módulo se activarán las Tarjetas Aprobadas cargando el archivo suministrado por la entidad respectiva.
+        En este módulo iniciará el proceso para el Registro de Pagos.
         <br />
-        Al finalizar el proceso prodrá generar el archivo de validación de Activación.
+        Debe cargar el archivo con la infomación de los pagos, según el formato establecido.
         <br />
         <br />
         Puede descargar un formato de ejemplo carga pulsando click sobre el ícono
-        <a href="../../Formatos/FormatoTDC_P9.xlsx" target="_blank">
+        <a href="../../Formatos/FormatoPayments_P1.xlsx" target="_blank">
          <span class="glyphicon glyphicon-save" style="font-size:19px;"></span>
             </a>
     </div>
@@ -24,10 +25,11 @@
         <br />
     </div>
     <br />
-    <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
-
-    <div class="form-inline" id="dvDescarga" runat="server" visible="false">
-        <asp:LinkButton ID="lnbDescargar" runat="server" CssClass="btn btn-primary" OnClick="lnbDescargar_Click">
+    <div class="col-md-9">
+        <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
+    </div> 
+    <div class=" col-md-3 form-inline" id="dvDescarga" runat="server" visible="false">
+        <asp:LinkButton ID="lnbDescargar" runat="server"  CssClass="btn btn-lg btn-primary" OnClick="lnbDescargar_Click">
             <span class="glyphicon glyphicon-arrow-down"></span>
             &nbsp;Descargar Archivo
         </asp:LinkButton>

@@ -5,8 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="dvIdCargaArchivo">
-        <div class="tdImgVerde04">Carga de Pagaré - Paso 7.2</div>
-        <br />
         <div class="alert alert-info">
             Este módulo le permitirá cargar la infromación asociada al <b>Pagaré</b>
             <br />

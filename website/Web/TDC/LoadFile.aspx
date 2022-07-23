@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="tdImgVerde04">Carga Tarjetas Aprobadas - Paso 1</div>
-    <br />
     <div class="alert alert-info">
         En este módulo iniciará el proceso para las Tarjetas Aprobadas y cargará el archivo con los clientes aprobados.
         <br />

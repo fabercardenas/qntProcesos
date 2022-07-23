@@ -4,11 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>Validar Documentación - Paso 7.3</h3>
-        </div>
-    </div>
 <div class="clearfix"></div>
 
 <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
