@@ -9,6 +9,7 @@ namespace Datos
     public class DPagos : DSQL
     {
 		#region   INSERTAR CARGUE 
+		
 		public DataTable InsertarCargue(string car_codigoCargue, string ID_usuarioRegistroFK, string car_archivoCargue,
 			 string car_numeroDocumento, string car_valorPago, string car_fechaPago, string car_horaPago, string car_identificadorUnico, string car_canal, string car_IDacuerdo)
 		{
@@ -26,6 +27,16 @@ namespace Datos
 
 			return procedureTable("pagInsertar", true, param);
 		}
+
+		#endregion
+
+		#region   PROCESAR CARGUE 
+
+		public DataTable PorSincronizar()
+		{
+			return procedureTable("pagPorSincronizar", false);
+		}
+
 		#endregion
 	}
 }

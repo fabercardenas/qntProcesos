@@ -200,7 +200,7 @@
             
             <asp:GridView ID="gdvListaSolicitudes" runat="server" CssClass="table table-hover" 
                 EmptyDataText="No hay solicitues con los filtros seleccionados" 
-                    AutoGenerateColumns="False" Width="100%"
+                    AutoGenerateColumns="False" Width="100%" OnPageIndexChanging="gdvListaSolicitudes_PageIndexChanging"
                     AllowPaging="true" PageSize="30" GridLines="None" 
                     >
                 <Columns>

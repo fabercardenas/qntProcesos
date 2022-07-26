@@ -4,14 +4,13 @@ D:\APP\Sitios Fuentes\nomiQ\Datos\obj\Release\Datos.csproj.AssemblyReference.cac
 D:\APP\Sitios Fuentes\nomiQ\Datos\obj\Release\Datos.csproj.CoreCompileInputs.cache
 D:\APP\Sitios Fuentes\nomiQ\Datos\obj\Release\Datos.dll
 D:\APP\Sitios Fuentes\nomiQ\Datos\obj\Release\Datos.pdb
-D:\APP\Sitios Fuentes\qntProcesos\Datos\bin\Release\Datos.dll
-D:\APP\Sitios Fuentes\qntProcesos\Datos\bin\Release\Datos.pdb
-D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Release\Datos.csproj.AssemblyReference.cache
-D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Release\Datos.csproj.CoreCompileInputs.cache
-D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Release\Datos.dll
-D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Release\Datos.pdb
 D:\APP\SitiosFuentes\qntProcesos\Datos\bin\Release\Datos.dll
 D:\APP\SitiosFuentes\qntProcesos\Datos\bin\Release\Datos.pdb
 D:\APP\SitiosFuentes\qntProcesos\Datos\obj\Release\Datos.csproj.CoreCompileInputs.cache
 D:\APP\SitiosFuentes\qntProcesos\Datos\obj\Release\Datos.dll
 D:\APP\SitiosFuentes\qntProcesos\Datos\obj\Release\Datos.pdb
+D:\APP\Sitios Fuentes\qntProcesos\Datos\bin\Release\Datos.dll
+D:\APP\Sitios Fuentes\qntProcesos\Datos\bin\Release\Datos.pdb
+D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Release\Datos.csproj.CoreCompileInputs.cache
+D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Release\Datos.dll
+D:\APP\Sitios Fuentes\qntProcesos\Datos\obj\Release\Datos.pdb

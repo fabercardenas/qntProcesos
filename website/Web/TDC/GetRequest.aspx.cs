@@ -180,7 +180,7 @@ public partial class TDC_GetRequest : System.Web.UI.Page
             gdvListaSolicitudes.DataBind();
             gdvListaSolicitudes.Visible = true;
             btnGenerarExcel.Visible = true;
-            btnGenerarExcel.Text = "Generar Archivo con " + gdvListaSolicitudes.Rows.Count.ToString() + " Registros";
+            btnGenerarExcel.Text = "Generar Archivo con " + tbSolicitud.Rows.Count.ToString() + " Registros";
             gdvListaSolicitudes.Columns[3].Visible = false;
             gdvListaSolicitudes.Columns[4].Visible = false;
             switch (ddlPasos.SelectedValue)
@@ -238,4 +238,10 @@ public partial class TDC_GetRequest : System.Web.UI.Page
     }
     #endregion
 
+
+    protected void gdvListaSolicitudes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gdvListaSolicitudes.PageIndex = e.NewPageIndex;
+        ConsultarSolicitudes();
+    }
 }
