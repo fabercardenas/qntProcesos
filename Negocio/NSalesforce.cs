@@ -9,7 +9,7 @@ using System.Collections.Specialized;
 
 namespace Negocio
 {
-    class NSalesforce
+    public class NSalesforce
     {
 
         public Dictionary<string, string> GetToken()

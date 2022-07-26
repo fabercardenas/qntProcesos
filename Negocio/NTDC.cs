@@ -82,8 +82,10 @@ namespace Negocio
 		{
 			//joining together the json format string sample:"{"key":"valus"}";
 			string requestMessage = "{\"contactos\":[" + documentos + "]}";
-
+			
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
 			HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
+			
 
 			//SERVICIO DE CONSULTA SALESFORCE - PARA NOMBRES VA POR PUT
 			string endpoint = ServiceUrl + "/services/apexrest/BPMDatosBasicos";
@@ -211,9 +213,8 @@ namespace Negocio
 		{
 			//joining together the json format string sample:"{"key":"valus"}";
 			string requestMessage = "{\"contactos\":[" + documentos +  "]}";
-
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
 			HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
-
 			////create url using package name in URL
 			string endpoint = ServiceUrl + "/services/apexrest/BPMDatosBasicos";
 
@@ -377,9 +378,9 @@ namespace Negocio
 		{
 			//joining together the json format string sample:"{"key":"valus"}";
 			string requestMessage = "{\"contactos\":[" + documentos + "]}";
-
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
 			HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
-
+			
 			////create url using package name in URL
 			string endpoint = ServiceUrl + "/services/apexrest/BPMFlujoDigital";
 
@@ -490,7 +491,9 @@ namespace Negocio
 			//joining together the json format string sample:"{"key":"valus"}";
 			string requestMessage = "{\"contactos\":[" + documentos + "]}";
 
+			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
 			HttpContent content = new StringContent(requestMessage, Encoding.UTF8, "application/json");
+			
 
 			////create url using package name in URL
 			string endpoint = ServiceUrl + "/services/apexrest/BPMDiasMora";
