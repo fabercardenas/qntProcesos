@@ -9,6 +9,14 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+
+
+
 public partial class TDC_LoadFile : System.Web.UI.Page
 {
     Negocio.NEmpleados nEmpleado = new Negocio.NEmpleados();
@@ -22,7 +30,6 @@ public partial class TDC_LoadFile : System.Web.UI.Page
             Literal ltrTituloModulo = (Literal)this.Master.FindControl("ltrTituloModulo");
             ltrTituloModulo.Text = "<span class='fa fa-codepen'></span> <b>Carga de Tarjetas Aprobadas - Paso 1</b>";
         }
-
     }
 
     Boolean validaArchivo(ref string narchivo)
