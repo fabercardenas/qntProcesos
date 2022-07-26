@@ -117,7 +117,7 @@ namespace qntCygnusWF
                                 txtMensaje.Text += "Acuerdo en sf " + contacto.AcuerdoId + " fue creado en Cygnus con código " + respCredito.R_numRadic + Environment.NewLine + Environment.NewLine;
                             }
                             else
-                                txtMensaje.Text += "Acuerdo en sf " + contacto.AcuerdoId + " No pudo ser creado en Cygnus" + Environment.NewLine + Environment.NewLine;
+                                txtMensaje.Text += "Acuerdo en sf " + contacto.AcuerdoId + " No pudo ser creado en Cygnus. Error " + respCredito.R_s_mensaje + Environment.NewLine + Environment.NewLine;
                         }
                     }
                 } // fin recorrer resultado.ContactosNuevos
