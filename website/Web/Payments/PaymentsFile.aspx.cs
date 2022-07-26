@@ -11,9 +11,7 @@ using System.Web.UI.HtmlControls;
 
 public partial class TDC_PaymentsFile : System.Web.UI.Page
 {
-    Negocio.NEmpleados nEmpleado = new Negocio.NEmpleados();
-    Datos.DClientes dClientes = new Datos.DClientes();
-    Negocio.NTDC nTDC = new Negocio.NTDC();
+    Negocio.NPagos nPagos = new Negocio.NPagos();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,9 +31,9 @@ public partial class TDC_PaymentsFile : System.Web.UI.Page
             {
                 //SUBE EL ARCHIVO
                 string extension = System.IO.Path.GetExtension(this.fupArchivo.PostedFile.FileName);
-                narchivo = "Paso1" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Millisecond.ToString() + extension;
+                narchivo = "Pagos" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Millisecond.ToString() + extension;
 
-                string ruta = Server.MapPath("~\\files\\TDC\\") + narchivo;
+                string ruta = Server.MapPath("~\\files\\PAGOS\\") + narchivo;
 
                 try
                 {
@@ -74,7 +72,7 @@ public partial class TDC_PaymentsFile : System.Web.UI.Page
             #region CONEXION EXCEL
 
             string conStr = "";
-            DataGrid dgFaber = new DataGrid();
+            DataGrid dgPagos = new DataGrid();
 
             switch (Extension)
             {
@@ -109,48 +107,49 @@ public partial class TDC_PaymentsFile : System.Web.UI.Page
             connExcel.Close();
 
             //Bind Data to GridView
-            dgFaber.Caption = Path.GetFileName(FilePath);
-            dgFaber.DataSource = dt;
-            dgFaber.DataBind();
+            dgPagos.Caption = Path.GetFileName(FilePath);
+            dgPagos.DataSource = dt;
+            dgPagos.DataBind();
             #endregion
 
-            string afi_documento = "";
+            string cli_documento = "";
             string errores = "", errorLinea = "";
 
             try
             {
                 #region VALIDAR EXTRUCTURA
                 DataTable tbValidarReferencia;
-                DataTable tbValidarSolicitud;
-                foreach (DataGridItem dgl in dgFaber.Items)
+                foreach (DataGridItem dgl in dgPagos.Items)
                 {
                     errorLinea = "";
-                    if (dgl.Cells.Count == 5)
+                    if (dgl.Cells.Count == 7)
                     {
-                        afi_documento = dgl.Cells[1].Text;
+                        cli_documento = dgl.Cells[0].Text;
 
-                        if ((afi_documento != "&nbsp;") && (afi_documento != ""))
+                        if ((cli_documento != "&nbsp;") && (cli_documento != ""))
                         {
                             try
                             {
                                 #region VALIDAR CAMPOS
-                                if ((dgl.Cells[0].Text != "1") && (dgl.Cells[0].Text != "2"))
-                                    errorLinea += "Tipo de documento no válido. ";
-                                if (Negocio.NUtilidades.IsDouble(afi_documento) == false)
+                                if (Negocio.NUtilidades.IsDouble(cli_documento) == false)
                                     errorLinea += "El número de documento no es válido. ";
-                                //VALIDAR QUE NO EXISTA UNA SOLICITUD PARA EL DOCUMENTO
-                                tbValidarSolicitud = nTDC.consultaSolicitudXDocumento(afi_documento);
-                                if (tbValidarSolicitud.Rows.Count > 0)
-                                    errorLinea += "Ya existe una solicitud para este documento y se encuentra en el paso " + tbValidarSolicitud.Rows[0]["tdc_paso"].ToString() + ". ";
-                                    //esto se puede permitir si el cliente ha finalizado el proceso, por ahora no se ha definido cual es el paso final
-                                tbValidarReferencia = Negocio.NUtilidades.consultaReferenciaXModulo_y_Valor("Canales", dgl.Cells[2].Text);
+                                if ((dgl.Cells[1].Text == "&nbsp;") && (dgl.Cells[1].Text == ""))
+                                    errorLinea += "El valor pagado es requerido. ";
+                                if (Negocio.NUtilidades.IsDouble(dgl.Cells[1].Text) == false)
+                                    errorLinea += "El valor pagado no es válido. ";
+                                if ((dgl.Cells[2].Text == "&nbsp;") && (dgl.Cells[2].Text == ""))
+                                    errorLinea += "La fecha de pagado es requerida. ";
+                                if (Negocio.NUtilidades.IsDate(dgl.Cells[2].Text) == false)
+                                    errorLinea += "La Fecha de pago no es válida. ";
+                                if ((dgl.Cells[3].Text == "&nbsp;") && (dgl.Cells[3].Text == ""))
+                                    errorLinea += "La hora de pagado es requerida. ";
+                                //PENDIENTE VALIDAR EL FORMATO DE LA HORA 18:45
+                                if ((dgl.Cells[4].Text == "&nbsp;") && (dgl.Cells[4].Text == ""))
+                                    errorLinea += "El identificador único es requerido. ";
+                                //VALIDAR EL CANAL DE PAGO DE LA TABLA DE REFERENCIAS
+                                tbValidarReferencia = Negocio.NUtilidades.consultaReferenciaXModulo_y_Valor("Canales de Pago", dgl.Cells[5].Text);
                                 if(tbValidarReferencia.Rows.Count==0)
-                                    errorLinea += "Canal no válido. ";
-                                tbValidarReferencia = Negocio.NUtilidades.consultaReferenciaXModulo_y_Valor("Procesos", dgl.Cells[3].Text);
-                                if (tbValidarReferencia.Rows.Count == 0)
-                                    errorLinea += "Proceso no válido. ";
-                                if (Negocio.NUtilidades.IsDate(dgl.Cells[4].Text) == false)
-                                    errorLinea += "la Fecha de Venta no es válida. ";
+                                    errorLinea += "Canal de Pago no válido. ";
                                 #endregion
                             }
                             catch (Exception ex)
@@ -161,18 +160,18 @@ public partial class TDC_PaymentsFile : System.Web.UI.Page
                         }
                     }
                     else
-                        errorLinea += "El número de columnas no es válido. Se necesitan 5 y el registro tiene " + dgl.Cells.Count + ". ";
+                        errorLinea += "El número de columnas no es válido. Se necesitan 7 y el registro tiene " + dgl.Cells.Count + ". ";
 
                     if (errorLinea != "")
-                        errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", documento " + afi_documento + ": " + errorLinea + "<br />";
+                        errores += "Fila " + (dgl.ItemIndex + 2).ToString() + ", documento " + cli_documento + ": " + errorLinea + "<br />";
                 }
                 #endregion
 
                 if ((errores != ""))
                 {
                     ltrMensaje.Text = Messaging.Error("Hay errores en el archivo") + errores + "<br />";
-                    dgFaber.DataSource = null;
-                    dgFaber.DataBind();
+                    dgPagos.DataSource = null;
+                    dgPagos.DataBind();
                     return false;
                 }
                 else
@@ -180,15 +179,17 @@ public partial class TDC_PaymentsFile : System.Web.UI.Page
                     #region INSERTAR
                     int cargados = 0;
                     string documentosSF = "";
-                    foreach (DataGridItem dgl in dgFaber.Items)
+                    string cCargue = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + DateTime.Now.Millisecond.ToString();
+
+                    foreach (DataGridItem dgl in dgPagos.Items)
                     {
                         try
                         {
-                            afi_documento = dgl.Cells[1].Text;                            
-                            if ((afi_documento != "&nbsp;") && (afi_documento != ""))
+                            cli_documento = dgl.Cells[0].Text;                            
+                            if ((cli_documento != "&nbsp;") && (cli_documento != ""))
                             {
-                                nTDC.Insertar(dgl.Cells[0].Text, afi_documento, dgl.Cells[2].Text, dgl.Cells[3].Text, Session["ID_usuario"].ToString(), nombreArchivo, dgl.Cells[4].Text);
-                                documentosSF += "\"" + afi_documento + "\",";
+                                nPagos.InsertarCargue(cCargue, Session["ID_usuario"].ToString(), nombreArchivo, cli_documento, dgl.Cells[1].Text, dgl.Cells[2].Text, dgl.Cells[3].Text, dgl.Cells[4].Text, dgl.Cells[5].Text, dgl.Cells[6].Text);
+                                documentosSF += "\"" + cli_documento + "\",";
                                 cargados++;
                             }
                         }
@@ -200,18 +201,9 @@ public partial class TDC_PaymentsFile : System.Web.UI.Page
                     }
                     #endregion
 
-                    #region SINCRONIZAR SALESFORCE
-                    if (documentosSF.Length > 0)
-                    {
-                        nTDC.SincronizarNombres(documentosSF.Substring(0, documentosSF.Length - 1));
-                    }
-                    #endregion
-
-                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados. Decargue el archivo de Solicitud de Emisión TDC para Finandina");
-                    dgFaber.DataSource = null;
-                    dgFaber.DataBind();
-                    dvDescarga.Visible = true;
-                    lnbDescargar.Visible = true;
+                    ltrMensaje.Text = Messaging.Success ((cargados).ToString() + " registros cargados.");
+                    dgPagos.DataSource = null;
+                    dgPagos.DataBind();
                     return true;
                 }
             }
@@ -232,49 +224,8 @@ public partial class TDC_PaymentsFile : System.Web.UI.Page
         {
             string nombreArchivo = "";
             ltrNombreArchivo.Text = "";
-            lnbDescargar.Visible = false;
             validaArchivo(ref nombreArchivo);
         }
     }
 
-    protected void lnbDescargar_Click(object sender, EventArgs e)
-    {
-        if (Session["ID_usuario"] != null)
-        {
-            #region GENERACIÓN FORMULARIO DE SALIDA
-            consultaSolicitudXArchivo(nTDC.consultaSolicitudXArchivo(ltrNombreArchivo.Text));
-            #endregion
-        }
-    }
-
-    protected void consultaSolicitudXArchivo(DataTable tbl)
-    {
-        if (tbl.Rows.Count > 0)
-        {
-            StringBuilder sb = new StringBuilder();
-            StringWriter sw = new StringWriter(sb);
-            HtmlTextWriter htw = new HtmlTextWriter(sw);
-            Page page = new Page();
-            HtmlForm form = new HtmlForm();
-
-            GridView gdvDatos = new GridView();
-            gdvDatos.DataSource = tbl;
-            gdvDatos.DataBind();
-
-            page.EnableEventValidation = false;
-            page.DesignerInitialize();
-            page.Controls.Add(form);
-            form.Controls.Add(gdvDatos);
-            page.RenderControl(htw);
-
-            Response.Clear();
-            Response.Buffer = true;
-            Response.ContentType = "application/vnd.ms-excel";
-            Response.AddHeader("Content-Disposition", "attachment; filename= SolicituddeEmisionTDC" + string.Format("{0:ddMMyyyy}", DateTime.Today) + ".xls");
-            Response.Charset = "UTF-8";
-            Response.ContentEncoding = Encoding.Default;
-            Response.Write(sb.ToString());
-            Response.End();
-        }
-    }
 }

@@ -3,10 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <br />
     <div class="alert alert-info">
         En este módulo iniciará el proceso para el Registro de Pagos.
-        <br />
         Debe cargar el archivo con la infomación de los pagos, según el formato establecido.
         <br />
         <br />
@@ -28,12 +26,6 @@
     <div class="col-md-9">
         <asp:Literal ID="ltrMensaje" runat="server"></asp:Literal>
     </div> 
-    <div class=" col-md-3 form-inline" id="dvDescarga" runat="server" visible="false">
-        <asp:LinkButton ID="lnbDescargar" runat="server"  CssClass="btn btn-lg btn-primary" OnClick="lnbDescargar_Click">
-            <span class="glyphicon glyphicon-arrow-down"></span>
-            &nbsp;Descargar Archivo
-        </asp:LinkButton>
-    </div>
     
 </asp:Content>
 

@@ -121,8 +121,6 @@ namespace Negocio
 			return dTDC.consultaSolicitudXDocumento(tdc_numeroDocumento);
 		}
 
-		
-
 		public DataTable consultaSolicitudXArchivo(string tdc_archivoCargaP1)
 		{
 			return dTDC.consultaSolicitudXArchivo(tdc_archivoCargaP1);
