@@ -133,18 +133,18 @@ public partial class TDC_PaymentsFile : System.Web.UI.Page
                                 #region VALIDAR CAMPOS
                                 if (Negocio.NUtilidades.IsDouble(cli_documento) == false)
                                     errorLinea += "El número de documento no es válido. ";
-                                if ((dgl.Cells[1].Text == "&nbsp;") && (dgl.Cells[1].Text == ""))
+                                if ((dgl.Cells[1].Text == "&nbsp;") || (dgl.Cells[1].Text == ""))
                                     errorLinea += "El valor pagado es requerido. ";
                                 if (Negocio.NUtilidades.IsDouble(dgl.Cells[1].Text) == false)
                                     errorLinea += "El valor pagado no es válido. ";
-                                if ((dgl.Cells[2].Text == "&nbsp;") && (dgl.Cells[2].Text == ""))
+                                if ((dgl.Cells[2].Text == "&nbsp;") || (dgl.Cells[2].Text == ""))
                                     errorLinea += "La fecha de pagado es requerida. ";
                                 if (Negocio.NUtilidades.IsDate(dgl.Cells[2].Text) == false)
                                     errorLinea += "La Fecha de pago no es válida. ";
-                                if ((dgl.Cells[3].Text == "&nbsp;") && (dgl.Cells[3].Text == ""))
+                                if ((dgl.Cells[3].Text == "&nbsp;") || (dgl.Cells[3].Text == ""))
                                     errorLinea += "La hora de pagado es requerida. ";
                                 //PENDIENTE VALIDAR EL FORMATO DE LA HORA 18:45
-                                if ((dgl.Cells[4].Text == "&nbsp;") && (dgl.Cells[4].Text == ""))
+                                if ((dgl.Cells[4].Text == "&nbsp;") || (dgl.Cells[4].Text == ""))
                                     errorLinea += "El identificador único es requerido. ";
                                 //VALIDAR EL CANAL DE PAGO DE LA TABLA DE REFERENCIAS
                                 tbValidarReferencia = Negocio.NUtilidades.consultaReferenciaXModulo_y_Valor("Canales de Pago", dgl.Cells[5].Text);

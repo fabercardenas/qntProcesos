@@ -136,17 +136,17 @@ public partial class TDC_LoadDelivery : System.Web.UI.Page
                             try
                             {
                                 #region VALIDAR CAMPOS
-                                if ((dgl.Cells[0].Text == "&nbsp;") && (dgl.Cells[0].Text == ""))
+                                if ((dgl.Cells[0].Text == "&nbsp;") || (dgl.Cells[0].Text == ""))
                                     errorLinea += "El número de tarejta es requerido. ";
                                 if (Negocio.NUtilidades.IsDouble(dgl.Cells[0].Text) == false)
                                     errorLinea += "El número de tarejta no es válido. ";
                                 if (Negocio.NUtilidades.IsDouble(cli_documento) == false)
                                     errorLinea += "El número de documento no válido. ";
-                                if ((dgl.Cells[2].Text == "&nbsp;") && (dgl.Cells[2].Text == ""))
+                                if ((dgl.Cells[2].Text == "&nbsp;") || (dgl.Cells[2].Text == ""))
                                     errorLinea += "La Fecha de Entrega es requerida. ";
                                 if (dgl.Cells[2].Text != "&nbsp;" & Negocio.NUtilidades.IsDate(dgl.Cells[2].Text) == false)
                                     errorLinea += "La Fecha de Entrega no es válida. ";
-                                if ((dgl.Cells[3].Text == "&nbsp;") && (dgl.Cells[3].Text == ""))
+                                if ((dgl.Cells[3].Text == "&nbsp;") || (dgl.Cells[3].Text == ""))
                                     errorLinea += "El número de guia es requerido. ";
                                 //VALIDAR EL PASO DE LA SOLICITUD PARA IDENTIFICAR SI PUEDE MODIFICARSE A ENTREGADA
                                 tbValidarSolicitud = nTDC.consultaSolicitudXDocumento(cli_documento);

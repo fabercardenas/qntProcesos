@@ -93,19 +93,19 @@ public partial class TDC_LoadPromissory : System.Web.UI.Page
                 {
                     if (datos[0] != "CodigoDeceval" && datos[0] != "" && datos[0] != "&nbsp;")
                     {
-                        if ((datos[8].ToString() == "&nbsp;") && (datos[8].ToString() == ""))
+                        if ((datos[8].ToString() == "&nbsp;") || (datos[8].ToString() == ""))
                             errorLinea += "Tipo Pagaré requerido. ";
-                        if ((datos[9].ToString() == "&nbsp;") && (datos[9].ToString() == ""))
+                        if ((datos[9].ToString() == "&nbsp;") || (datos[9].ToString() == ""))
                             errorLinea += "Tipo de Documento Otorgante requerido. ";
                         if (Negocio.NUtilidades.IsDouble(datos[10].ToString()) == false)
                             errorLinea += "El número de documento no válido. ";
-                        if ((datos[10].ToString() == "&nbsp;") && (datos[10].ToString() == ""))
+                        if ((datos[10].ToString() == "&nbsp;") || (datos[10].ToString() == ""))
                             errorLinea += "Número de Documento Otorgante requerido. ";
-                        if ((datos[12].ToString() == "&nbsp;") && (datos[12].ToString() == ""))
+                        if ((datos[12].ToString() == "&nbsp;") || (datos[12].ToString() == ""))
                             errorLinea += "Nombre otorgante requerido. ";
                         if (Negocio.NUtilidades.IsDate(datos[17].ToString()) == false)
                             errorLinea += "Fecha de Grabación del Pagaré no válida. ";
-                        if ((datos[18].ToString() == "&nbsp;") && (datos[18].ToString() == ""))
+                        if ((datos[18].ToString() == "&nbsp;") || (datos[18].ToString() == ""))
                             errorLinea += "Nombre estado Pagaré requerido. ";
                         //VALIDAR QUE NO TENGA PAGARÉ CARGADO
                         tbValidarPagare = nTDC.consultaSolicitudXDocumento(datos[10].ToString());
